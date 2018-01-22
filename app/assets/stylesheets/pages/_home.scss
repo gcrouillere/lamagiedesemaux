@@ -5,6 +5,7 @@
 
 .jumbotron .banner {
   background-size: cover;
+  background-position-x: center;
   height: 1000px;
   position: relative;
   display: flex;
@@ -35,6 +36,7 @@
 
 .jumbotron .banner-xs {
     background-size: cover;
+    background-position-x: center;
     height: 634px;
     position: relative;
     display: flex;
