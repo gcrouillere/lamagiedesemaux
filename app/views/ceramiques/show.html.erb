@@ -209,6 +209,7 @@ Les <%="#{ENV['MODEL']} de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capi
     "image": "<%=cl_image_path @ceramique.photos[0].path%>"
   }
   </script>
+  <%= render 'shared/facebookshare' %>
   <script
     type="text/javascript"
     async defer
