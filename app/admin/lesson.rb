@@ -118,7 +118,7 @@ ActiveAdmin.register Lesson do
       Order.create!(
         state: 'pending',
         amount_cents: amount * 100,
-        user: current_user,
+        user: lesson.user,
         lesson: lesson
       )
     end
