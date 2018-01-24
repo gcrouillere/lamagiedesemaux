@@ -207,7 +207,9 @@ Site de e-commerce configurable. Créez votre compte et visualisez votre futur s
 <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
 <!-- Initialize autocomplete menu -->
 <script>
-var client = algoliasearch(<%=ENV['ALGOLIAPPID']%>, <%=ENV['ALGOLISEARCHKEY']%>);
+var algoliaAPPID = String('<%=ENV['ALGOLIAPPID']%>')
+var algoliasearchKey = String('<%=ENV['ALGOLISEARCHKEY']%>')
+var client = algoliasearch(algoliaAPPID, algoliasearchKey);
 var index = client.initIndex('Ceramique');
 //initialize autocomplete on search input (ID selector must match)
 autocomplete('#aa-search-input',
