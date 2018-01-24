@@ -16,9 +16,11 @@
       <p>Nous attendons la confirmation pour: <%= resource.unconfirmed_email %></p>
     <% end %>
 
-    <%= f.input :password, :label => 'Mot de passe', autocomplete: "off", hint: "laissez vide si vous ne voulez pas le changer", required: false %>
-    <%= f.input :password_confirmation, :label => 'Confirmation mot de passe', required: false %>
-    <%= f.input :current_password, hint: "nous avons besoin de votre mot de passe pour confirmer vos changements", required: true %>
+    <% unless  current_user.provider %>
+      <%= f.input :password, :label => 'Mot de passe', autocomplete: "off", hint: "laissez vide si vous ne voulez pas le changer", required: false %>
+      <%= f.input :password_confirmation, :label => 'Confirmation mot de passe', required: false %>
+      <%= f.input :current_password, hint: "nous avons besoin de votre mot de passe pour confirmer vos changements", required: true %>
+    <% end %>
   </div>
 
   <div class="form-actions">
