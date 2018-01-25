@@ -47,7 +47,7 @@ Site de e-commerce configurable. Créez votre compte et visualisez votre futur s
 <!-- LAPTOP -->
     <div class="hidden-xs hidden-sm col-md-3">
       <div id="ceramique-filters-content">
-        <h2>Rechercher</h2>
+        <h2>Filtrer</h2>
         <form action="/<%=ENV['MODEL']%>" method='get'>
           <input type="search" id="aa-search-input" class="aa-input-search" placeholder="Que recherchez-vous ?" name="search" autocomplete="off" />
           <a href="https://www.algolia.com" class="lienalgolia" target="blank"><%= image_tag "algolia.png", class: "algolialogo", alt: "Lien vers Algolia"%></a>
@@ -109,7 +109,7 @@ Site de e-commerce configurable. Créez votre compte et visualisez votre futur s
 
 <div class="hidden-md hidden-lg">
   <div id="ceramique-filters-content-mobile">
-    <h2>Rechercher<i id="close-search" class="fa fa-times-circle cross-1" aria-hidden="true"></i></h2>
+    <h2>Filtrer<i id="close-search" class="fa fa-times-circle cross-1" aria-hidden="true"></i></h2>
     <form action="/<%=ENV['MODEL']%>" method='get'>
       <div class="form-body">
       <input type="search" id="aa-search-input" class="aa-input-search aa-input-mobile" placeholder="Que recherchez-vous ?" name="search" autocomplete="off" />
