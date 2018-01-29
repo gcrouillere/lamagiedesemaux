@@ -13,7 +13,7 @@ Vendez vos produits en ligne ! Site de e-commerce configurable. Affichez sur cet
   <!-- LAPTOP -->
     <div class="hidden-xs hidden-sm col-sm-12">
       <div class="wrapper">
-        <%= photo_update('avatarphoto', '', '', 25, 15, '.avatarpic', "Mise à jour photo perso")%>
+        <%= photo_update('avatarphoto', 35, '', '', 15, '.avatarpic', "Mise à jour photo perso")%>
         <%= @avatarpictag %>
 
         <% if user_signed_in? && current_user.admin %>

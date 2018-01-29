@@ -2,11 +2,8 @@ Bonjour <%= @user.first_name %> <%= @user.last_name %>,
 
 Merci pour votre commande, elle va être expédiée. Voici le détail de cette commande :
 
-Référence de commande: <%= "#{@order.id}-#{Time.now.hour}#{Time.now.min}#{Time.now.day}#{Time.now.month}#{Time.now.year}" %>
-
 <% @order.basketlines.each do |basketline| %>
-  <%=ENV['MODEL'][0...-1].capitalize%>: <%= basketline.ceramique.name.capitalize %>
-  Quantité: <%= basketline.quantity %>
+  <%= basketline.ceramique.name.capitalize %> - Quantité: <%= basketline.quantity %>
   <% basketline.ceramique.offer ? discount =  basketline.ceramique.offer.discount : discount = 0 %>
   Total pour cet article: <%= humanized_money(basketline.ceramique.price * (1 - discount) * basketline.quantity)%> €
   <% if  %>

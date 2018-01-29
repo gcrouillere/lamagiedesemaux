@@ -12,10 +12,11 @@ class CeramiquesController < ApplicationController
       @ceramiques
     else
       filter_by_category if params[:categories].present?
-      filter_by_price if params[:prix_max].present?
       filter_by_offer if params[:offer].present?
       filter_globally if params[:search].present?
+      filter_by_price if params[:prix_max].present?
     end
+    @ceramiques = Ceramique.where(id: @ceramiques.map(&:id)).order(updated_at: :desc)
     @twitter_url = request.original_url.to_query('url')
     @facebookid = ""
   end
@@ -56,8 +57,8 @@ class CeramiquesController < ApplicationController
   end
 
   def filter_by_price
-    @ceramiques = Ceramique.joins(:offer).where("price_cents * (1 - discount) <= ?", params[:prix_max].to_i * 100) +
-                  Ceramique.where('offer_id IS NULL').where("price_cents <= ?", params[:prix_max].to_i * 100)
+    @ceramiques = @ceramiques.joins(:offer).where("price_cents * (1 - discount) <= ?", params[:prix_max].to_i * 100) +
+                  @ceramiques.where('offer_id IS NULL').where("price_cents <= ?", params[:prix_max].to_i * 100)
   end
 
   def filter_by_offer

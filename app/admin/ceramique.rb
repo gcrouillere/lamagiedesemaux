@@ -1,8 +1,10 @@
 ActiveAdmin.register Ceramique, as: 'Produits' do
   permit_params :name, :description, :stock, :weight, :category_id, :price_cents, photos: []
   menu priority: 1
+  config.filters = false
 
   index do
+    column :id
     column :name
     column :description
     column :stock
@@ -34,7 +36,6 @@ ActiveAdmin.register Ceramique, as: 'Produits' do
     f.input :category
     f.input :price_cents, :hint => "Prix en centimes d'euros. Ex: entrez 1200 pour un prix de 12 €"
     f.input :photos, :as => :formtastic_attachinary, :hint => "Sélectionnez les photos du produit. Maintenez Ctrl appuyé pour en sélectionner plusieurs."
-    # , :hint => image_tag(f.object.photos[0].path)
   end
   f.actions
  end
@@ -51,7 +52,7 @@ show do |ceramique|
     row :price_cents
     row :images do |ceramique|
       ceramique.photos.each do |photo|
-        span img(src: "http://res.cloudinary.com/ENV['CLOUDINARY_NAME']/image/upload/#{photo.path}")
+        span img(src: "http://res.cloudinary.com/#{ENV['CLOUDINARY_NAME']}/image/upload/#{photo.path}")
       end
     end
   end
@@ -81,9 +82,14 @@ show do |ceramique|
 
  controller do
 
-    def create
+  def create
     super do |format|
-      redirect_to admin_produits_path and return if resource.valid?
+      if resource.valid?
+        flash[:notice] = "Produit mis à jour"
+        redirect_to admin_produits_path and return
+      else
+        flash[:alert] = "Certains champs ont été oubliés ou ne sont pas correctement remplis. Voir ci-dessous."
+      end
     end
   end
 
@@ -96,7 +102,12 @@ show do |ceramique|
 
   def update
     super do |format|
-      redirect_to admin_produits_path and return if resource.valid?
+      if resource.valid?
+        flash[:notice] = "Produit mis à jour"
+        redirect_to admin_produits_path and return
+      else
+        flash[:alert] = "Certains champs ont été oubliés ou ne sont pas correctement remplis. Voir ci-dessous."
+      end
     end
   end
 
