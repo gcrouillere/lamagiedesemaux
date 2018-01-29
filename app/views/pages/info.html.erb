@@ -1,8 +1,11 @@
 <% content_for(:description) do %>
-Vendez vos produits en ligne ! Site de e-commerce configurable. Affichez sur cette page des informations vous concernant : biographie, techniques utilisées.
+  Fabienne Jacob, céramiste dans le Morbihan. Retrouvez les informations concernant mon parcours, mes céramiques et les techniques utilisées dans la fabrication.
 <% end %>
 <% content_for(:title_tag) do %>
-  Page bio de votre site de e-commerce
+  Parcours, céramiques et techniques de Fabienne Jacob.
+<% end %>
+<% content_for(:meta_description) do %>
+  Fabienne Jacob, céramiste dans le Morbihan. Retrouvez les informations concernant mon parcours, mes céramiques et les techniques utilisées dans la fabrication.
 <% end %>
 
 <%= render 'shared/info_pics' %>
@@ -13,7 +16,7 @@ Vendez vos produits en ligne ! Site de e-commerce configurable. Affichez sur cet
   <!-- LAPTOP -->
     <div class="hidden-xs hidden-sm col-sm-12">
       <div class="wrapper">
-        <%= photo_update('avatarphoto', '', '', 25, 15, '.avatarpic', "Mise à jour photo perso")%>
+        <%= photo_update('avatarphoto', 35, '', '', 15, '.avatarpic', "Mise à jour photo perso")%>
         <%= @avatarpictag %>
 
         <% if user_signed_in? && current_user.admin %>

@@ -43,18 +43,22 @@ ActiveAdmin.register Offer, as: 'Offres' do
 
     def create
       super do |format|
-        ceramiques_offer_assignment
-        multi_showcased_flash_alert
-        showcase_unicity_application
+        if resource.valid?
+          ceramiques_offer_assignment
+          multi_showcased_flash_alert
+          showcase_unicity_application
+        end
         redirect_to admin_offres_path and return if resource.valid?
       end
     end
 
     def update
       super do |format|
-        ceramiques_offer_assignment
-        multi_showcased_flash_alert
-        showcase_unicity_application
+        if resource.valid?
+          ceramiques_offer_assignment
+          multi_showcased_flash_alert
+          showcase_unicity_application
+        end
         redirect_to admin_offres_path and return if resource.valid?
       end
     end

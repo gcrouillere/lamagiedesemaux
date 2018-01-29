@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def retrieve_admin
-    @user = User.where(admin: true).first
+    @admin = User.where(admin: true).first
   end
 
   #DEVISE methods:
