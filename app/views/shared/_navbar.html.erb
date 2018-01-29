@@ -23,9 +23,9 @@
         <%= link_to info_path do %>
           <span><i class="fa fa-female"></i> Bio</span>
         <% end %>
-        <%= link_to new_lesson_path do %>
-          <span><i class="fa fa-calendar-o"></i> Réserver un stage</span>
-        <% end %>
+        <!--  link_to new_lesson_path do %> -->
+          <!-- <span><i class="fa fa-calendar-o"></i> Réserver un stage</span> -->
+
         <% if session[:order].present? %>
           <% if Order.where(id: session[:order]).present? %>
             <% if Order.where(id: session[:order]).first.state != "lost" %>
@@ -50,9 +50,9 @@
         <%= link_to info_path do %>
             <span><i class="fa fa-female"></i> Bio</span>
         <% end %>
-        <%= link_to new_lesson_path do %>
-          <span><i class="fa fa-calendar-o"></i> Réserver un stage</span>
-        <% end %>
+        <!--  link_to new_lesson_path do %> -->
+          <!-- <span><i class="fa fa-calendar-o"></i> Réserver un stage</span> -->
+
         <%= link_to new_user_session_path, class: "navbar-item navbar-link" do %>
           <span><i class="fa fa-sign-in"></i> Se connecter</span>
         <% end %>
@@ -71,12 +71,14 @@
 
   <div class="navbar-item">
     <div class="list-mobile">
+      <%= link_to ceramiques_path do %>
+          <span><i class="fa fa-bars"></i> Les bijoux %></span>
+        <% end %>
       <%= link_to info_path do %>
         <li><span><i class="fa fa-female"></i> Bio</span></li>
       <% end %>
-      <%= link_to new_lesson_path do %>
-        <span><i class="fa fa-calendar-o"></i> Stage</span>
-      <% end %>
+      <!--  link_to new_lesson_path do %> -->
+        <!-- <span><i class="fa fa-calendar-o"></i> Stage</span> -->
 
       <% if user_signed_in? %>
         <% if session[:order].present? %>
