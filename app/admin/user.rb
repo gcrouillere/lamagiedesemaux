@@ -53,16 +53,27 @@ ActiveAdmin.register User, as: 'Clients' do
           last_order = Order.where(user: user, state: "paid").order(updated_at: :desc).first
           last_order ? humanized_money(last_order.amount) + " € " + last_order.updated_at.strftime("le %d/%m/%Y") : "Aucun achat"
       end
-      row :tracking
+      if user.admin
+        row "Délai de livraison" do |user|
+          user.tracking
+        end
+      else
+        row :tracking
+      end
     end
   end
 
   form do |f|
+    @user = User.find(params[:id].to_i)
     f.inputs "" do
       f.input :first_name
       f.input :last_name
       f.input :email
-      f.input :tracking, :hint => "Entrez le numéro de suivi. Après validation il sera envoyé par mail au client"
+      if @user.admin
+        f.input :tracking, label: "Délai de livraison", :hint => "Entrez le délai de livraison sous la forme \"Nb de jour en chiffres (espace) durée\". Ex: 2 semaines"
+      else
+        f.input :tracking, :hint => "Entrez le numéro de suivi. Après validation il sera envoyé par mail au client"
+      end
     end
     f.actions
   end
@@ -73,7 +84,9 @@ ActiveAdmin.register User, as: 'Clients' do
         @user = User.find(params[:id].to_i)
         puts "#{@user.email}"
         puts "#{@user.tracking}"
-        OrderMailer.send_tracking_after_order(@user).deliver_now
+        unless @user.admin
+          OrderMailer.send_tracking_after_order(@user).deliver_now
+        end
         redirect_to admin_clients_path and return if resource.valid?
       end
     end

@@ -1,0 +1,16 @@
+<%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}" %>,
+
+Une personne a envoyé un message depuis ton site.
+
+Nom Prénom : <%= @user.first_name %>
+
+Email : <%= @user.email %>
+
+Message :
+
+---------------------------
+<%= @user.tracking %>
+---------------------------
+
+
+Ton site préféré :) !

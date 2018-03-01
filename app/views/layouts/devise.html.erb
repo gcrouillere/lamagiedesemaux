@@ -6,22 +6,6 @@
     <title><%= yield(:title_tag).blank? ? meta_title : yield(:title_tag) %></title>
     <meta name="description" content="<%= (yield(:description) || meta_description).squish %>">
 
-    <!-- Facebook Open Graph data -->
-    <meta property="og:title" content="<%= meta_title %>" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="<%= request.original_url %>" />
-    <meta property="og:image" content="<%= meta_image %>" />
-    <meta property="og:description" content="<%= meta_description %>" />
-    <meta property="og:site_name" content="<%= meta_title %>" />
-
-    <!-- Twitter Card data -->
-<!--     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="<%=  %>">
-    <meta name="twitter:title" content="<%= meta_title %>">
-    <meta name="twitter:description" content="<%= meta_description %>">
-    <meta name="twitter:creator" content="<%=  %>">
-    <meta name="twitter:image:src" content="<%= meta_image %>"> -->
-
     <%= favicon_link_tag %>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
@@ -29,21 +13,50 @@
   </head>
   <body>
 
-    <div class="body-devise">
-      <%= render 'shared/navbar' %>
-      <%= render 'shared/flashes' %>
-
-      <div class="container devise-container">
-        <div class="row">
-          <div class="col-xs-12 col-sm-offset-3 col-sm-6">
-            <div class="content-devise">
-              <%= yield %>
+    <% if @active_theme.name == "default" %>
+      <div class="body-devise">
+        <%= render 'shared/navbar' %>
+        <%= render 'shared/flashes' %>
+        <div class="container devise-container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+              <div class="content-devise">
+                <%= yield %>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <%= render 'shared/footer' %>
+        <%= render 'shared/footer' %>
+    <% elsif @active_theme.name == "lighttheme" %>
+      <div class="body-devise">
+        <%= render "shared/navbar_#{@active_theme.name}" %>
+        <%= render "shared/flashes_#{@active_theme.name}" %>
+        <div class="container devise-container-lighttheme">
+          <div class="row">
+            <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+              <div class="content-devise">
+                <%= yield %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%= render "shared/lighttheme_filter" %>
+        <%= render "shared/footer_#{@active_theme.name}" %>
+    <% elsif @active_theme.name == "darktheme" %>
+      <div class="body-devise-darktheme">
+        <%= render "shared/navbar_#{@active_theme.name}" %>
+        <%= render "shared/flashes_#{@active_theme.name}" %>
+        <div class="container devise-container-darktheme">
+          <div class="row">
+            <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+              <div class="content-devise">
+                <%= yield %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%= render "shared/footer_#{@active_theme.name}" %>
+    <% end%>
 
       <%= javascript_include_tag "https://maps.google.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
       <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>

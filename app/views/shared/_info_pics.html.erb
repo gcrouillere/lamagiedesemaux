@@ -2,6 +2,8 @@
 <% @avatarpictagmobile = image_tag ENV['AVATAR'], alt: "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize} créateur de #{ENV['MODEL']}"  %>
 <% @citypictag = image_tag ENV['CITY'], alt: "#{ENV['ADDRESS'].gsub(/[+]/, ' ')}, localisation de l'atelier de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}" %>
 <%=  %>
+<% @citypicpath = image_path ENV['CITY'] %>
+<%=  %>
 <% if @admin %>
   <% if @admin.avatarphoto.present? %>
     <% if @admin.avatarphoto.width.to_f / (@admin.avatarphoto.height) > 1.2 %>
@@ -12,6 +14,6 @@
     <% @avatarpictagmobile = cl_image_tag(cl_image_path @admin.avatarphoto.path, :width => 200, :height => 200, :crop => :thumb, :gravity => :face, alt: "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize} créateur de #{ENV['MODEL']}") %>
   <% end %>
   <% if  @admin.cityphoto.present? %>
-      <% @citypictag = cl_image_tag @admin.cityphoto.path, alt: "#{ENV['ADDRESS'].gsub(/[+]/, ' ')}, localisation de l'atelier de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}" %>
+      <% @citypicpath = @admin.cityphoto.path %>
     <% end %>
 <% end %>

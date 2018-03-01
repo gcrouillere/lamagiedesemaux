@@ -14,14 +14,6 @@
     <meta property="og:description" content="<%= meta_description %>" />
     <meta property="og:site_name" content="<%= meta_title %>" />
 
-    <!-- Twitter Card data -->
-<!--<meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="<%=  %>">
-    <meta name="twitter:title" content="<%= meta_title %>">
-    <meta name="twitter:description" content="<%= meta_description %>">
-    <meta name="twitter:creator" content="<%= %>">
-    <meta name="twitter:image:src" content="<%= meta_image %>"> -->
-
     <%= favicon_link_tag %>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
@@ -30,26 +22,11 @@
     <meta name="msvalidate.01" content="A2005042705811D0F9A1F93173061E82" />
   </head>
   <body>
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId            : <%=ENV['FB_ID']%>,
-          autoLogAppEvents : true,
-          xfbml            : true,
-          version          : 'v2.11'
-        });
-      };
+    <%= render 'shared/facebookSDK'%>
 
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "https://connect.facebook.net/fr_FR/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-    </script>
-
-    <div class="body-stage">
+<!-- DEFAULT THEME -->
+    <% if @active_theme.name == "default" %>
+      <div class="body-stage">
       <%= render 'shared/stage_pic'%>
       <style>
         @media all and (min-width: 700px) {
@@ -67,13 +44,66 @@
           }
         }
       </style>
-
-      <%= render 'shared/navbar' %>
-      <%= render 'shared/flashes' %>
-      <div class="content">
-        <%= yield %>
-      </div>
-      <%= render 'shared/footer' %>
+        <%= render 'shared/navbar' %>
+        <%= render 'shared/flashes' %>
+        <div class="content">
+          <%= yield %>
+        </div>
+        <%= render 'shared/footer' %>
+<!-- LIGHTTHEME -->
+    <% elsif @active_theme.name == "lighttheme" %>
+      <div class="body-stage-lightheme">
+      <%= render 'shared/stage_pic'%>
+      <style>
+        @media all and (min-width: 700px) {
+          .body-stage-lightheme {
+            background-image: url(<%= @stagepicpath %>);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100%;
+          }
+        }
+        @media all and (max-width: 700px) {
+          .body-stage-lightheme {
+            background: #e6dada;
+            background: linear-gradient(to right, #f0f2f0, #000c40);
+          }
+        }
+      </style>
+        <%= render "shared/navbar_#{@active_theme.name}" %>
+        <%= render 'shared/flashes_lighttheme' %>
+        <div class="content-lighttheme">
+          <%= yield %>
+        </div>
+        <%= render "shared/lighttheme_filter" %>
+        <%= render "shared/footer_#{@active_theme.name}" %>
+<!-- DARKTHEME -->
+     <% elsif @active_theme.name == "darktheme" %>
+      <div class="body-stage-darktheme">
+      <%= render 'shared/stage_pic'%>
+      <style>
+        @media all and (min-width: 700px) {
+          .body-stage-darktheme {
+            background-image: url(<%= @stagepicpath %>);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100%;
+          }
+        }
+        @media all and (max-width: 700px) {
+          .body-stage-darktheme {
+            background: #e6dada;
+            background: linear-gradient(to right, #f0f2f0, #000c40);
+          }
+        }
+      </style>
+        <%= render "shared/navbar_#{@active_theme.name}" %>
+        <%= render 'shared/flashes_lighttheme' %>
+        <div class="content-darktheme">
+          <%= yield %>
+        </div>
+        <%= render "shared/footer_#{@active_theme.name}" %>
+    <% end %>
 
       <%= javascript_include_tag "https://maps.google.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
       <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>

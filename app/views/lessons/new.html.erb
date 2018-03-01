@@ -37,7 +37,7 @@ Module de prise de réservations. Offrez la possibilité à vos clients d'effect
             <%= f.hidden_field :user_id, value: current_user.id %>
           <% end %>
           <div class="submit-div-stage">
-            <%= f.submit "Demande de réservation", class: "btn btn-primary stage-btn" %>
+            <%= f.submit "demander une réservation", class: "btn btn-primary stage-btn" %>
           </div>
         <% end %>
         <div class="text-container">
@@ -63,7 +63,7 @@ Module de prise de réservations. Offrez la possibilité à vos clients d'effect
           <%= f.input :student, collection: ENV['MINBOOKING'].to_i..ENV['CAPACITY'].to_i, label: "Nombre de participants", selected: ENV['MINBOOKING'].to_i %>
           <label class="control-label select required" for="lesson_student"><abbr title="required">*</abbr> 1er jour de stage</label>
           <div class="form-group">
-            <div class='input-group date' id='datetimepicker1'>
+            <div class='input-group date' id='datetimepicker2'>
               <span class="input-group-addon">
                 <span class="fa fa-calendar-o"></span>
               </span>
@@ -75,7 +75,7 @@ Module de prise de réservations. Offrez la possibilité à vos clients d'effect
             <%= f.hidden_field :user_id, value: current_user.id %>
           <% end %>
           <div class="submit-div-stage">
-            <%= f.submit "Demande de réservation", class: "btn btn-primary stage-btn" %>
+            <%= f.submit "demander une réservation", class: "btn btn-primary stage-btn" %>
           </div>
         <% end %>
         <div class="wrapper">
@@ -95,11 +95,12 @@ Module de prise de réservations. Offrez la possibilité à vos clients d'effect
     $(document).on('ready', function() {
 
       var confirmed_course_js_format = <%= raw @confirmed_course_js_format%>
+      var jsArray = <%= @first_possible_day.to_json.html_safe %>
 
-      $('#datetimepicker1').datetimepicker({
+      $('#datetimepicker1, #datetimepicker2').datetimepicker({
         disabledDates: <%= raw @disabled_dates%>,
         format: 'DD.MM.YYYY',
-        minDate: Date.now(),
+        minDate: jsArray[0],
         locale: moment.locale('fr')
         }).on('dp.show dp.change dp.update', function () {
           $('.tooltip-inner').remove();

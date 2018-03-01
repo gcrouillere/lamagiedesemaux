@@ -1,0 +1,18 @@
+<% @darktheme1photopath = image_path ENV['DARKTHEMEPHOTO'] %>
+<% @darktheme2photopath = image_path ENV['DARKTHEMEPHOTO'] %>
+<% @darktheme3photopath = image_path ENV['DARKTHEMEPHOTO'] %>
+<% @darktheme4photopath = image_path ENV['DARKTHEMEPHOTO'] %>
+<% if @admin %>
+  <% if  @admin.darktheme1photo.present? %>
+    <% @darktheme1photopath = cl_image_path @admin.darktheme1photo.path %>
+  <% end %>
+  <% if  @admin.darktheme2photo.present? %>
+    <% @darktheme2photopath = cl_image_path @admin.darktheme2photo.path %>
+  <% end %>
+  <% if  @admin.darktheme3photo.present? %>
+    <% @darktheme3photopath = cl_image_path @admin.darktheme3photo.path %>
+  <% end %>
+  <% if  @admin.darktheme4photo.present? %>
+    <% @darktheme4photopath = cl_image_path @admin.darktheme4photo.path %>
+  <% end %>
+<% end %>

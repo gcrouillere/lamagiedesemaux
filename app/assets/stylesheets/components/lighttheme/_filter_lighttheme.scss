@@ -1,0 +1,95 @@
+#ceramique-filters-content-lighttheme {
+  overflow-y: auto;
+  position: fixed;
+  top: 100vh;
+  height: 100vh;
+  left: 0px;
+  width: 100%;
+  z-index: 5;
+  transition: top 0.6s ease;
+  background: $card-background;
+  padding: $padding-small;
+  form {
+    padding: 10px;
+  }
+  #close-search {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 27px;
+    cursor: pointer;
+    color: black;
+  }
+  .label-search {
+    font-weight: $font-weight-label;
+    font-size: 16px;
+  }
+  .label-search.all {
+    width: 100%;
+    margin: 0px 0px 20px 0px;
+  }
+  .lienalgolia .algolialogo {
+    margin-top: -4px;
+  }
+  h2 {
+    font-weight: 300;
+    font-size: 21px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    color: black;
+    background: linear-gradient(to right, #666, #fefefe);
+    border-radius: 1px;
+    padding: 10px;
+    box-shadow: 1px 1px 1px grey;
+  }
+
+  h3 {
+    margin: 20px 0 15px 0;
+    font-size: 19px;
+    font-weight: $font-weight-h5-search;
+    background-color: #cecece;
+    padding: 5px;
+    border-radius: 1px;
+    box-shadow: 1px 1px 1px grey;
+  }
+
+  input {
+    margin-right: 5px;
+    border-radius: 1px;
+  }
+
+  .prix {
+    margin-bottom: 20px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+      margin-left: 20px;
+    }
+    li:last-child {
+      margin-bottom: 10px;
+    }
+  }
+  .mobile-submit {
+    text-align: center;
+    #recherche  {
+      width: 99%;
+      border-radius: 1px;
+      padding: 21px 34px;
+      font-size: 16px;
+      color: black;
+      border: 1px solid black;
+      background-color: white;
+      transition: 0.1s background-color linear, 0.1s color linear;
+    }
+    #recherche:hover {
+      background-color: black;
+      color: white;
+      transition: 0.1s background-color linear, 0.1s color linear;
+    }
+  }
+}
+

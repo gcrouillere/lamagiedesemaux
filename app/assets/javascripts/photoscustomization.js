@@ -42,4 +42,39 @@ $(document).on('ready', function() {
     $('.stagepic .photo-button').removeClass('hidden');
   });
 
+  $('.homerightphotos .attachinary_container').on('click', function(e){
+    $('.homerightphotos .photo-button').removeClass('hidden');
+  });
+  $('.homerightphotos input').on('click', function(e){
+    $('.homerightphotos .photo-button').removeClass('hidden');
+  });
+
+  $('.darktheme1photo .attachinary_container').on('click', function(e){
+    $('.darktheme1photo .photo-button').removeClass('hidden');
+  });
+  $('.darktheme1photo input').on('click', function(e){
+    $('.darktheme1photo .photo-button').removeClass('hidden');
+  });
+
+  $('.darktheme2photo .attachinary_container').on('click', function(e){
+    $('.darktheme2photo .photo-button').removeClass('hidden');
+  });
+  $('.darktheme2photo input').on('click', function(e){
+    $('.darktheme2photo .photo-button').removeClass('hidden');
+  });
+
+  $('.darktheme3photo .attachinary_container').on('click', function(e){
+    $('.darktheme3photo .photo-button').removeClass('hidden');
+  });
+  $('.darktheme3photo input').on('click', function(e){
+    $('.darktheme3photo .photo-button').removeClass('hidden');
+  });
+
+  $('.darktheme4photo .attachinary_container').on('click', function(e){
+    $('.darktheme4photo .photo-button').removeClass('hidden');
+  });
+  $('.darktheme4photo input').on('click', function(e){
+    $('.darktheme4photo .photo-button').removeClass('hidden');
+  });
+
 });

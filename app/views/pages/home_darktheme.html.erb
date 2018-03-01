@@ -1,0 +1,95 @@
+<% content_for(:description) do %>
+  Vendez vos produits en ligne ! Site de e-commerce configurable. Créez votre compte et visualisez votre futur site de vente en ligne de vos produits.
+<% end %>
+<% content_for(:title_tag) do %>
+  Vente de <%=ENV['MODEL']%> - <%=ENV['FIRSTNAME']%> <%=ENV['LASTNAME'] %>
+<% end %>
+
+<%= render 'shared/darktheme_home_pics' %>
+
+<div class="jumbotron-darktheme">
+
+<!-- LAPTOP -->
+  <div class="hidden-xs">
+    <div class="banner-darktheme">
+    <%= photo_update('darktheme1photo', 100, '', '', 30, '.darktheme1photo', "Mise à jour photo d'accueil 1")%>
+      <%= cl_image_tag @darktheme1photopath, class: "photo1", alt: "Céramique n° 1 de la page d'accueil"%>
+      <div class="photos2and3">
+        <div class="photo2"></div>
+        <%= photo_update('darktheme2photo', 100, '', '', 30, '.darktheme2photo', "Mise à jour photo d'accueil 2")%>
+         <style>
+          .photo2 {
+            background-image: url(<%= @darktheme2photopath %>);
+            background-size: cover;
+            background-position-y: center;
+            background-position-x: center;
+          }
+        </style>
+        <div class="photo3"><%= cl_image_tag @darktheme3photopath, alt: "Céramique n° 3 de la page d'accueil"%></div>
+        <%= photo_update('darktheme3photo', 100, 30, '', '', '.darktheme3photo', "Mise à jour photo d'accueil 3")%>
+      </div>
+      <%= cl_image_tag @darktheme4photopath, class: "photo4",  alt: "Céramique n° 4 de la page d'accueil"%>
+      <%= photo_update('darktheme4photo', '', '', 100, 30, '.darktheme4photo', "Mise à jour photo d'accueil 4")%>
+    </div>
+  </div>
+
+<!-- MOBILE -->
+  <div class="hidden-sm hidden-md hidden-lg">
+    <div class="banner-xs-darktheme">
+      <%= cl_image_tag @darktheme1photopath, alt: "Céramique n° 1 de la page d'accueil"%>
+      <div class="photo3"><%= cl_image_tag @darktheme2photopath, alt: "Céramique n° 2 de la page d'accueil"%></div>
+      <div class="photo4"><%= cl_image_tag @darktheme3photopath, alt: "Céramique n° 3 de la page d'accueil"%></div>
+      <%= cl_image_tag @darktheme4photopath, alt: "Céramique n° 4 de la page d'accueil"%>
+  </div>
+
+</div>
+
+<div class="home-text home-text-darktheme hidden-xs hidden-sm">
+  <div class="text">
+    <div class="text-left col-xs-4">
+      <% if user_signed_in? && current_user.admin %>
+          <% article_typing("accueil-gauche", "vertical", "markdown1", "live-text1", "input1") %>
+          <% @markdown = @markdown1 %>
+          <div class="live-text">
+            <%= render 'shared/articletyping' %>
+          </div>
+      <% else %>
+        <div class="plain-text">
+          <% article_display("accueil-gauche", "vertical") %>
+          <%= @markdown.html_safe %>
+        </div>
+      <% end %>
+    </div>
+    <div class="text-right col-xs-8">
+      <% if user_signed_in? && current_user.admin %>
+          <% article_typing("accueil-droit", "vertical", "markdown2", "live-text2", "input2") %>
+          <% @markdown = @markdown2 %>
+          <div class="live-text">
+            <%= render 'shared/articletyping' %>
+          </div>
+      <% else %>
+        <div class="plain-text">
+          <% article_display("accueil-droit", "vertical") %>
+          <%= @markdown.html_safe %>
+        </div>
+      <% end %>
+
+    </div>
+</div>
+
+<% content_for(:after_js) do %>
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "ArtGallery",
+    "name": "Les <%="#{ENV['MODEL']} de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>",
+    "description": "Online craft store",
+    "openingHours": "Mo-Fr 09:00-18:00",
+    "telephone": "<%= ENV['TELEPHONE']%>",
+    "url": "<%=request.original_url%>",
+    "image": "<%=request.original_url%><%= image_path ENV['HOMEPIC']%>",
+    "address":"<%= ENV['ADDRESS'].gsub(/[+]/, ' ')%>",
+    "priceRange":"20€ à 800€"
+  }
+  </script>
+<% end %>

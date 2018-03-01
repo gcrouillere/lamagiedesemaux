@@ -10,6 +10,9 @@
 
 .h1-index.mobile {
   margin: 0px 10px;
+  hr {
+    margin: 5px 0px 20px 0px;
+  }
 }
 
 .cardlink {
@@ -17,14 +20,15 @@
 }
 
 .ceramiquecard {
+  margin: 20px 10px 10px 10px;
   margin-top: 20px;
   margin-bottom: 10px;
-  padding: $padding-large;
+  padding: $padding-small;
   background: $card-background;
   border-radius: $project-border-radius;
   border: $card-border;
   text-decoration: none;
-  min-height: 500px;
+  min-height: 485px;
   position: relative;
 
   .ribbon {
@@ -83,7 +87,7 @@
       font-size: 13px;
       font-weight: 100;
       position: absolute;
-      bottom: -83px;
+      bottom: -76px;
       right: -9px;
       text-decoration: line-through;
       color: black;
@@ -109,6 +113,7 @@
     margin-left: 30px;
     margin-right: 30px;
     margin-top: 15px;
+    text-align: justify;
     color: $card-text;
     font-weight: $font-weight-h5;
     font-size: $font-size-h5;
@@ -116,7 +121,7 @@
     text-overflow: ellipsis;
     display: -webkit-box;
     line-height: 20px;     /* fallback */
-    max-height: 60px;      /* fallback */
+    max-height: 62px;      /* fallback */
     -webkit-line-clamp: 3; /* number of lines to show */
     -webkit-box-orient: vertical;
   }
@@ -124,6 +129,7 @@
     margin-left: 30px;
     margin-right: 30px;
     margin-top: 15px;
+    text-align: justify;
     color: $card-text;
     font-weight: $font-weight-h5;
     font-size: 16px;
@@ -131,28 +137,9 @@
     text-overflow: ellipsis;
     display: -webkit-box;
     line-height: 20px;     /* fallback */
-    max-height: 140px;      /* fallback */
-    -webkit-line-clamp: 7; /* number of lines to show */
+    max-height: 104px;      /* fallback */
+    -webkit-line-clamp: 5; /* number of lines to show */
     -webkit-box-orient: vertical;
-  }
-}
-
-.ceramiquecard.mobile {
-  margin: 0px 10px 10px 10px;
-  padding: 7px 0px 0px 0px;
-  min-height: 0px;
-  position: relative;
-  h3 {
-    margin-bottom: 20px;
-    color: $card-text;
-    font-weight: $font-weight-h5;
-    font-size: $font-size-h5;
-  }
-  .card-mobile-h2 {
-    text-align: center;
-    margin: 20px 0;
-    text-shadow: 1px 1px #f1f1f1;
-    color: #555;
   }
   .allpricesmobile-w {
     position: absolute;
@@ -195,6 +182,27 @@
       font-size: $font-size-h4;
       margin: 0;
       margin-top: 3px;
+    }
+  }
+}
+
+@media all and (max-width: 600px) {
+  .ceramiquecard {
+    margin: 0px 10px 10px 10px;
+    padding: 7px 0px 0px 0px;
+    min-height: 0px;
+    position: relative;
+    h3 {
+      margin-bottom: 20px;
+      color: $card-text;
+      font-weight: $font-weight-h5;
+      font-size: $font-size-h5;
+    }
+    .card-mobile-h2 {
+      text-align: center;
+      margin: 20px 0;
+      text-shadow: 1px 1px #f1f1f1;
+      color: #555;
     }
   }
 }

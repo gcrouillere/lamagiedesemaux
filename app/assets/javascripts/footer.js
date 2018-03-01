@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $('.contact').on('click', function(e) {
+  $('.contact-default').on('click', function(e) {
     e.stopPropagation();
     $('.info-text').addClass('visible').focus();
     $('i').addClass('visible');

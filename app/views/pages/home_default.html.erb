@@ -50,8 +50,6 @@
 <div class="home-text hidden-xs hidden-sm">
   <div class="text">
     <div class="text-left col-xs-4">
-      <%= render 'shared/logo_pic' %>
-      <%= @logositepictag %>
       <% if user_signed_in? && current_user.admin %>
           <% article_typing("accueil-gauche", "vertical", "markdown1", "live-text1", "input1") %>
           <% @markdown = @markdown1 %>

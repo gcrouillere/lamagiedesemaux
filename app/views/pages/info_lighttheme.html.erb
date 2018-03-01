@@ -1,11 +1,8 @@
 <% content_for(:description) do %>
-  Fabienne Jacob, céramiste dans le Morbihan. Retrouvez les informations concernant mon parcours, mes céramiques et les techniques utilisées dans la fabrication.
+Vendez vos produits en ligne ! Site de e-commerce configurable. Affichez sur cette page des informations vous concernant : biographie, techniques utilisées.
 <% end %>
 <% content_for(:title_tag) do %>
-  Parcours, céramiques et techniques de Fabienne Jacob.
-<% end %>
-<% content_for(:meta_description) do %>
-  Fabienne Jacob, céramiste dans le Morbihan. Retrouvez les informations concernant mon parcours, mes céramiques et les techniques utilisées dans la fabrication.
+  Page bio de votre site de e-commerce
 <% end %>
 
 <%= render 'shared/info_pics' %>
@@ -15,7 +12,7 @@
 
   <!-- LAPTOP -->
     <div class="hidden-xs hidden-sm col-sm-12">
-      <div class="wrapper">
+      <div class="wrapper-lighttheme">
         <%= photo_update('avatarphoto', 35, '', '', 15, '.avatarpic', "Mise à jour photo perso")%>
         <%= @avatarpictag %>
 
@@ -36,15 +33,12 @@
         <div class="img-city"><%= @citypictag%></div>
         <div id="map"></div>
       </div>
-
-      <%= link_to ceramiques_path, class: "back-in-home" do %>
-        <span><i class="fa fa-arrow-right"></i> Liste des <%= ENV['MODEL']%></span>
-      <% end %>
+      <%= render 'shared/subscribe' %>
     </div>
 
   <!-- MOBILE -->
    <div class="col-xs-12 hidden-md hidden-lg mobile-info">
-      <div class="wrapper-mobile">
+      <div class="wrapper-mobile-lightheme">
         <div class="img-avatar-mobile"><%= @avatarpictagmobile %></div>
         <%= @markdown.html_safe %>
       </div>
@@ -53,12 +47,8 @@
         <div class="img-city-mobile"><%= @citypictag%></div>
         <div id="map-mobile"></div>
       </div>
-
-      <%= link_to ceramiques_path, class: "back-in-home-mobile" do %>
-        <span><i class="fa fa-arrow-right"></i> Liste des <%= ENV['MODEL']%></span>
-      <% end %>
+      <%= render 'shared/subscribe' %>
     </div>
-
   </div>
 </div>
 

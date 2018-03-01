@@ -7,34 +7,42 @@
   <url>
     <loc>https://<%=ENV['APPNAME']%>.herokuapp.com</loc>
     <image:image>
-      <image:loc>https://<%=ENV['APPNAME']%>.herokuapp.com/assets/<%=ENV['HOMEPIC']%></image:loc>
+      <image:loc>https://<%=ENV['APPNAME']%>.herokuapp.com<%= image_path ENV['HOMEPIC']%></image:loc>
     </image:image>
-    <lastmod><%= Time.now %></lastmod>
+    <lastmod>2018-01-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://<%=ENV['APPNAME']%>.herokuapp.com/ceramiques</loc>
-    <lastmod><%= Time.now %></lastmod>
+    <lastmod>2018-01-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://<%=ENV['APPNAME']%>.herokuapp.com/info</loc>
     <image:image>
-      <image:loc>https://<%=ENV['APPNAME']%>.herokuapp.com/assets/<%=ENV['AVATAR']%></image:loc>
+      <image:loc>https://<%=ENV['APPNAME']%>.herokuapp.com<%= image_path ENV['AVATAR']%></image:loc>
     </image:image>
-    <lastmod><%= Time.now %></lastmod>
+    <lastmod>2018-01-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
-    <url>
-      <loc>https://<%=ENV['APPNAME']%>.herokuapp.com/lessons/new</loc>
-      <image:image>
-        <image:loc>https://<%=ENV['APPNAME']%>.herokuapp.com/assets/<%=ENV['STAGEPIC']%></image:loc>
-      </image:image>
-      <lastmod><%= Time.now %></lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.9</priority>
+  <url>
+    <loc>https://<%=ENV['APPNAME']%>.herokuapp.com/lessons/new</loc>
+    <image:image>
+      <image:loc>https://<%=ENV['APPNAME']%>.herokuapp.com<%= image_path ENV['STAGEPIC']%></image:loc>
+    </image:image>
+    <lastmod>2018-01-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
+  <% @ceramiques.each do |ceramique| %>
+    <url>
+      <loc>https://<%=ENV['APPNAME']%>.herokuapp.com/<%=ENV['MODEL']%>/<%= ceramique.name.downcase.gsub(' ','-')%></loc>
+      <lastmod><%= ceramique.updated_at.strftime("%Y-%m-%d") %></lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+    </url>
+  <% end %>
 </urlset>

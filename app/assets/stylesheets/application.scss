@@ -12,70 +12,16 @@
 
 // Your CSS
 @import "components/*";
+@import "components/lighttheme/*";
+@import "components/darktheme/*";
 @import "config/*";
 @import "layout/*";
 @import "pages/*";
-
-
-.body {
-  background-color: $body;
-
-  &.filter-opened {
-    overflow: hidden;
-  }
-}
 
 .content {
   min-height: calc(100vh - 90px);
 }
 
-.devise-container {
-  min-height: calc(100vh - 90px);
-  .content-devise {
-    margin-top: 60px;
-    margin-bottom: 60px;
-    margin-right: 10px;
-    margin-left: 10px;
-    background: $card-background;
-    padding: $padding-large;
-    border-radius: $project-border-radius;
-    border: $card-border;
-    .facebook-block {
-      text-align: center;
-      margin: 20px 0 40px 0;
-      .facebook-button {
-        padding: 10px;
-        border: 1px solid #365899;
-        color: white;
-        background-color: #4267b2;
-        border-radius: $project-border-radius;
-      }
-      .facebook-button:hover {
-        background-color: #365899;
-      }
-    }
-    .facebook-separator {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    hr {
-      text-align: center;
-      border-top: 1px solid #ccc;
-      width: 70%;
-    }
-    h2 {
-      text-align: center;
-    }
-    .help-block {
-      font-weight: $font-weight-p;
-      font-size: $font-size-p-devise;
-    }
-    .form-actions {
-     text-align: center;
-     margin-bottom: 20px;
-    }
-    .devise-bottom-link:hover {
-      color: darken($primary, 8%);
-    }
-  }
+.col-xs-12 {
+  padding: 0px;
 }

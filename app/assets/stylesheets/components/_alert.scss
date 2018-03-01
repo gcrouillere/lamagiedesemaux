@@ -7,9 +7,47 @@
   text-align: center;
   color: white;
 }
-.alert-info {
+
+.alert-lighttheme {
+  font-weight: 100;
+  border: none !important;
+  padding: 10px;
+  color: black;
+  .close {
+    right: 0px;
+  }
+}
+
+.alert-info.alert-default {
   background: $green;
+  border-radius: 1px;
 }
-.alert-warning {
+
+.alert-warning.alert-default {
   background: $red;
+  border-radius: 1px;
 }
+
+.alert-info.alert-lighttheme {
+  background: #c1ed90;
+  border-radius: 1px;
+}
+
+.alert-warning.alert-lighttheme {
+  background: #ff6c68;
+  border-radius: 1px;
+}
+
+.alert-info.alert-darktheme {
+  background:#99c19f;
+  border-radius: 1px;
+  border: 1px solid black;
+}
+
+.alert-warning.alert-darktheme {
+  background:#c19999;
+  border-radius: 1px;
+  border: 1px solid black;
+}
+
+

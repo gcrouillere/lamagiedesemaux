@@ -1,0 +1,117 @@
+/* NAVBAR MOBILE */
+.content-darktheme {
+  padding-top: 90px;
+}
+.navbar-mobile-darktheme {
+  margin-bottom: -70px;
+}
+.navbar-laptop-darktheme {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 3;
+}
+.navbar-mobile-darktheme {
+  position: fixed;
+  z-index: 3;
+  width: 100%;
+}
+
+/* NAVBAR FIXE */
+// .content {
+//   padding-top: 20px;
+// }
+// .jumbotron {
+//   margin-top: -20px;
+// }
+
+.navbar-laptop-darktheme {
+  background: #171717;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+  .navbar-brand {
+    display: flex;
+    text-align: center;
+    margin: auto 0 auto 20px;
+    align-items: center;
+    padding: 0px;
+    font-family: Raleway;
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: white;
+    text-shadow: 1px 1px 0px $primary;
+    height: auto;
+  }
+  .navbar-item .nav-bar-list a {
+    font-size: 15px;
+  }
+}
+
+.navbar-laptop-darktheme, .navbar-mobile-darktheme {
+  .navbar-item-darktheme {
+    cursor: pointer;
+    .nav-bar-list {
+      display: flex;
+      list-style: none;
+      a {
+          text-decoration: none !important;
+          color: white;
+          margin-right: 20px;
+          padding-bottom: 2px;
+          border-bottom: 1px solid transparent;
+        i {
+          color: white;
+        }
+      }
+      a:hover {
+        border-bottom: 1px solid white;
+      }
+    }
+    /* mobile */
+    .list-mobile {
+      display: flex;
+      list-style: none;
+      a {
+        text-decoration: none !important;
+        color: white;
+        margin-right: 15px;
+      }
+    }
+  }
+}
+
+.navbar-mobile-darktheme {
+  background: #171717;
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+  top: 0px;
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  /* Navbar logo */
+  .navbar-brand-mobile {
+    text-align: center;
+    margin: auto 0 auto 10px;
+    align-items: center;
+    padding: 0px;
+    font-family: Raleway;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: white;
+    text-shadow: 1px 1px 0px $primary;
+  }
+  .infoimg {
+    width: 20px;
+    top: -1px;
+    position: relative;
+  }
+}

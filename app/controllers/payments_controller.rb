@@ -2,12 +2,8 @@ class PaymentsController < ApplicationController
   before_action :set_order, only: [:create]
 
   def new
-    if (/\A(F-)?(((2[A|B])|[0-8]{1}[0-9]{1})|(9{1}[0-5]{1}))[0-9]{3}\z/).match("#{current_user.zip_code}") == nil
-      flash[:alert] = "Les livraisons ne sont possibles qu'en France métropolitaine. Modifiez votre adresse si vous souhaitez poursuivre."
-      redirect_to edit_user_registration_path
-    else
-      set_order
-    end
+    set_order
+    @payment_theme = @active_theme.name
   end
 
   def create
@@ -21,7 +17,7 @@ class PaymentsController < ApplicationController
     charge = Stripe::Charge.create(
       customer:     customer.id,   # You should store this customer id and re-use it.
       amount:       @order.amount_cents, # or amount_pennies
-      description:  "Payment for ceramique, for order #{@order.id}",
+      description:  "Payment for #{@order.ceramique || "lesson"}, for order #{@order.id}",
       currency:     @order.amount.currency
     )
 
@@ -54,6 +50,11 @@ class PaymentsController < ApplicationController
 
   def set_order
     @order = Order.where(state: 'pending').find(params[:order_id])
+    @order.update(user: current_user) unless @order.user
+    if (/\A(F-)?(((2[A|B])|[0-8]{1}[0-9]{1})|(9{1}[0-5]{1}))[0-9]{3}\z/).match("#{current_user.zip_code}") == nil
+      flash[:alert] = "Les livraisons ne sont possibles qu'en France métropolitaine. Modifiez votre adresse si vous souhaitez poursuivre."
+      redirect_to edit_user_registration_path
+    end
   end
 
 end

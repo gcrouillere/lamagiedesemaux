@@ -1,0 +1,145 @@
+.info-top-darktheme {
+  display: flex;
+  justify-content: center;
+  .list-header-1-darktheme {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 0px;
+    background: #171717;
+    border-radius: $project-border-radius;
+    border: 1px solid $primary-opacified ;
+    position: relative;
+    .social-buttons {
+          position: absolute;
+          top: 68px;
+          right: 15px;
+          font-size: 20px;
+          .fa-facebook-square {
+            color: white;
+          }
+          .fa-pinterest-square {
+            color: white;
+            cursor: pointer;
+          }
+          .fa-twitter-square{
+            color: white;
+          }
+        }
+    .white-div {
+      height: 13px;
+    }
+    p {
+      margin: 12px;
+      font-weight: 100;
+      color: white;
+    }
+    .list-h1 {
+      background: $primary;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .block1 {
+        flex: 1 0 auto;
+        display: flex;
+        align-items: center;
+      }
+      .info-circle, .cross-1 {
+        margin: 10px;
+        font-size: 20px;
+      }
+      .cross-1 {
+        cursor: pointer;
+        color: black;
+      }
+      .info-circle {
+        color: black;
+      }
+      h1 {
+        font-size: larger;
+        font-weight: 500;
+        margin: 10px;
+        padding: 2px;
+        color: black;
+      }
+    }
+  }
+  .offer-filter {
+    text-align: center;
+    margin: 30px 0px 10px 0px;
+  }
+}
+
+.info-top-darktheme {
+  .other-imgs-offer {
+    margin: 12px;
+    .images-offer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      .pecentage-image {
+        margin: 0px 30px -55px 27px;
+        height: 110px;
+        width: 110px;
+        border: 1px solid $primary-opacified;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .percentage-offer {
+          width: 25%;
+          margin: 5px;
+        }
+        p {
+          font-weight: 100;
+          font-size: 25px;
+          margin: 3px;
+        }
+      }
+      .little-cards-block {
+        flex: 1 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        a {
+          box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.1);
+          position: relative;
+          margin-right: 30px;
+          transition: ease 0.2s;
+          border-radius: $project-border-radius;
+          .thumbnail-offer {
+            border-radius: $project-border-radius;
+            height: 110px;
+            border: 1px solid grey;
+          }
+          .price-strip {
+            transition: none;
+            opacity: 0.9;
+            width: 100%;
+            background-color: white;
+            position: absolute;
+            bottom: 8px;
+            text-align: center;
+            p.price-offer {
+              font-weight: 400;
+              opacity: 1 !important;
+              margin: 0px;
+              color: black;
+              font-size: 14px;
+            }
+            p.previous-price {
+              font-weight: 400;
+              text-decoration: line-through;
+              opacity: 1 !important;
+              margin: 0px;
+              color: black;
+              font-size: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+<% content_for(:title_tag) do %>
+  Confirmation de commande
+<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+
+      <!-- LAPTOP -->
+      <div class="hidden-xs hidden-sm">
+        <div class="lighttheme-confirmation text-center">
+            <%= image_tag ENV['SHIPPIC'], class: "box-img-lighttheme"%>
+            <h3>Merci pour votre commande, votre colis va être expédié.</h3>
+            <h3 class="last-h3-confirmation">Un mail de confirmation vous a été envoyé. Vérifiez dans vos emails indésirables.</h3>
+        </div>
+      </div>
+
+      <!-- MOBILE -->
+      <div class="hidden-md hidden-lg">
+        <div class="text-center mobile-confirmation">
+        <div class="hidden-sm">
+            <%= image_tag ENV['SHIPPIC'], class: "box-img-mobile-xs"%>
+          </div>
+          <div class="hidden-xs">
+            <%= image_tag ENV['SHIPPIC'], class: "box-img-mobile-sm"%>
+          </div>
+          <h4>Merci pour votre commande, votre colis va être expédié.</h4>
+          <h4>Un mail de confirmation vous a été envoyé. Vérifiez dans vos emails indésirables.</h4>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

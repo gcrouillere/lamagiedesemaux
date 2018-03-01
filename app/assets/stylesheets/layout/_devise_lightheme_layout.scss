@@ -1,0 +1,81 @@
+.devise-container-lighttheme {
+    min-height: calc(100vh - 90px);
+  .content-devise {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    margin-right: 10px;
+    margin-left: 10px;
+    background: $card-background;
+    padding: $padding-large;
+    border-radius: 1px;
+    border: $card-border;
+    .new-session-h4 {
+      text-align: center;
+      margin-bottom: 54px;
+    }
+    .facebook-block {
+      text-align: center;
+      margin: 20px 0 40px 0;
+    }
+    .facebook-button, .btn-primary {
+      border-radius: 1px;
+      padding: 21px 34px;
+      font-size: 14px;
+      color: black;
+      border: 1px solid black;
+      background-color: white;
+      transition: 0.1s background-color linear, 0.1s color linear;
+    }
+    .facebook-button:hover {
+      background-color: black;
+      color: white;
+      transition: 0.1s background-color linear, 0.1s color linear;
+      background-color: #365899;
+    }
+    .btn-primary:hover {
+      background-color: black;
+      color: white;
+      transition: 0.1s background-color linear, 0.1s color linear;
+    }
+    .facebook-separator {
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+    hr {
+      text-align: center;
+      border-top: 1px solid #ccc;
+      width: 70%;
+    }
+    .form-control {
+      border-radius: 1px;
+    }
+    label {
+      font-weight: 400;
+    }
+    h2 {
+      text-align: center;
+    }
+    .help-block {
+      font-weight: $font-weight-p;
+      font-size: $font-size-p-devise;
+    }
+    .form-actions {
+     text-align: center;
+     margin-bottom: 20px;
+    }
+    .devise-bottom-link {
+      font-weight: 300;
+      color: black;
+    }
+    .devise-bottom-link:hover {
+      color: #bfbfbf;
+    }
+  }
+}
+
+@media all and (max-width: 800px) {
+  .devise-container-lighttheme .content-devise{
+    margin-top: 90px;
+  }
+}

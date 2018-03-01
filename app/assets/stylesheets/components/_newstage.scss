@@ -22,6 +22,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    .stage-btn {
+      text-transform: capitalize;
+    }
   }
   .text-container {
     display: flex;

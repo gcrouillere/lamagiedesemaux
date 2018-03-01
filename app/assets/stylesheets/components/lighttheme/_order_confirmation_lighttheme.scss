@@ -1,0 +1,35 @@
+.box-img-lighttheme {
+  width: 10%;
+  margin: 50px 0px;
+}
+
+.lighttheme-confirmation {
+  h3 {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+}
+
+.last-h3-confirmation {
+ margin-bottom: 100px;
+ font-weight: 400;
+}
+
+.mobile-confirmation {
+  .box-img-mobile-xs {
+    width: 25%;
+  }
+  .box-img-mobile-sm {
+    width: 15%;
+  }
+  h4 {
+    font-weight: $font-weight-h4;
+    margin: 11px 11px 20px 11px;
+  }
+  h4:last-child {
+    margin-bottom: 30px;
+  }
+
+}
+

@@ -1,0 +1,24 @@
+<div id="ceramique-filters-content-lighttheme">
+  <h2>FILTRER<i id="close-search" class="fa cross-1" aria-hidden="true">&times;</i></h2>
+  <form action="/<%=ENV['MODEL']%>" method='get'>
+    <div class="form-body">
+    <input type="search" id="aa-search-input" class="aa-input-search aa-input-mobile" placeholder="Que recherchez-vous ?" name="search" autocomplete="off" />
+      <h3>Catégories</h3>
+      <div class="filter-category">
+        <ul>
+          <% @uniq_categories.each do |category| %>
+            <li><label class="label-search"><input type="checkbox" name="categories[]" value="<%= category %>"><%= category %></label></li>
+          <% end %>
+        </ul>
+        <h3>Prix max €</h3>
+        <input type="number" name="prix_max" min="0" class="prix">
+      </div>
+      <% if  params[:categories].present? || params[:prix_max].present? || params[:offer].present? || params[:search].present?%>
+        <label class="label-search all"><input type="checkbox" name="all[]" value="all">Tout afficher</label>
+      <% end %>
+    </div>
+    <div class="mobile-submit">
+      <input type="submit" id="recherche" class="btn btn-primary recherche" value="AFFICHER LES PRODUITS">
+    </div>
+  </form>
+</div>

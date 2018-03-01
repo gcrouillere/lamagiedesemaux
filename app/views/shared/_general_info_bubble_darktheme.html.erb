@@ -1,0 +1,44 @@
+<div class="list-header-1-darktheme">
+  <div class="white-div"></div>
+  <div class="list-h1">
+    <div class="block1">
+      <i class="fa fa-info-circle info-circle" aria-hidden="true"></i>
+      <h1> <%= @front_offer.title %></h1>
+    </div>
+    <i class="fa fa-times-circle cross-1" aria-hidden="true"></i>
+  </div>
+  <%= facebook_share_id("facebookshare") %>
+  <p><%= @front_offer.description %></p>
+  <div class="other-imgs-offer">
+    <div class="images-offer">
+      <% if @front_offer.discount > 0 %>
+        <div class="pecentage-image">
+          <p>-<%= (@front_offer.discount * 100).to_i %></p>
+          <%= image_tag  "percentage.svg", class: "percentage-offer"%>
+        </div>
+      <% end %>
+      <div class="little-cards-block">
+      <% @ceramiques_to_display_in_offer.size < 5 ? (@ceramiques_to_display_in_offer.size < 4 ? margin_right = "100px" : margin_right = "60px") : (margin_right = "30px") %>
+      <% @ceramiques_to_display_in_offer.each_with_index do |ceramique, index|%>
+        <% if index < 5 %>
+          <%= link_to ceramique_path(ceramique), class: "offer-card", style: "margin-right: #{margin_right}", title: "#{ceramique.name}" do %>
+          <img class="thumbnail-offer" src="<%= cl_image_path ceramique.photos[0].path, quality: "auto" %>" alt="<%=ceramique.name%>">
+          <div class="price-strip">
+            <% ceramique.offer ? discount =  ceramique.offer.discount : discount = 0 %>
+            <p class="price-offer"><%= humanized_money(ceramique.price * (1 - discount))%> <%= currency_symbol %></p>
+            <% if @front_offer.discount > 0 %>
+              <p class="previous-price"> <%= humanized_money(ceramique.price)%> <%= currency_symbol %> </p>
+            <% end %>
+          </div>
+          <% end %>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+  <% @front_offer.discount > 0  ? action = "VOIR CES PRODUITS" : action = "VOIR CETTE SELECTION DE PRODUITS" %>
+  <form action="/<%=ENV['MODEL']%>" method='get' class="offer-filter">
+    <input type="hidden" name="offer[]" value="offer">
+    <input type="submit" class="btn btn-primary recherche" value="<%=action%>">
+  </form>
+</div>

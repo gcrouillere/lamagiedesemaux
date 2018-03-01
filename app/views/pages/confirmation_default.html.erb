@@ -10,14 +10,8 @@
       <div class="hidden-xs hidden-sm">
         <div class="text-center">
             <%= image_tag ENV['SHIPPIC'], class: "box-img"%>
-            <h3>Merci pour votre commande, votre colis va être expédié.</h3>
-            <h3 class="last-h3-confirmation">Un mail de confirmation vous a été envoyé. Vérifiez dans vos emails indésirables.</h3>
-        </div>
-
-        <div class="back">
-          <%= link_to ceramiques_path do %>
-            <span><i class="fa fa-arrow-right"></i> Liste des <%= ENV['MODEL'].capitalize%></span>
-          <% end %>
+            <h3 class="order-confirmation">Merci pour votre commande, votre colis va être expédié.</h3>
+            <h3 class="order-confirmation">Un mail de confirmation vous a été envoyé. Vérifiez dans vos emails indésirables.</h3>
         </div>
       </div>
 

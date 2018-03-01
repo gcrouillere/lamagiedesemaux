@@ -1,0 +1,11 @@
+.body-default {
+  background-color: $body;
+
+  h1 {
+    color: black;
+  }
+
+  &.filter-opened {
+    overflow: hidden;
+  }
+}

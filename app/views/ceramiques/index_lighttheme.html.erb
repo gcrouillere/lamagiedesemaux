@@ -1,0 +1,96 @@
+<% content_for(:description) do %>
+Site de e-commerce configurable. Créez votre compte et visualisez votre futur site de vente en ligne de vos produits.
+<% end %>
+<% content_for(:title_tag) do %>
+  Liste des produits à vendre
+<% end %>
+
+<% if @front_offer %>
+  <% content_for(:meta_image) do %>
+    <%= cl_image_path @front_offer.ceramiques.first.photos[0].path %>
+  <% end %>
+  <% content_for(:meta_description) do %>
+    <% @front_offer.discount > 0 ? discount = " - Réduction de #{(@front_offer.discount * 100).to_i} % " : discount = "" %>
+    <%= "#{@front_offer.title} #{discount} - #{@front_offer.description}".squish %>
+  <% end %>
+<% end %>
+
+<div class="container-lighttheme">
+  <div class="row">
+       <% @ceramiques.each_with_index do |ceramique, index| %>
+          <div class="col-xs-6 col-sm-4 col-md-3 lighttheme-ceramiquecard-col">
+            <%= link_to ceramique_path(ceramique), title: "#{ceramique.name}", class: "cardlink-lighttheme" do %>
+              <div class="ceramiquecard-lighttheme">
+                <div class="img-container ceramique-front-image-<%=index%>">
+                  <style>
+                    .ceramique-front-image-<%=index%> {
+                      <% if ceramique.photos[1]%>
+                        background-image: url(<%= cl_image_path ceramique.photos[1].path, quality: "auto" %>);
+                      <% end %>
+                      background-image: url(<%= cl_image_path ceramique.photos[0].path, quality: "auto" %>);
+                    }
+                    <% if ceramique.photos[1]%>
+                    .ceramique-front-image-<%=index%>:hover {
+                      <% if  cl_image_path ceramique.photos[1]%>
+                        background-image: url(<%= cl_image_path ceramique.photos[1].path, quality: "auto" %>);
+                      <% end %>
+                    }
+                    <% end %>
+                  </style>
+                  <% if  ceramique.stock == 0%>
+                    <div class="ceramiques-card-circle soldout"><p>Epuisé</p></div>
+                  <% elsif ceramique.offer%>
+                    <% if ceramique.offer.discount > 0 %>
+                      <div class="ceramiques-card-circle discount-circle"><p>-<%= (ceramique.offer.discount * 100).to_i %>%</p></div>
+                    <% end %>
+                  <% end %>
+                </div>
+                <h2><%= ceramique.name.capitalize%></h2>
+                <% ceramique.offer ? discount =  ceramique.offer.discount : discount = 0 %>
+                <% ceramique.offer ? ondiscount =  "ondiscount" : ondiscount =  "" %>
+                <div class="prices-ceramiq-card-lighttheme">
+                  <h3 class="prix-index <%=ondiscount%>"><%= humanized_money(ceramique.price * (1 - discount))%> <%= currency_symbol %></h2>
+                  <% if ceramique.offer %>
+                    <% if ceramique.offer.discount > 0 %>
+                      <h3 class="previous-price"><%= humanized_money(ceramique.price)%> <%= currency_symbol %></h3>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+      <% end %>
+  </div>
+</div>
+
+<%= render 'shared/subscribe' %>
+
+<% content_for(:after_js) do %>
+  <!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
+  <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
+
+  <!-- Initialize autocomplete menu -->
+  <script>
+  var algoliaAPPID = String('<%=ENV['ALGOLIAPPID']%>')
+  var algoliasearchKey = String('<%=ENV['ALGOLISEARCHKEY']%>')
+  var client = algoliasearch(algoliaAPPID, algoliasearchKey);
+  var index = client.initIndex('Ceramique');
+  //initialize autocomplete on search input (ID selector must match)
+  autocomplete('#aa-search-input',
+  { hint: false }, {
+      source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+      //value to be displayed in input control after user's suggestion selection
+      displayKey: 'name',
+      //hash of templates used when rendering dataset
+      templates: {
+          //'suggestion' templating function used to render a single suggestion
+          suggestion: function(suggestion) {
+            return '<span>' + suggestion._highlightResult.name.value + '</span>'
+            + '<span>' + suggestion._highlightResult.description.value + '</span>'
+            +'<span>' + suggestion._highlightResult.category.name.value + '</span>';
+          }
+      }
+  });
+  </script>
+<% end %>

@@ -1,0 +1,208 @@
+<% content_for(:description) do %>
+<%= @ceramique.name.capitalize %>. Prix : <%= humanized_money(@ceramique.price)%> €. Livraison sous 3 semaines.
+<% end %>
+<% content_for(:title_tag) do %>
+Les <%="#{ENV['MODEL']} de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%> - <%= @ceramique.name.capitalize %>
+<% end %>
+<% content_for(:meta_image) do %>
+  <%= cl_image_path @ceramique.photos[0].path %>
+<% end %>
+<% content_for(:meta_description) do %>
+  <%= ("#{@ceramique.name} : #{@ceramique.description}. Prix: #{humanized_money(@ceramique.price)} €").squish %>
+<% end %>
+
+
+<div class="container-lighttheme-show">
+
+<!-- LAPTOP -->
+  <div class="hidden-xs hidden-sm">
+
+    <div class="row">
+
+        <div class="product-show text center">
+          <div class="col-md-7 product-show-half-top-wrapper">
+            <div class="ceramique-images">
+              <% verticale = false %>
+              <% classe = "" %>
+              <% @ceramique.photos.each do |photo| %>
+                <% photo.height > photo.width ? verticale = true : nil %>
+              <% end %>
+              <% verticale ? classe = "verticale" : classe = "horizontale"  %>
+              <img class="img-front <%= classe %> " id="zoom01" src="<%= cl_image_path @ceramique.photos[0].path, quality: "auto" %>" data-zoom-image="<%= cl_image_path @ceramique.photos[0].path, quality: "auto" %>" alt="<%=@ceramique.name%>">
+              <div class="images">
+                <% @ceramique.photos.each_with_index do |photo, index| %>
+                  <% if index < 4 %>
+                    <img class="thumbnail" src="<%= cl_image_path @ceramique.photos[index].path, quality: "auto" %>" alt="<%=@ceramique.name%>">
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-5 product-show-half-top-wrapper">
+          <div class="info-add-basket-lighttheme">
+            <div class="description">
+              <h1> <%= @ceramique.name.capitalize%> </h1>
+              <% @ceramique.offer ? discount =  @ceramique.offer.discount : discount = 0 %>
+              <div class="lighttheme-prices-show">
+                <h2> <%= humanized_money(@ceramique.price * (1 - discount))%> <%= currency_symbol %> </h2>
+                <% if @ceramique.offer %>
+                  <% if @ceramique.offer.discount > 0 %>
+                    <h2 class="previous-price"><%= humanized_money(@ceramique.price)%> <%= currency_symbol %></h3>
+                  <% end %>
+                <% end %>
+              </div>
+              <p class="description"> <%= @ceramique.description.gsub(/\n/, '<br>').html_safe%> </p>
+            </div>
+            <div class="prix-form">
+              <% if  @ceramique.stock > 0 %>
+                <form action="/orders" method="post" authenticity_token="true" class="form">
+                  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                  <label for="quantity">Quantité </label>
+                  <div class="qte">
+                    <input type="number" name="quantity" min="1" max="<%=@ceramique.stock%>" value="1">
+                  </div>
+                  <input type="hidden" name="ceramique" value="<%= @ceramique.id%>">
+                  <button type="submit" class="btn btn-primary lighttheme">AJOUTER AU PANIER</button>
+                </form>
+              <% else %>
+                  <h2 class="stock0">Stock épuisé</h2>
+              <% end %>
+            </div>
+            <%= facebook_share_id("facebookshare") %>
+          </div>
+          </div>
+
+        </div>
+    </div>
+
+    <% if @same_category_products != [] %>
+
+    <hr class="product-show-separator">
+
+    <div class="row">
+      <div class="col-sm-12 same-category-products">
+          <h2>Retrouvez d'autres produits dans la même catégorie: </h2>
+          <div class="same-category-products-cards">
+            <% @same_category_products.each_with_index do |ceramique, index|%>
+              <% if index == 0 || (index)%3 == 0 %>
+                <div class="card-separator">
+              <% end %>
+                <div class="col-sm-4 same-category-product-card-lighttheme">
+                  <%= link_to ceramique_path(ceramique) , title: "#{ceramique.name}", class: "same-category-product-card-link"  do %>
+                  <img class="same-product-photo" src="<%= cl_image_path ceramique.photos[0].path, quality: "auto" %>" alt="<%=ceramique.name%>">
+                  <div class="same-category-product-card-text">
+                    <p class="ceramique-name"><%= ceramique.name.capitalize%></p>
+                    <% ceramique.offer ? discount =  ceramique.offer.discount : discount = 0 %>
+                    <% if discount > 0 %>
+                      <p class="prix-index"><%= humanized_money(ceramique.price * (1 - discount))%> <%= currency_symbol %></h2>
+                      <p class="previous-price"><%= humanized_money(ceramique.price)%> <%= currency_symbol %></h3>
+                    <% else %>
+                      <p class="prix-index-wo-discount"><%= humanized_money(ceramique.price)%> <%= currency_symbol %></h2>
+                    <% end %>
+                  </div>
+                  <% end %>
+                </div>
+              <% if ceramique == @same_category_products.last || index == 2 || (index + 1)%3 == 0 %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+      </div>
+    </div>
+
+    <% end %>
+    <%= render 'shared/subscribe' %>
+
+  </div>
+
+<!-- MOBILE -->
+  <div class="row">
+    <div class="col-xs-12 hidden-md hidden-lg">
+
+      <div class="head">
+        <div class="lighttheme-socials">
+          <%= facebook_share_id("facebooksharemobile") %>
+        </div>
+        <h1> <%= @ceramique.name.capitalize%> </h1>
+        <div class="image-xs-sm-lightheme">
+          <img class="img-front" src="<%= cl_image_path @ceramique.photos[0].path, quality: "auto" %>" alt="<%=@ceramique.name%>">
+        </div>
+      </div>
+      <div class="other-imgs-lighttheme other-mobile-lighttheme">
+        <div class="images-mobile">
+          <% @ceramique.photos.each_with_index do |photo, index| %>
+            <% if index < 4 %>
+              <img class="thumbnail" src="<%= cl_image_path @ceramique.photos[index].path, quality: "auto" %>" alt="<%=@ceramique.name%>">
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="product-show-mobile text center">
+        <div class="info-add-basket info-basket-lightheme-mobile">
+          <div class="description">
+            <p class="description"> <%= @ceramique.description.gsub(/\n/, '<br>').html_safe %> </p>
+            <hr>
+          </div>
+          <div class="prix-form">
+            <% @ceramique.offer ? discount =  @ceramique.offer.discount : discount = 0 %>
+            <h2> <%= humanized_money(@ceramique.price * (1 - discount))%> <%= currency_symbol %> </h2>
+            <% if @ceramique.offer %>
+                  <% if @ceramique.offer.discount > 0 %>
+                    <h3 class="previous-price"><%= humanized_money(@ceramique.price)%> <%= currency_symbol %></h3>
+                  <% end %>
+                <% end %>
+            <% if  @ceramique.stock > 0 %>
+              <form action="/orders" method="post" authenticity_token="true" class="form">
+                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                <div class="qte">
+                  <label for="quantity">Qté </label>
+                  <select name="quantity">
+                    <% for i in 1..@ceramique.stock %>
+                      <option value="<%= i %>"><%= i %></option>
+                    <% end %>
+                  </select>
+                </div>
+                <input type="hidden" name="ceramique" value="<%= @ceramique.id%>">
+                <button type="submit" class="pull-right btn btn-primary lighttheme">
+                  <i class="fa fa-plus""></i> <i class="fa fa-shopping-cart"></i>
+                </button>
+              </form>
+            <% else %>
+                <h2 class="stock0">Stock épuisé</h2>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <%= render 'shared/subscribe' %>
+    </div>
+  </div>
+
+</div>
+
+<% content_for(:after_js) do %>
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Product",
+    "name": "<%=@ceramique.name.capitalize%>",
+    "description": "<%=@ceramique.description%>",
+    "offers": {
+      "@type": "Offer",
+      "price": "<%= humanized_money(@ceramique.price)%>",
+      "priceCurrency": "€"
+    },
+    "url": "<%=request.original_url%>",
+    "image": "<%=cl_image_path @ceramique.photos[0].path%>"
+  }
+  </script>
+  <script
+    type="text/javascript"
+    async defer
+    src="//assets.pinterest.com/js/pinit.js"
+    data-pin-round="true"
+    data-pin-tall="15px"
+></script>
+<%= render 'shared/facebookshare' %>
+<% end %>

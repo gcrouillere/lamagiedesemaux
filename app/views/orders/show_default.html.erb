@@ -4,15 +4,13 @@
 
 <div class="page-top">
   <h1>Panier</h1>
-  <%= link_to ceramiques_path, class: "hidden-xs" do %>
-    <span><i class="fa fa-arrow-right"></i> Liste des <%= ENV['MODEL'].capitalize%></span>
-  <% end %>
 </div>
 
 <div class="container">
   <div class="row">
     <!-- LAPTOP -->
     <div class="hidden-xs col-sm-12">
+      <br>
       <% @order.basketlines.each do |basketline| %>
         <div class="basket-item">
           <%= cl_image_tag basketline.ceramique.photos[0].path, class: "basket-article-img" %>
@@ -38,7 +36,7 @@
         </div>
         <form action="/orders/<%= @order.id%>/payments/new" method="get">
           <input type="hidden" name="order_id" value="<%= @order.id%>">
-          <button type="submit" class="pull-right btn btn-primary order">
+          <button type="submit" class="pull-right btn btn-primary">
             Finaliser ma commande
           </button>
         </form>
@@ -70,7 +68,7 @@
       <div class="total mobile">
         <form action="/orders/<%= @order.id%>/payments/new" method="get">
           <input type="hidden" name="order_id" value="<%= @order.id%>">
-          <button type="submit" class="pull-right btn btn-primary order">
+          <button type="submit" class="pull-right btn btn-primary">
             Valider ma commande
           </button>
         </form>

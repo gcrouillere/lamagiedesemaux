@@ -1,0 +1,77 @@
+<% content_for(:description) do %>
+  Vendez vos produits en ligne ! Site de e-commerce configurable. Créez votre compte et visualisez votre futur site de vente en ligne de vos produits.
+<% end %>
+<% content_for(:title_tag) do %>
+  Vente de <%=ENV['MODEL']%> - <%=ENV['FIRSTNAME']%> <%=ENV['LASTNAME'] %>
+<% end %>
+
+<%= render 'shared/home_pics' %>
+<%= render 'shared/home_right_pics' %>
+
+  <div class="homeimagescontainer hidden-xs">
+    <%= photo_update('productphoto', 130, '', '', 30, '.homepic', "Mise à jour photo accueil gauche")%>
+    <%= photo_update('logophoto', 130, '', '', 785, '.logopic', "Mise à jour logo")%>
+    <%= photo_update('homerightphotos', 350, '', '', 30, '.homerightphotos', "Mise à jour photos accueil droite")%>
+    <div class="imagehomeleft col-sm-8">
+      <style>
+        .imagehomeleft {
+          background-image: url(<%= @homepicpath %>);
+          background-size: cover;
+          background-position-y: center;
+          background-position-x: center;
+        }
+      </style>
+    </div>
+    <div class="imageshomeright col-sm-4">
+      <%= image_tag @homerightphoto1 %>
+      <%= image_tag @homerightphoto2 %>
+    </div>
+  </div>
+  <div class="homeimagescontainer-mobile">
+    <div class="imagehomeleft-mobile hidden-sm hidden-md hidden-lg">
+      <%= image_tag @homepicpath %>
+      <%= image_tag @homerightphoto1 %>
+      <%= image_tag @homerightphoto2 %>
+    </div>
+  </div>
+
+  <div class="hometext hidden-xs hidden-sm">
+    <% if user_signed_in? && current_user.admin %>
+      <% article_typing("accueil_lighttheme", "vertical", "markdown1", "live-text4", "input4") %>
+      <% @markdown = @markdown1 %>
+      <div class="live-text ">
+        <%= render 'shared/articletyping' %>
+      </div>
+    <% else %>
+      <div class="plain-text">
+        <% article_display("accueil_lighttheme", "vertical") %>
+        <%= @markdown.html_safe %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="hometext-mobile hidden-md hidden-lg">
+    <div class="plain-text">
+      <% article_display("accueil_lighttheme", "vertical") %>
+      <%= @markdown.html_safe %>
+    </div>
+  </div>
+
+  <%= render 'shared/subscribe' %>
+
+<% content_for(:after_js) do %>
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "ArtGallery",
+    "name": "Les <%="#{ENV['MODEL']} de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>",
+    "description": "Online craft store",
+    "openingHours": "Mo-Fr 09:00-18:00",
+    "telephone": "<%= ENV['TELEPHONE']%>",
+    "url": "<%=request.original_url%>",
+    "image": "<%=request.original_url%><%= image_path ENV['HOMEPIC']%>",
+    "address":"<%= ENV['ADDRESS'].gsub(/[+]/, ' ')%>",
+    "priceRange":"20€ à 800€"
+  }
+  </script>
+<% end %>

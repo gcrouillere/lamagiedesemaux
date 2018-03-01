@@ -79,18 +79,15 @@
 
 .basket-item.mobile {
   margin: 0px 10px 10px 10px;
+  justify-content: space-around;
   .basket-article-img {
     width: 45%;
     height: 45%;
   }
   .order-detail {
-    flex: 1 0 auto;
-      margin-left: 20px;
-    position: relative;
-    a {
-      position: absolute;
-      right: -13px;
-      bottom: 8px;
+    text-align: center;
+    i {
+      margin: 0px;
     }
   }
 }
