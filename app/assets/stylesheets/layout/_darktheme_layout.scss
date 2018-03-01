@@ -1,0 +1,68 @@
+.body-darktheme {
+  background: #171717;
+
+  h1 {
+    margin-left: 30px;
+  }
+
+  h1, h2, h3, h4, h5, h6, p {
+    color: white;
+  }
+
+  .btn.btn-primary {
+    background: transparent;
+    border-color: $primary;
+    border-radius: $project-border-radius;
+    padding: 6px 12px;
+    font-weight: 100;
+    transition: 0.1s background-color linear, 0.1s color linear;
+  }
+  .btn.btn-primary:hover {
+    background-color: $primary;
+    color: black;
+    transition: 0.1s background-color linear, 0.1s color linear;
+  }
+
+  .content-darktheme {
+    min-height: calc(100vh - 90px);
+  }
+}
+
+.body-stage-darktheme {
+
+  .content-darktheme {
+    min-height: calc(100vh - 90px);
+  }
+
+  .btn.btn-primary, .text-save-btn {
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: 1px solid $primary;
+    border-radius: $project-border-radius;
+    padding: 6px 12px;
+    font-weight: 100;
+    transition: 0.1s background-color linear, 0.1s color linear;
+  }
+  .btn.btn-primary:hover, .text-save-btn:hover {
+    background: $primary;
+    padding: 6px 12px;
+    border: 1px solid $primary;
+    color: black;
+    transition: 0.1s background-color linear, 0.1s color linear;
+  }
+
+  .text-center-stage.stage-payment, .text-center-stage-mobile{
+    .btn.btn-primary, .text-save-btn {
+      background: white;
+      color: black;
+    }
+    .btn.btn-primary:hover {
+      background: $primary;
+      padding: 6px 12px;
+      border: 1px solid $primary;
+      color: black;
+      transition: 0.1s background-color linear, 0.1s color linear;
+    }
+  }
+
+}

@@ -1,0 +1,11 @@
+<% unless session[:email]%>
+<div class="subscribe-text">
+  <h2>Restez informé(e) !</h2>
+  <p>Inscrivez vous ci-dessous à la newsletter</p>
+</div>
+  <form action="/user-subscribe" method="post" authenticity_token="true" class="subscribe-form">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <input type="text" name="user[email]" id="email" placeholder="Adresse Email" class="subscribe-input">
+    <input type="submit" class="subscribe-submit" value="S'INSCRIRE">
+  </form>
+<% end %>

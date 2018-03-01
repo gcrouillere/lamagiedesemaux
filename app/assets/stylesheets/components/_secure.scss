@@ -1,0 +1,35 @@
+.secure {
+  display: block;
+  margin: 20px 20px 0px 20px;
+  text-align: center;
+  color: white;
+  h5 {
+    color: white;
+    margin-right: 3px;
+  }
+  .stripe {
+    margin-bottom: 11px;
+   .stripe-logo {
+      height: 27px;
+    }
+  }
+  .cards {
+    display: flex;
+    justify-content: center;
+    img {
+      height: 20px;
+      margin: 0 20px;
+    }
+  }
+}
+
+.body-default, .body-lighttheme {
+  .secure {
+    span {
+      color: black;
+    }
+    p {
+      color: black;
+    }
+  }
+}

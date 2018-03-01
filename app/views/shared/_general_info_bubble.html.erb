@@ -22,7 +22,7 @@
       <% @ceramiques_to_display_in_offer.each_with_index do |ceramique, index|%>
         <% if index < 5 %>
           <%= link_to ceramique_path(ceramique), class: "offer-card", style: "margin-right: #{margin_right}", title: "#{ceramique.name}" do %>
-          <img class="thumbnail-offer" src="<%= cl_image_path ceramique.photos[0].path %>" alt="<%=ceramique.name%>">
+          <img class="thumbnail-offer" src="<%= cl_image_path ceramique.photos[0].path, quality: "auto" %>" alt="<%=ceramique.name%>">
           <div class="price-strip">
             <% ceramique.offer ? discount =  ceramique.offer.discount : discount = 0 %>
             <p class="price-offer"><%= humanized_money(ceramique.price * (1 - discount))%> <%= currency_symbol %></p>
@@ -36,7 +36,7 @@
       </div>
     </div>
   </div>
-  <% @front_offer.discount > 0  ? action = "Voir tous les produits de l'offre" : action = "Voir cette sélection de produits" %>
+  <% @front_offer.discount > 0  ? action = "VOIR CES PRODUITS" : action = "VOIR CETTE SELECTION DE PRODUITS" %>
   <form action="/<%=ENV['MODEL']%>" method='get' class="offer-filter">
     <input type="hidden" name="offer[]" value="offer">
     <input type="submit" class="btn btn-primary recherche" value="<%=action%>">

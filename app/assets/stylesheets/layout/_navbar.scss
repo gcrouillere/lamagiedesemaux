@@ -1,3 +1,37 @@
+/* NAVBAR MOBILE */
+.content {
+  padding-top: 90px;
+}
+.alert.alert-dismissible {
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+  top: 70px;
+}
+.navbar-mobile {
+  margin-bottom: -70px;
+}
+.jumbotron {
+  margin-top: -20px;
+}
+.devise-container {
+  padding-top: 70px;
+}
+.navbar-laptop {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 3;
+}
+
+/* NAVBAR FIXE */
+// .content {
+//   padding-top: 20px;
+// }
+// .jumbotron {
+//   margin-top: -20px;
+// }
+
 /* Navbar laptop */
 .navbar-laptop {
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
@@ -37,7 +71,7 @@
       display: flex;
       flex: 1 0 auto;
       margin-left: 15px;
-      height: 40px;
+      height: 30px;
     }
   }
 

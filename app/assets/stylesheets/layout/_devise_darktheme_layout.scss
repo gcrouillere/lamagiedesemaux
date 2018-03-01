@@ -1,0 +1,98 @@
+.body-devise-darktheme {
+  background: #171717;
+  .new-session-h4 {
+    color: white;
+  }
+}
+
+.devise-container-darktheme {
+    min-height: calc(100vh - 90px);
+  .content-devise {
+    margin-top: 130px;
+    margin-bottom: 60px;
+    margin-right: 10px;
+    margin-left: 10px;
+    background: #171717;
+    padding: $padding-large;
+    border-radius: 1px;
+    border: 1px solid $primary-opacified;
+    .new-session-h4 {
+      text-align: center;
+      margin-bottom: 54px;
+    }
+    .facebook-block {
+      text-align: center;
+      margin: 20px 0 40px 0;
+    }
+
+    .facebook-button, .btn.btn-primary {
+      background: transparent;
+      border-radius: $project-border-radius;
+      padding: 6px 12px;
+      font-weight: 100;
+      transition: 0.1s background-color linear, 0.1s color linear;
+    }
+    .btn.btn-primary {
+      border: 1px solid $primary;
+    }
+    .facebook-button {
+      border: 1px solid #365899;
+    }
+    .btn.btn-primary:hover {
+      background-color: $primary;
+      color: black;
+      transition: 0.1s background-color linear, 0.1s color linear;
+    }
+    .facebook-button:hover {
+      color: black;
+      background-color: #365899;
+      transition: 0.1s background-color linear, 0.1s color linear;
+    }
+    .facebook-separator {
+      color: white;
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+    hr {
+      text-align: center;
+      border-top: 1px solid #ccc;
+      width: 70%;
+    }
+    .form-control {
+      border-radius: 1px;
+    }
+    label {
+      font-weight: 400;
+      color: white;
+    }
+    h2 {
+      text-align: center;
+      color: white;
+    }
+    a {
+      color: white;
+    }
+    .help-block {
+      font-weight: $font-weight-p;
+      font-size: $font-size-p-devise;
+    }
+    .form-actions {
+     text-align: center;
+     margin-bottom: 20px;
+    }
+    .devise-bottom-link {
+      font-weight: 300;
+      color: white;
+    }
+    .devise-bottom-link:hover {
+      color: #bfbfbf;
+    }
+  }
+}
+
+@media all and (max-width: 800px) {
+  .devise-container-darktheme .content-devise{
+    margin-top: 90px;
+  }
+}

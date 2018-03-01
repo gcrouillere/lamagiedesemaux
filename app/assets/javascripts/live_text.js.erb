@@ -21,4 +21,10 @@ $(document).ready(function() {
       $('#live-text3').html(html);
   });
 
+  $('#input4').keyup(function() {
+    var converter = new showdown.Converter(),
+    text = $(this).val(),
+    html = converter.makeHtml(text);
+      $('#live-text4').html(html);
+  });
 });

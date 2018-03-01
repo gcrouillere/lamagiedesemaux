@@ -1,0 +1,86 @@
+<!-- Right Navigation LAPTOP -->
+<div class="navbar-laptop-lighttheme hidden-xs hidden-sm opacity-on-laptop">
+  <!-- Logo -->
+  <%= link_to root_path, class: "navbar-brand", title: "Retour à l'accueil de notre offre de boutique ligne" do %>
+    <%= render 'shared/logo_pic' %>
+    <%= @logositepictag %>
+  <% end %>
+
+  <!-- Different navigation if login or not -->
+  <% if user_signed_in? %>
+
+    <!-- Navbar right when connected -->
+    <div class="navbar-item">
+      <div class="nav-bar-list">
+        <%= link_to root_path do %>
+          <span>Accueil</span>
+        <% end %>
+        <%= link_to ceramiques_path do %>
+          <span>Boutique</span>
+        <% end %>
+        <%= link_to info_path do %>
+          <span>Infos</span>
+        <% end %>
+        <a href="#" id="lighttheme-filter-search"><%= image_tag "search.svg", class: "searchimg"%></a>
+        <% if session[:order].present? %>
+          <% if Order.where(id: session[:order]).present? %>
+            <% if Order.where(id: session[:order]).first.state != "lost" %>
+              <%= link_to order_path(Order.find(session[:order])) do %>
+                <span><%= image_tag "cart.svg", class: "lightcart"%></span>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+  <% else %>
+    <div class="navbar-item">
+      <div class="nav-bar-list">
+        <%= link_to root_path do %>
+          <span>Accueil</span>
+        <% end %>
+        <%= link_to ceramiques_path do %>
+          <span>Boutique</span>
+        <% end %>
+        <%= link_to info_path do %>
+          <span>Infos</span>
+        <% end %>
+        <a href="#" id="lighttheme-filter-search"><%= image_tag "search.svg", class: "searchimg"%></a>
+      </div>
+    </div>
+  <% end %>
+  </div>
+
+<!-- Right Navigation MOBILE -->
+<div class="navbar-mobile-lighttheme hidden-md hidden-lg">
+ <!-- Logo -->
+  <%= link_to root_path, class: "navbar-brand-mobile" do %>
+    <%= render 'shared/logo_pic' %>
+    <%= @logositepictag %>
+  <% end %>
+
+  <div class="navbar-item">
+    <div class="list-mobile">
+      <%= link_to ceramiques_path do %>
+        <span>Shop</span>
+      <% end %>
+      <%= link_to info_path do %>
+        <%= image_tag "info.svg", class: "infoimg"%>
+      <% end %>
+      <a href="#" id="lighttheme-filter-search-mobile"><%= image_tag "search.svg", class: "searchimg"%></a>
+      <% if user_signed_in? %>
+        <% if session[:order].present? %>
+          <% if Order.where(id: session[:order]).present? %>
+            <% if Order.where(id: session[:order]).first.state != "lost" %>
+              <%= link_to order_path(Order.find(session[:order])) do %>
+                <span><%= image_tag "cart.svg", class: "lightcart"%></span>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+</div>

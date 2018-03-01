@@ -1,12 +1,12 @@
 .photo-update-box {
-  background: $card-background;
+  background: white;
   border-radius: $project-border-radius;
   border: 5px solid grey;
   padding: $padding-small;
   position: absolute;
   text-align: center;
   min-width: 325px;
-  z-index: 3;
+  z-index: 2;
   ul {
     list-style: none;
     padding: 0px;
@@ -17,8 +17,26 @@
   }
   p {
     font-size: 16px;
+    color: black !important;
   }
   .attachinary.optional.attachinary-input {
     display: inline-block;
   }
+  .btn {
+    color: black;
+  }
 }
+
+.body-darktheme {
+  .photos-and-maps {
+    .photo-update-box {
+      img {
+        width: auto;
+      }
+    }
+  }
+  .photos-and-maps .localisation-contact .city-img img {
+    width: auto;
+  }
+}
+

@@ -1,0 +1,66 @@
+<% content_for(:title_tag) do %>
+  Panier
+<% end %>
+
+<div class="page-top-lighttheme">
+  <h1>Panier</h1>
+</div>
+
+  <div class="container lightthemecart">
+
+      <div class="row">
+        <div class="col-xs-12">
+
+          <div class="cart-container">
+            <table>
+              <tr>
+                <th>ITEM</th>
+                <th></th>
+                <th>QUANTITE</th>
+                <th>PRIX</th>
+              </tr>
+              <% @order.basketlines.each do |basketline| %>
+              <tr>
+                <td>
+                  <div class="basket-delete">
+                  <%= link_to  order_path(:id => @order.id, :basketline_id => basketline.id), :confirm => 'Are you sure?', :method => :delete, class: "delete-article" do %>
+                    &times;
+                  <% end %>
+                  </div>
+                </td>
+                <td>
+                  <div class="cart-item">
+                    <%= cl_image_tag basketline.ceramique.photos[0].path, class: "basket-article-img" %>
+                    <h4><%= basketline.ceramique.name.capitalize %></h4>
+                  </div>
+                </td>
+                <td><div class="basket-delete"><h5><%= basketline.quantity %></h5></div></td>
+                <% basketline.ceramique.offer ? discount =  basketline.ceramique.offer.discount : discount = 0 %>
+                <td><div class="basket-delete"><h5><%= humanized_money(basketline.ceramique.price * (1 - discount) * basketline.quantity) %> <%= currency_symbol %></h5></div></td>
+              </tr>
+              <% end %>
+            </table>
+
+            <div class="total-lighttheme">
+              <h5>Frais de port: <%= humanized_money(@port) %> <%= currency_symbol %></h5>
+              <h3>Montant total: <%= humanized_money(@amount) %> <%= currency_symbol %></h3>
+              <form action="/orders/<%= @order.id%>/payments/new" method="get" class="hidden-xs">
+                <input type="hidden" name="order_id" value="<%= @order.id%>">
+                <button type="submit" class="pull-right btn btn-primary lighttheme">
+                  FINALISER MA COMMANDE
+                </button>
+              </form>
+            </div>
+              <form action="/orders/<%= @order.id%>/payments/new" method="get" class="hidden-sm hidden-md hidden-lg text-center">
+                <input type="hidden" name="order_id" value="<%= @order.id%>">
+                <button type="submit" class="btn btn-primary lighttheme">
+                  FINALISER MA COMMANDE
+                </button>
+              </form>
+          </div>
+
+      </div>
+    </div>
+
+</div>
+

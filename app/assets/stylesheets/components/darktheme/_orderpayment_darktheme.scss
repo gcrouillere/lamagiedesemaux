@@ -1,0 +1,92 @@
+.darktheme-payment-h1-payment-h1 {
+  font-size: 34px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.pay-form-darktheme {
+    margin-bottom: 100px;
+  .adress, .product-amount, .lesson-amount {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background: #171717;
+    padding: $padding-large;
+    border-radius: 1px;
+    border: 1px solid $primary-opacified;
+    text-decoration: none;
+  }
+  h4 {
+    margin-bottom: 15px;
+    font-weight: 300;
+    color: white;
+  }
+  h3 {
+    font-weight: 400;
+    color: white;
+  }
+  .stripe-button-el span{
+    font-size: $font-size-a;
+  }
+  a {
+    margin-top: 10px;
+  }
+}
+
+.pay-form-darktheme {
+  .mobile-link-coord {
+    text-align: center;
+    width: 90%;
+    color: white;
+    background: transparent;
+    border: 1px solid $primary;
+    border-radius: $project-border-radius;
+    padding: 6px 12px;
+    font-weight: 100;
+    margin: 10px auto;
+  }
+  .laptop-link-coord {
+    width: 60%;
+    color: white;
+    background: transparent;
+    border-color: $primary;
+    border-radius: $project-border-radius;
+    padding: 6px 12px;
+    font-weight: 100;
+    transition: 0.1s background-color linear, 0.1s color linear;
+    margin: auto;
+  }
+  .laptop-link-coord:hover {
+    background-color: $primary;
+    color: black;
+    transition: 0.1s background-color linear, 0.1s color linear;
+  }
+}
+
+// MOBILE
+
+@media all and (max-width: 700px) {
+  .pay-form-darktheme  {
+    padding: 10px;
+    margin-bottom: 30px;
+    h3 {
+      font-size: 22px;
+    }
+    h4 {
+      font-size: 18px;
+    }
+    h5 {
+     font-size: 15px;
+    }
+    .adress {
+      padding: 10px 10px 20px 10px;
+      margin-top: 10px;
+    }
+    .product-amount {
+      padding: 10px;
+    }
+    .laptop-link-coord {
+      padding: 10px;
+    }
+  }
+}

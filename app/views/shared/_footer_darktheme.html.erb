@@ -1,0 +1,45 @@
+<!-- LAPTOP -->
+<div class="hidden-xs">
+  <div id="footer-darktheme">
+    <div class="footer-links">
+      <% if user_signed_in? %>
+        <%= link_to destroy_user_session_path, method: :delete do %>
+          <span><i class="fa fa-sign-out"></i></span>
+        <% end %>
+      <% else %>
+        <%= link_to new_user_session_path, class: "navbar-item navbar-link" do %>
+          <span><i class="fa fa-sign-in"></i></span>
+        <% end %>
+      <% end %>
+      <div class="contact-default">
+        <a href="https://www.google.fr/maps/place/<%=ENV['ADDRESS']%>" target="blank"><i class="fa fa-map"></i></a>
+        <i class="fa fa-envelope-o"></i>
+        <h6 class="info-text middle-text"><%=ENV['EMAIL']%></h5>
+        <i class="fa fa-phone"></i>
+        <h6 class="info-text"><%=ENV['TELEPHONE']%></h5>
+      </div>
+    </div>
+    <%= link_to @dev_redirection || session[:dev_redirection_default], title: "Créez votre boutique en ligne avec l'agence de Guillaume Crouillere" do %>
+      <%= image_tag  'lego.svg', alt: "Guillaume Crouillere - Developpeur WEB indépendant"%>
+    <% end %>
+  </div>
+</div>
+
+<!-- MOBILE -->
+<div class="hidden-sm hidden-md hidden-lg">
+  <div id="footer-mobile-darktheme">
+    <div class="contact-default">
+      <div class="link">
+        <a href="https://www.google.fr/maps/place/<%=ENV['ADDRESS']%>" target="blank"><i class="fa fa-map"></i></a>
+      </div>
+      <div class="envelope">
+        <i class="fa fa-envelope-o"></i>
+        <h6 class="info-text"><%=ENV['EMAIL']%></h5>
+      </div>
+      <div class="phone">
+        <i class="fa fa-phone"></i>
+        <h6 class="info-text"><%=ENV['TELEPHONE']%></h5>
+      </div>
+    </div>
+  </div>
+</div>

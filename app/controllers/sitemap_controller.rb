@@ -3,5 +3,6 @@ class SitemapController < ApplicationController
   skip_before_action :authenticate_user!, only: [:sitemap]
 
   def sitemap
+    @ceramiques = Ceramique.all
   end
 end

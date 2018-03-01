@@ -1,0 +1,218 @@
+  .container-lighttheme-show {
+  margin: 0;
+  padding: 20px 30px 0px 30px;
+}
+
+.product-show {
+  .ceramique-images {
+      .img-front.horizontale {
+        border-radius: 1px;
+        width: 100%;
+      }
+      .img-front.verticale {
+        border-radius: 1px;
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+        max-height: 75vh;
+        width: auto;
+        height: auto;
+      }
+    .images {
+      .thumbnail-lighttheme {
+        border-radius: 1px;
+        width: 15%;
+        height: 80px;
+        margin-right: 10px;
+        transition: all ease 0.2s;
+        box-shadow: none;
+        margin: 10px !important;
+        cursor: pointer;
+        padding: 0px
+      }
+      .thumbnail-lighttheme:hover {
+          transform: scale(1.01);
+          box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.1);
+          transition: ease 0.2s;
+      }
+    }
+  }
+  .info-add-basket-lighttheme {
+    padding: 10px 0px 0px 30px;
+    height: 100%;
+    h1 {
+      margin: 10px 0px 25px 0px;
+      font-size: 30px;
+      font-weight: 500;
+    }
+    p.description {
+      margin-bottom: 25px;
+      margin-left: 0px;
+      font-weight: $font-weight-h4;
+      font-size: 16px;
+    }
+    .description {
+      .lighttheme-prices-show {
+        display: flex;
+        margin-bottom: 25px;
+        h2 {
+          margin-top: 5px;
+          margin-left: 0px;
+          font-size: 15px;
+        }
+        .previous-price {
+          text-decoration: line-through;
+          margin-left: 10px;
+        }
+      }
+    }
+    .prix-form {
+      margin-bottom: 25px;
+      label {
+        font-weight: $font-weight-h4;
+        font-size: 16px;
+      }
+      .qte {
+        margin-bottom: 25px;
+        input {
+          padding: 5px 10px;
+        }
+      }
+      .stock0 {
+        margin: 10px 0px 25px 0px;
+        font-size: 21px;
+        font-weight: 400;
+      }
+    }
+    .social-buttons {
+      font-size: 20px;
+      .fa{
+        color: #bfbfbf;
+      }
+      .fa-facebook-square:hover {
+        color: #3b5998;
+      }
+      .fa-pinterest-square:hover {
+        color: #bd081c;
+        cursor: pointer;
+      }
+      .fa-twitter-square:hover {
+        color: #1da1f2;
+      }
+    }
+  }
+}
+
+.lighttheme-socials {
+  .social-buttons {
+    top: 10px;
+  }
+}
+
+.image-xs-sm-lightheme {
+  margin-left: 10px;
+  margin-right: 10px;
+  img {
+    border-radius: 1px;
+    width: 100%;
+  }
+}
+
+.same-category-products {
+  h2 {
+    font-weight: 300;
+  }
+  .same-category-product-card-lighttheme {
+    display: flex;
+    margin: 12px 15px;
+    background-color: $card-background;
+    border-radius: 1px;
+    border: 1px solid #bfbfbf;
+    padding: $padding-small;
+    transition: ease 0.2s;
+    .same-category-product-card-link {
+      display: flex;
+      align-items: center;
+      width:100%;
+      height: 100%;
+      color: black;
+      .same-product-photo {
+        height: 100px;
+        border-radius: 1px;
+      }
+      .same-category-product-card-text {
+        margin-left: 10px;
+        width: 100%;
+        text-align: center;
+        .ceramique-name {
+          font-size: 18px;
+
+          margin-top: 5px;
+        }
+        .prix-index {
+          font-size: 16px;
+          font-weight: 100;
+          margin-bottom: 5px;
+        }
+        .prix-index-wo-discount {
+          font-size: 16px;
+          font-weight: 100;
+          margin-bottom: 5px;
+          margin-top: 18px;
+        }
+        .previous-price {
+          margin-bottom: 0px;
+          font-size: 10px;
+          text-decoration: line-through;
+        }
+      }
+    }
+  }
+  .same-category-product-card-lighttheme:hover {
+    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.1);
+    transition: ease 0.2s
+  }
+}
+
+// MOBILE
+
+@media all and (max-width: 800px) {
+  .lighttheme-socials .social-buttons {
+    top: 64px;
+    right: 16px;
+  }
+}
+
+.other-imgs-lighttheme.other-mobile-lighttheme {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  .images-mobile {
+    margin-left: 10px;
+    display: flex;
+    justify-content: space-around;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .thumbnail {
+      border-radius: 1px;
+      height: 50px;
+      margin-right: 10px;
+      margin: 10px !important;
+      padding: 0px;
+      border: none;
+    }
+  }
+}
+
+.info-add-basket.info-basket-lightheme-mobile {
+  border-radius: 1px;
+  margin-bottom: 20px;
+  p.description {
+    margin-top: 10px;
+  }
+  select {
+    border: 1px solid #bfbfbf;
+    background: white;
+    border-radius: 1px;
+  }
+}

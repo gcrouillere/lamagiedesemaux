@@ -3,12 +3,10 @@
   margin: 20px 0px;
 }
 
-h3 {
-margin-top: 10px;
-margin-bottom: 20px;
-}
-.last-h3-confirmation {
- margin-bottom: 100px;
+h3.order-confirmation {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-weight: 300;
 }
 
 .back > a {

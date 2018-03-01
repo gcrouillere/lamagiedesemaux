@@ -1,0 +1,72 @@
+.lighttheme-ceramiquecard-col {
+  margin: 0px 0px 55px 0px;
+  padding: 0px 10px;
+  .ceramiquecard-lighttheme {
+    text-align: center;
+    .img-container {
+      position: relative;
+      background-size: cover;
+      background-position-y: center;
+      background-position-x: center;
+      border-radius: 1px;
+      height: 300px;
+      .ceramiques-card-circle {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        border-radius: 55%;
+        height: 45px;
+        width: 45px;
+        display: flex;
+        p {
+          margin: auto auto;
+          font-size: 12px;
+          color: black;
+        }
+      }
+      .soldout {
+        background: white;
+      }
+      .discount-circle {
+        background: $discount;
+      }
+    }
+    h2 {
+      font-weight: 400;
+      font-size: 17px;
+      color: black;
+      margin: 15px 0px 0px 0px;
+    }
+    .prices-ceramiq-card-lighttheme {
+      display: flex;
+      justify-content: center;
+      h3 {
+        font-weight: 400;
+        font-size: 15px;
+        color: black;
+        margin: 5px 5px 0px 0px;
+      }
+      .ondiscount {
+        color: $discount;
+      }
+      .previous-price {
+        text-decoration: line-through;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 500px) {
+  .lighttheme-ceramiquecard-col {
+    margin-bottom: 20px;
+    .ceramiquecard-lighttheme {
+      min-height: 270px;
+      .img-container {
+        height: 200px;
+      }
+      h2 {
+        font-size: 14px;
+      }
+    }
+  }
+}

@@ -1,0 +1,107 @@
+<% content_for(:description) do %>
+  Fabienne Jacob, céramiste dans le Morbihan. Retrouvez les informations concernant mon parcours, mes céramiques et les techniques utilisées dans la fabrication.
+<% end %>
+<% content_for(:title_tag) do %>
+  Parcours, céramiques et techniques de Fabienne Jacob.
+<% end %>
+<% content_for(:meta_description) do %>
+  Fabienne Jacob, céramiste dans le Morbihan. Retrouvez les informations concernant mon parcours, mes céramiques et les techniques utilisées dans la fabrication.
+<% end %>
+
+<%= render 'shared/info_pics' %>
+
+<div class="container">
+  <div class="row">
+
+  <!-- LAPTOP -->
+    <div class="hidden-xs hidden-sm col-sm-12">
+      <div class="wrapper">
+        <%= photo_update('avatarphoto', 35, '', '', 15, '.avatarpic', "Mise à jour photo perso")%>
+        <%= @avatarpictag %>
+
+        <% if user_signed_in? && current_user.admin %>
+          <% article_typing("info", "horizontal", "markdown1", "live-text1", "input1") %>
+          <% @markdown = @markdown1 %>
+          <%= render 'shared/articletyping' %>
+        <% else %>
+            <div id="live-text">
+              <% article_display("info", "horizontal") %>
+              <%= @markdown.html_safe %>
+            </div>
+        <% end %>
+      </div>
+
+      <div class="localisation">
+        <%= photo_update('cityphoto', 15, '', '', 15, '.citypic', "Mise à jour photo ville")%>
+        <div class="img-city"><%= @citypictag%></div>
+        <div id="map"></div>
+      </div>
+
+    </div>
+
+  <!-- MOBILE -->
+   <div class="col-xs-12 hidden-md hidden-lg mobile-info">
+      <div class="wrapper-mobile">
+        <div class="img-avatar-mobile"><%= @avatarpictagmobile %></div>
+        <%= @markdown.html_safe %>
+      </div>
+
+      <div class="localisation-mobile">
+        <div class="img-city-mobile"><%= @citypictag%></div>
+        <div id="map-mobile"></div>
+      </div>
+
+      <%= link_to ceramiques_path, class: "back-in-home-mobile" do %>
+        <span><i class="fa fa-arrow-right"></i> Liste des <%= ENV['MODEL']%></span>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
+<% content_for(:after_js) do %>
+  <script>
+   $(document).ready(function() {
+      var handler1 = Gmaps.build('Google');
+      handler1.buildMap({internal: {id: 'map'}}, function(){
+        markers1 = handler1.addMarkers([
+          {
+            lat: <%= ENV['LAT'].to_f %>,
+            lng: <%= ENV['LNG'].to_f %>,
+            infowindow: "<%= "Les #{ENV['MODEL']} de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>"
+          }
+        ]);
+        handler1.bounds.extendWith(markers1);
+        handler1.getMap().setCenter({lat: <%= ENV['LAT'].to_f %>, lng: <%= ENV['LNG'].to_f %>});
+        handler1.getMap().setZoom(6);
+      });
+
+      var handler = Gmaps.build('Google');
+      handler.buildMap({internal: {id: 'map-mobile'}}, function(){
+        marker = handler.addMarkers([
+          {
+            lat: <%= ENV['LAT'].to_f %>,
+            lng: <%= ENV['LNG'].to_f %>
+          }
+        ]);
+        handler.bounds.extendWith(marker);
+        handler.getMap().setCenter({lat: <%= ENV['LAT'].to_f %>, lng: <%= ENV['LNG'].to_f %>});
+        handler.getMap().setZoom(6);
+      });
+    });
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "ArtGallery",
+      "name": "Les <%="#{ENV['MODEL']} de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>",
+      "description": "Online craft store",
+      "openingHours": "Mo-Fr 09:00-18:00",
+      "telephone": "<%= ENV['TELEPHONE']%>",
+      "url": "<%=request.original_url%>",
+      "image":"<%=request.original_url%><%= image_path ENV['HOMEPIC']%>"
+      "address":"<%= ENV['ADDRESS'].gsub(/[+]/, ' ') %>",
+      "priceRange":"20€ à 800€"
+    }
+  </script>
+<% end %>

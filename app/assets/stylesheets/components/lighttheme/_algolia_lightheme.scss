@@ -1,0 +1,87 @@
+#ceramique-filters-content-lighttheme {
+  .algolia-autocomplete {
+    width: 100%
+  }
+
+  .lienalgolia {
+    margin-bottom: 20px;
+    .algolialogo {
+      width: 37%;
+      margin-left: 15px;
+      margin-top: -8px;
+    }
+  }
+
+  .aa-input-search, .prix {
+    width: 99%;
+    height: 50px;
+    border-radius: 2px;
+    padding: 0px 10px;
+    border: $card-border;
+    -webkit-transition: .2s;
+    transition: .2s;
+    box-shadow: 1px 1px 0 rgba(241, 241, 241, 0.35);
+    font-size: 16px;
+    font-weight: 100;
+    box-sizing: border-box;
+    color: #333;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; }
+    .aa-input-search:focus, .prix:focus {
+      outline: 0;
+      border-color: black;
+      box-shadow: 2px 2px 0 rgba(102, 102, 102, 0.1);
+    }
+  .aa-hint {
+    color: #e4e4e4; }
+  .aa-dropdown-menu {
+    background-color: #fff;
+    border: 2px solid rgba(228, 228, 228, 0.6);
+    border-top-width: 1px;
+    width: 600px;
+    margin-top: 10px;
+    box-shadow: 4px 4px 0 rgba(241, 241, 241, 0.35);
+    font-size: 15px;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  @media all and (max-width: 700px) {
+    .aa-dropdown-menu {
+      width: 100%;
+    }
+  }
+  .aa-suggestion {
+    padding: 12px;
+    border-top: 1px solid rgba(228, 228, 228, 0.6);
+    cursor: pointer;
+    -webkit-transition: .2s;
+    transition: .2s;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    }
+    .aa-suggestion:hover, .aa-suggestion.aa-cursor {
+      background-color: rgba(241, 241, 241, 0.35);
+    }
+    .aa-suggestion > span:first-child {
+      color: #333;
+    }
+    .aa-suggestion > span:last-child {
+      text-transform: uppercase;
+      color: #a9a9a9;
+    }
+  .aa-suggestion > span em {
+    font-weight: 700;
+    font-style: normal;
+    background-color: rgba(58, 150, 207, 0.1);
+    padding: 2px 0 2px 2px;
+  }
+
+}

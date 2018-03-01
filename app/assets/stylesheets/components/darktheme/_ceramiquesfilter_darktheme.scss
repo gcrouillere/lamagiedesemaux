@@ -1,0 +1,162 @@
+#ceramique-filters-content-darktheme {
+  width: 250px;
+  margin-top: 20px;
+  background: #171717;
+  border-radius: $project-border-radius;
+  border: 1px solid $primary-opacified;
+  padding: $padding-small;
+  z-index: 2;
+  form {
+    padding: 10px;
+  }
+  .label-search {
+    font-weight: $font-weight-label;
+    color: white;
+  }
+  .label-search.all {
+    width: 100%;
+    margin: 0px 0px 20px 0px;
+  }
+  .aa-input-mobile {
+
+  }
+  h2 {
+    font-family: Raleway;
+    letter-spacing: 2px;
+    font-weight: 400;
+    font-size: $font-size-h4;
+    margin: 10px;
+    color: white;
+    background: transparent;
+  }
+
+  h3 {
+    color: white;
+    margin: 20px 0 5px 0;
+    font-size: $font-size-h5;
+    font-weight: 400;
+  }
+
+  input {
+    margin-right: 5px;
+  }
+
+  .prix {
+    margin-bottom: 20px;
+  }
+
+  ul {
+    color: white;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+      margin-left: 12px;
+    }
+    li:last-child {
+      margin-bottom: 10px;
+    }
+  }
+  #recherche {
+    width: 100%;
+  }
+}
+
+#ceramique-filters-content-mobile-darktheme {
+  overflow-y: auto;
+  position: fixed;
+  top: 100vh;
+  height: 100vh;
+  left: 0px;
+  width: 100%;
+  z-index: 5;
+  transition: top 0.6s ease;
+  background: #171717;
+  padding: $padding-small;
+  form {
+    padding: 10px;
+  }
+  #close-search {
+    position: absolute;
+    top: 23px;
+    right: 16px;
+    font-size: 27px;
+    color: white;
+  }
+  .label-search {
+    font-weight: $font-weight-label;
+    color: white;
+  }
+  .label-search.all {
+    width: 100%;
+    margin: 0px 0px 20px 0px;
+  }
+  .lienalgolia .algolialogo {
+    margin-top: -4px;
+  }
+  h2 {
+    font-weight: $font-weight-h4-search;
+    font-size: $font-size-h4;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    color: white;
+    border-bottom: 1px solid $primary-opacified;
+    background: #171717;
+    border-radius: $project-border-radius;
+    padding: 10px;
+  }
+
+  h3 {
+    margin: 20px 0 15px 0;
+    font-size: $font-size-h5;
+    font-weight: $font-weight-h5-search;
+    background: #171717;
+    border-bottom: 1px solid $primary-opacified;
+    padding: 5px;
+    border-radius: $project-border-radius;
+  }
+
+  input {
+    margin-right: 5px;
+  }
+
+  .prix {
+    margin-bottom: 20px;
+  }
+
+  ul {
+    color: white;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+      margin-left: 20px;
+    }
+    li:last-child {
+      margin-bottom: 10px;
+    }
+  }
+  #recherche {
+    width: 100%;
+    margin-top: 25px;
+  }
+}
+
+#mobile-filter-search-darktheme {
+  position: fixed;
+  border: 1px solid white;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  box-shadow: 1px 4px 1px rgba(0,0,0,0.5);
+  z-index: 3;
+  background-color: $primary;
+  color: white;
+  margin-left: 5px;
+  margin-top: -7px;
+  .fa {
+    margin: auto auto;
+    font-size: 30px;
+  }
+}

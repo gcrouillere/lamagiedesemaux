@@ -2,12 +2,11 @@ class CeramiquesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @dev_redirection = "https://creermonecommerce.fr"
+    @dev_redirection = "https://www.creermonecommerce.fr/product_claim_details"
     @ceramiques = Ceramique.all
     Offer.where(showcased: true).first ? (Offer.where(showcased: true).first.ceramiques.present? ? @front_offer = Offer.all.where(showcased: true).first : nil) : nil
     @front_offer ? @ceramiques_to_display_in_offer = Ceramique.all.where(offer: @front_offer) : nil
     clean_orders
-    uniq_categories
     if params[:all].present?
       @ceramiques
     else
@@ -19,14 +18,17 @@ class CeramiquesController < ApplicationController
     @ceramiques = Ceramique.where(id: @ceramiques.map(&:id)).order(updated_at: :desc)
     @twitter_url = request.original_url.to_query('url')
     @facebookid = ""
+    render "index_#{@active_theme.name}"
   end
 
   def show
-    @dev_redirection = "https://creermonecommerce.fr/produits"
+    session[:zoom_message] ? session[:zoom_message] += 1 : session[:zoom_message] = 0
+    @dev_redirection = "https://www.creermonecommerce.fr/produits"
     clean_orders
     @ceramique = Ceramique.friendly.find(params[:id])
     @same_category_products = @ceramique.category.ceramiques - [@ceramique]
     @twitter_url = request.original_url.to_query('url')
+    render "show_#{@active_theme.name}"
   end
 
   private
@@ -42,13 +44,6 @@ class CeramiquesController < ApplicationController
         session[:order] = nil
       end
     end
-  end
-
-  def uniq_categories
-    @categories = @ceramiques.map do |ceramique|
-      ceramique.category.name
-    end
-    @categories = @categories.uniq.sort
   end
 
   def filter_by_category

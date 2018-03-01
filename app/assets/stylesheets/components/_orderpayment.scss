@@ -1,62 +1,86 @@
-h1 {
+.default-payment-h1 {
+  margin-bottom: 10px;
   margin-left: 30px;
 }
 
-.pay-form {
-  margin-top: 20px;
-  margin-bottom: 10px;
-  background: $card-background;
-  padding: $padding-large;
-  border-radius: $project-border-radius;
-  border: $card-border;
-  text-decoration: none;
+.pay-form-default {
   margin-bottom: 100px;
-
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    .amount {
-      margin-bottom: 10px;
-    }
-    h4 {
-      margin-bottom: 15px;
-    }
-    .adress h4 {
-      font-weight: $font-weight-h4;
-    }
-    .stripe-button-el span{
-      font-size: $font-size-a;
-    }
-    a {
-      margin-top: 10px;
-    }
+  .adress, .product-amount, .lesson-amount {
+    margin: 20px 10px 10px 10px;
+    background: $card-background;
+    padding: $padding-large;
+    border-radius: 1px;
+    border: $card-border;
+    text-decoration: none;
   }
-}
-
-.secure {
-  margin-left: 10px;
-  display: flex;
-  align-items: center;
-  h5 {
-    margin-right: 3px;
+  h4 {
+    margin-bottom: 15px;
+    font-weight: 300;
   }
-  .stripe {
-    height: 20px;
+  h3 {
+    font-weight: 400;
+  }
+  .stripe-button-el span{
+    font-size: $font-size-a;
+  }
+  a {
+    margin-top: 10px;
+    .mobile-link-coord {
+      text-align: center;
+      margin: 10px auto;
+      width: 90%;
+      border-radius: 1px;
+      padding: 6px 12px;
+      color: white;
+      font-size: 14px;
+      border: 1px solid darken($primary, 10%);
+      background-color: $primary;
+      transition: 0.1s background-color linear, 0.1s color linear;
+    }
+
+    .laptop-link-coord {
+      width: 60%;
+      border-radius: 1px;
+      padding: 6px 12px;
+      color: white;
+      font-size: 14px;
+      border: 1px solid darken($primary, 10%);
+      background-color: $primary;
+      transition: 0.1s background-color linear, 0.1s color linear;
+      margin: auto;
+    }
+
+    .laptop-link-coord:hover {
+      background-color: darken($primary, 10%);
+      transition: 0.1s background-color linear, 0.1s color linear;
+    }
   }
 }
 
 // MOBILE
-.pay-form.mobile {
-  margin: 0px 10px 10px 10px;
-}
 
-.mobile-link-coord {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.laptop-link-coord {
- margin-top: 10px;
+@media all and (max-width: 700px) {
+  .pay-form-default  {
+    padding: 10px;
+    margin-bottom: 30px;
+    h3 {
+      font-size: 22px;
+    }
+    h4 {
+      font-size: 18px;
+    }
+    h5 {
+     font-size: 15px;
+    }
+    .adress {
+      padding: 10px 10px 20px 10px;
+      margin-top: 10px;
+    }
+    .product-amount {
+      padding: 10px;
+    }
+    .laptop-link-coord {
+      padding: 10px;
+    }
+  }
 }

@@ -9,9 +9,10 @@ class LessonsController < ApplicationController
   end
 
   def new
-    @dev_redirection = "https://creermonecommerce.fr/lessons/new"
+    @dev_redirection = "https://www.creermonecommerce.fr/lessons/new"
     @lesson = Lesson.new
     @disabled_dates = full_bookings
+    @first_possible_day = get_first_possible_day
     @confirmed_course_js_format = confirmed_courses
     @twitter_url = request.original_url.to_query('url')
   end
@@ -127,6 +128,21 @@ class LessonsController < ApplicationController
       end
     end
     return disabled_dates
+  end
+
+  def get_first_possible_day
+    day_checked = Time.now.beginning_of_day + 1.day
+    output = []
+    for i in 0..365
+      if Booking.where("day >= ? AND day <= ? AND capacity > ? ", day_checked.beginning_of_day, day_checked.end_of_day, 0).present? || Booking.where("day >= ? AND day <= ? ", day_checked.beginning_of_day, day_checked.end_of_day).empty?
+        day = format_booking_to_moment(day_checked.day)
+        month = format_booking_to_moment(day_checked.month)
+        output << "#{day_checked.year}-#{month}-#{day}"
+        return output
+      end
+      day_checked = day_checked + 1.day
+    end
+    return output
   end
 
 end

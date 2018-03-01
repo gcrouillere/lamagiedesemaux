@@ -1,0 +1,33 @@
+.confirmation-container {
+  min-height: calc(100vh - 177px)
+}
+
+.text-center-confirmation-darktheme {
+  margin-top: 50px;
+  text-align: center;
+  h3 {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  .last-h3-confirmation {
+   margin-bottom: 100px;
+  }
+}
+
+.mobile-confirmation-darktheme {
+  .box-img-mobile-xs {
+    width: 25%;
+  }
+  .box-img-mobile-sm {
+    width: 15%;
+  }
+  h4 {
+    font-weight: $font-weight-h4;
+    margin: 11px 11px 20px 11px;
+  }
+  h4:last-child {
+    margin-bottom: 30px;
+  }
+
+}
+

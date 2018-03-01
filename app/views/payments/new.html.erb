@@ -2,70 +2,62 @@
   Paiement
 <% end %>
 
-<h1>Paiement </h1>
+<h1 class="<%=@payment_theme%>-payment-h1">Paiement</h1>
 
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-offset-2 col-sm-8">
 
-      <div class="pay-form mobile">
-        <%= form_tag order_payments_path(@order) do %>
-          <div class="amount text-center">
-            <div class="hidden-xs">
-              <% if @order.lesson.present?  %>
-                <h3>Montant des arrhes: <%= humanized_money(@order.amount) %> <%= currency_symbol %></h3>
-                <h4>Stage de poterie pour <%= @order.lesson.duration%> jours, <%= @order.lesson.student%> personnes.</h4>
-                <h4>Début du stage le <%= @order.lesson.start.day%>/<%= @order.lesson.start.month%>/<%= @order.lesson.start.year%></h4>
-              <% else %>
-                <h3>Montant total de votre commande: <%= humanized_money(@order.amount) %> <%= currency_symbol %></h3>
-              <% end %>
-            </div>
-            <div class="hidden-sm hidden-md hidden-lg">
-              <% if @order.lesson.present?  %>
-                <h3>Montant des arrhes: <%= humanized_money(@order.amount) %> <%= currency_symbol %></h3>
-                <h4>Stage de poterie pour <%= @order.lesson.duration%> jours, <%= @order.lesson.student%> personnes.</h4>
-                <h4>Début du stage le <%= @order.lesson.start.day%>/<%= @order.lesson.start.month%>/<%= @order.lesson.start.year%></h4>
-              <% else %>
-                <h3>Total à payer: <%= humanized_money(@order.amount) %> <%= currency_symbol %></h3>
-              <% end %>
-            </div>
-            <% unless @order.lesson.present? %>
-              <h4>Livraison sous 3 semaines à l'adresse suivante:</h5>
-              <div class="adress">
-                <h4><%= current_user.first_name%> <%= current_user.last_name%></h4>
-                <h4><%= current_user.adress%></h4>
-                <h4><%= current_user.zip_code%> - <%= current_user.city%></h4>
-              </div>
-              <h4>Livraison par Colissimo.</h4>
-            <% end %>
-          </div>
-          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-            data-name="<%=ENV['MODEL'].capitalize%>"
-            data-email="<%= current_user.email %>"
-
-            data-description="<%=ENV['FIRSTNAME'].capitalize%> <%=ENV['LASTNAME'].capitalize%>"
-            data-amount="<%= @order.amount_cents %>"
-            data-currency="<%= @order.amount.currency %>">
-          </script>
+      <div class="pay-form-<%=@payment_theme%>">
           <% unless @order.lesson.present? %>
-            <div class="hidden-xs laptop-link-coord">
-              <%= link_to 'Mettre à jour vos coordonnées pour l\'envoi du colis', edit_user_registration_path %>
-            </div>
-            <div class="hidden-sm hidden-md hidden-lg mobile-link-coord">
-              <%= link_to 'Mettre à jour vos coordonnées pour l\'envoi du colis', edit_user_registration_path %>
+            <div class="adress text-center">
+              <h3>Livraison du colis</h3>
+              <h4>Livraison via colissimo, sous <%= @admin.tracking%>, à l'adresse suivante:</h5>
+              <h4><%= current_user.first_name%> <%= current_user.last_name%></h4>
+              <h4><%= current_user.adress%></h4>
+              <h4><%= current_user.zip_code%> - <%= current_user.city%></h4>
+              <% unless @order.lesson.present? %>
+                <%= link_to edit_user_registration_path do %>
+                  <div class="hidden-xs laptop-link-coord">
+                    METTRE A JOUR VOS COORDONNEES
+                  </div>
+                  <div class="hidden-sm hidden-md hidden-lg mobile-link-coord">
+                    CHANGER VOS COORDONNEES
+                  </div>
+              <% end %>
+              <% end %>
             </div>
           <% end %>
+          <div class="product-amount lesson-amount text-center">
+            <% if @order.lesson.present?  %>
+              <h3>Montant des arrhes: <%= humanized_money(@order.amount) %> <%= currency_symbol %></h3>
+              <h4>Stage de poterie pour <%= @order.lesson.duration%> jours, <%= @order.lesson.student%> personnes.</h4>
+              <h4>Début du stage le <%= @order.lesson.start.day%>/<%= @order.lesson.start.month%>/<%= @order.lesson.start.year%></h4>
+            <% else %>
+              <h3>Total à payer: <%= humanized_money(@order.amount) %> <%= currency_symbol %></h3>
+            <% end %>
+            <%= form_tag order_payments_path(@order) do %>
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-name="<%=ENV['MODEL'].capitalize%>"
+              data-email="<%= current_user.email %>"
+
+              data-description="<%=ENV['FIRSTNAME'].capitalize%> <%=ENV['LASTNAME'].capitalize%>"
+              data-amount="<%= @order.amount_cents %>"
+              data-currency="<%= @order.amount.currency %>">
+            </script>
+            <div class="secure">
+              <% @payment_theme == "darktheme" ? logo = "stripe.svg" : logo = "stripe-black.svg" %>
+              <div class="stripe"><span>Paiement sécurisé par</span> <%= image_tag logo, class: "stripe-logo"%></div>
+              <p>Cartes acceptées</p>
+              <div class="cards">
+                 <%= image_tag "mastercard.svg", class: "mastercard"%> <%= image_tag "visa.svg", class: "visa"%> <%= image_tag "american-express.svg", class: "american-express"%>
+              </div>
+            </div>
+          </div>
         <% end %>
       </div>
 
     </div>
   </div>
 </div>
-
-<div class="secure">
-  <h5>Paiement sécurisé par</h5>
-  <%= image_tag "stripe.png", class: "stripe"%>
-</div>
-
-
