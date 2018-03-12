@@ -1,0 +1,12 @@
+<% hover_pathes = [] %>
+<% @ceramiques.each_with_index do |ceramique, index| %>
+  <% if ceramique.photos[1] %>
+    <% hover_pathes << "url(#{cl_image_path(ceramique.photos[1].path, quality: "60")})" %>
+  <% end %>
+<% end %>
+<style>
+  body:after {
+    display:none;
+    content: <%= hover_pathes.join(' ')%> ;
+  }
+</style>
