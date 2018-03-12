@@ -1,14 +1,11 @@
 <% content_for(:description) do %>
-<%= @ceramique.name.capitalize %>. Prix : <%= humanized_money(@ceramique.price)%> €. Livraison sous 3 semaines.
+  <%= ("#{@ceramique.description}").squish %>
 <% end %>
 <% content_for(:title_tag) do %>
-Les <%="#{ENV['MODEL']} de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%> - <%= @ceramique.name.capitalize %>
+  Les produits de Mme Toutlemonde. <%= @ceramique.name.capitalize %>. Prix : <%= humanized_money(@ceramique.price)%> €. Livraison sous <%= @admin.tracking%>.
 <% end %>
 <% content_for(:meta_image) do %>
   <%= cl_image_path @ceramique.photos[0].path %>
-<% end %>
-<% content_for(:meta_description) do %>
-  <%= ("#{@ceramique.name} : #{@ceramique.description}. Prix: #{humanized_money(@ceramique.price)} €").squish %>
 <% end %>
 
 
@@ -28,7 +25,10 @@ Les <%="#{ENV['MODEL']} de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capi
                 <% photo.height > photo.width ? verticale = true : nil %>
               <% end %>
               <% verticale ? classe = "verticale" : classe = "horizontale"  %>
-              <img class="img-front <%= classe %> " id="zoom01" src="<%= cl_image_path @ceramique.photos[0].path, quality: "auto" %>" data-zoom-image="<%= cl_image_path @ceramique.photos[0].path, quality: "auto" %>" alt="<%=@ceramique.name%>">
+              <div class="front-image-div">
+                <%= render 'shared/product_image_overlay' %>
+                <img class="img-front <%= classe %> " id="zoom01" src="<%= cl_image_path @ceramique.photos[0].path, quality: "auto" %>" data-zoom-image="<%= cl_image_path @ceramique.photos[0].path, quality: "auto" %>" alt="<%=@ceramique.name%>">
+              </div>
               <div class="images">
                 <% @ceramique.photos.each_with_index do |photo, index| %>
                   <% if index < 4 %>

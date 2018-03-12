@@ -27,12 +27,17 @@ class OrdersController < ApplicationController
   end
 
   def show
-    if Order.find(params[:id]).state == "pending"
-      @order = Order.where(state: 'pending', id: params[:id].to_i).first
-      @order.update(user: current_user) if current_user
-      @amount = @order.amount
-      @port = @order.port
-      render "show_#{@active_theme.name}"
+    if Order.find(params[:id])
+      if Order.find(params[:id]).state == "pending"
+        @order = Order.where(state: 'pending', id: params[:id].to_i).first
+        @order.update(user: current_user) if current_user
+        @amount = @order.amount
+        @port = @order.port
+        render "show_#{@active_theme.name}"
+      else
+        flash[:notice] = "Votre panier a expiré"
+        redirect_back(fallback_location: root_path)
+      end
     else
       flash[:notice] = "Votre panier a expiré"
       redirect_back(fallback_location: root_path)

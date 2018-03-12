@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Cette page n'existe plus</title>
+    <%= favicon_link_tag %>
+    <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+  </head>
+  <body>
+
+    <% if @active_theme.name == "default" %>
+      <div class="body-<%=@active_theme.name%>">
+        <%= render 'shared/navbar' %>
+        <%= render 'shared/flashes' %>
+        <div class="content">
+          <%= yield %>
+        </div>
+        <%= render 'shared/footer' %>
+    <% elsif @active_theme.name == "lighttheme" %>
+      <div class="body-<%=@active_theme.name%>">
+        <%= render "shared/navbar_#{@active_theme.name}" %>
+        <%= render "shared/flashes_#{@active_theme.name}" %>
+        <div class="content-<%=@active_theme.name%>">
+          <%= yield %>
+        </div>
+        <%= render "shared/lighttheme_filter" %>
+        <%= render "shared/footer_#{@active_theme.name}" %>
+    <% elsif  @active_theme.name == "darktheme" %>
+      <div class="body-<%=@active_theme.name%>">
+        <%= render "shared/navbar_#{@active_theme.name}" %>
+        <%= render "shared/flashes_#{@active_theme.name}" %>
+        <div class="content-<%=@active_theme.name%>">
+          <%= yield %>
+        </div>
+        <%= render "shared/footer_#{@active_theme.name}" %>
+    <% end %>
+
+      <%= javascript_include_tag "https://maps.google.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
+      <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>
+      <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js" %>
+      <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.5/showdown.min.js" %>
+      <%= javascript_include_tag 'application' %>
+      <%= cloudinary_js_config %>
+      <%= yield(:after_js) %>
+  </body>
+</html>
