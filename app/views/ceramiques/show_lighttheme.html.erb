@@ -27,7 +27,7 @@
               <% verticale ? classe = "verticale" : classe = "horizontale"  %>
               <div class="front-image-div">
                 <%= render 'shared/product_image_overlay' %>
-                <img class="img-front <%= classe %> " id="zoom01" src="<%= cl_image_path @ceramique.photos[0].path, quality: "auto" %>" data-zoom-image="<%= cl_image_path @ceramique.photos[0].path, quality: "auto" %>" alt="<%=@ceramique.name%>">
+                <img class="img-front <%= classe %> " id="zoom01" src="<%= cl_image_path @ceramique.photos[0].path, width: "0.4", crop: "scale", quality: "auto"%>" data-zoom-image="<%= cl_image_path @ceramique.photos[0].path, width: "0.4", crop: "scale", quality: "auto"%>" alt="<%=@ceramique.name%>">
               </div>
               <div class="images">
                 <% @ceramique.photos.each_with_index do |photo, index| %>
