@@ -36,4 +36,7 @@ Rails.application.routes.draw do
 
   #Root
   root to: 'pages#home'
+
+  #Errors
+  get "/404", to: "errors#error_404"
 end

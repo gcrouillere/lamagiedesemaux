@@ -1,14 +1,11 @@
 <% content_for(:description) do %>
-Acheter en ligne: <%= @ceramique.name.capitalize %>. Prix : <%= humanized_money(@ceramique.price)%> €. Paiement par CB. Livraison sous 3 semaines par colissimo.
+Acheter en ligne: <%= @ceramique.name.capitalize %>. Prix : <%= humanized_money(@ceramique.price)%> €. Paiement par CB. Livraison sous 1 semaine par colissimo.
 <% end %>
 <% content_for(:title_tag) do %>
 Acheter en ligne: <%= @ceramique.name.capitalize %>, de Fabienne Jacob.
 <% end %>
 <% content_for(:meta_image) do %>
   <%= cl_image_path @ceramique.photos[0].path %>
-<% end %>
-<% content_for(:meta_description) do %>
-  <%= ("#{@ceramique.name} : #{@ceramique.description}. Prix: #{humanized_money(@ceramique.price)} €").squish %>
 <% end %>
 
 

@@ -8,7 +8,7 @@
   <% content_for(:meta_image) do %>
     <%= cl_image_path @front_offer.ceramiques.first.photos[0].path %>
   <% end %>
-  <% content_for(:meta_description) do %>
+  <% content_for(:description) do %>
     <% @front_offer.discount > 0 ? discount = " - Réduction de #{(@front_offer.discount * 100).to_i} % " : discount = "" %>
     <%= "#{@front_offer.title} #{discount} - #{@front_offer.description}".squish %>
   <% end %>
@@ -55,7 +55,7 @@
             <div class="filter-category">
               <ul>
                 <% @uniq_categories.each do |category| %>
-                  <li><label class="label-search"><input type="checkbox" name="categories[]" value="<%= category %>"><%= category %></label></li>
+                  <li><label class="label-search"><input type="checkbox" name="categories[]" value="<%= category %>"><%= category.capitalize %></label></li>
                 <% end %>
               </ul>
               <h3>Prix max €</h3>

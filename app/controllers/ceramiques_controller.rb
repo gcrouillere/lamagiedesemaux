@@ -25,7 +25,7 @@ class CeramiquesController < ApplicationController
     session[:zoom_message] ? session[:zoom_message] += 1 : session[:zoom_message] = 0
     @dev_redirection = "https://www.creermonecommerce.fr/produits"
     clean_orders
-    @ceramique = Ceramique.friendly.find(params[:id])
+    @ceramique = Ceramique.find(params[:id])
     @same_category_products = @ceramique.category.ceramiques - [@ceramique]
     @twitter_url = request.original_url.to_query('url')
     render "show_#{@active_theme.name}"

@@ -27,7 +27,7 @@
           <% if Order.where(id: session[:order]).present? %>
             <% if Order.where(id: session[:order]).first.state != "lost" %>
               <%= link_to order_path(Order.find(session[:order])) do %>
-                <span><i class="fa fa-shopping-cart"></i> Panier</span>
+                <span><i class="fa fa-shopping-cart"></i></span>
               <% end %>
             <% end %>
           <% end %>
@@ -51,7 +51,7 @@
           <% if Order.where(id: session[:order]).present? %>
             <% if Order.where(id: session[:order]).first.state != "lost" %>
               <%= link_to order_path(Order.find(session[:order])) do %>
-                <span><i class="fa fa-shopping-cart"></i> Panier</span>
+                <span><i class="fa fa-shopping-cart"></i></span>
               <% end %>
             <% end %>
           <% end %>

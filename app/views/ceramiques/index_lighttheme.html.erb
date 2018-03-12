@@ -9,7 +9,7 @@ Site de e-commerce configurable. Créez votre compte et visualisez votre futur s
   <% content_for(:meta_image) do %>
     <%= cl_image_path @front_offer.ceramiques.first.photos[0].path %>
   <% end %>
-  <% content_for(:meta_description) do %>
+  <% content_for(:description) do %>
     <% @front_offer.discount > 0 ? discount = " - Réduction de #{(@front_offer.discount * 100).to_i} % " : discount = "" %>
     <%= "#{@front_offer.title} #{discount} - #{@front_offer.description}".squish %>
   <% end %>
