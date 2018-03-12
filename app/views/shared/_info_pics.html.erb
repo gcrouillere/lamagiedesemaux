@@ -14,6 +14,7 @@
     <% @avatarpictagmobile = cl_image_tag(cl_image_path @admin.avatarphoto.path, :width => 200, :height => 200, :crop => :thumb, :gravity => :face, alt: "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize} créateur de #{ENV['MODEL']}") %>
   <% end %>
   <% if  @admin.cityphoto.present? %>
+    <% @citypictag = cl_image_tag(cl_image_path @admin.cityphoto.path, alt: "#{ENV['ADDRESS'].gsub(/[+]/, ' ')}, localisation de l'atelier de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}") %>
       <% @citypicpath = @admin.cityphoto.path %>
-    <% end %>
+  <% end %>
 <% end %>
