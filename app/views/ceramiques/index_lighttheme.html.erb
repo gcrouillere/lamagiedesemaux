@@ -18,6 +18,7 @@
 
 <div class="container-lighttheme">
   <div class="row">
+    <% if  @ceramiques.present? %>
        <% @ceramiques.each_with_index do |ceramique, index| %>
           <div class="col-xs-6 col-sm-4 col-md-3 lighttheme-ceramiquecard-col">
             <%= link_to ceramique_path(ceramique), title: "#{ceramique.name}", class: "cardlink-lighttheme" do %>
@@ -57,6 +58,14 @@
               </div>
             <% end %>
           </div>
+      <% end %>
+      <% else %>
+        <div class="col-xs-12 no-ceramique-list">
+          <div class="no-ceramique">
+            <p>Nous sommes désolés, aucun produit ne correspond à cette recherche</p>
+            <%= link_to "AFFICHER TOUS LES PRODUITS", ceramiques_path, class: "btn btn-primary lighttheme" %>
+          </div>
+        </div>
       <% end %>
   </div>
 </div>
