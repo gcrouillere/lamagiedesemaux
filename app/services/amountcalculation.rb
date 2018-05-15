@@ -18,7 +18,7 @@ class Amountcalculation
         "https://api.laposte.fr/tarifenvoi/v1?type=lettre&poids=#{total_weight}",
         headers: {"X-Okapi-Key" => ENV['LAPOSTE_API_KEY'] }
       )
-      return {total: tarif_colis[2]["price"].to_money + amount_ceramique, port: tarif_colis[0]["price"].to_money}
+      return {total: amount_ceramique, port: tarif_colis[2]["price"].to_money}
     elsif total_weight >= 250
       tarif_colis = HTTParty.get(
         "https://api.laposte.fr/tarifenvoi/v1?type=colis&poids=#{total_weight}",
