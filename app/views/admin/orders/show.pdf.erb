@@ -1,0 +1,52 @@
+<meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+<h1>Facture pour commande sur site <%=ENV['APPNAME']%></h1>
+<hr>
+<h3><%="#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%></h3>
+<h3>Tel : <%= ENV['TELEPHONE']%></h3>
+<h3>Adresse : <%= ENV['ADDRESS'].gsub("+"," ")%></h3>
+<h3>SIRET : </h3>
+<br>
+<h2>Client : <%= resource.user.first_name%> <%= resource.user.last_name%></h2>
+<h3>Adresse : <%= "#{resource.user.adress} #{resource.user.zip_code} - #{resource.user.city}"%></h3>
+<h3>Email : <%= "#{resource.user.email}"%></h3>
+<br>
+<h2>Contenu de la commande</h2>
+
+   <table style="width: 100%; text-align: center">
+      <tr>
+        <th>Référence produit</th>
+        <th>Quantité</th>
+        <th>Prix HT</th>
+        <th>TVA <%= ENV['TVA'].to_f * 100 %> %</th>
+        <th>Prix TTC</th>
+      </tr>
+      <% resource.basketlines.each do |basketline| %>
+      <% basketline.ceramique.offer ? discount =  basketline.ceramique.offer.discount : discount = 0 %>
+      <tr>
+        <td>ID : <%= basketline.ceramique.id %> - <%= basketline.ceramique.name.capitalize %></td>
+        <td><%= basketline.quantity %></td>
+        <td><%= humanized_money(basketline.ceramique.price * 1.0 * (1 - discount) * basketline.quantity * (1 - ENV['TVA'].to_f)) %> €</td>
+        <td><%= humanized_money(basketline.ceramique.price * (1 - discount) * basketline.quantity * ENV['TVA'].to_f) %> €</td>
+        <td><%= humanized_money(basketline.ceramique.price * (1 - discount) * basketline.quantity)%> €</td>
+      </tr>
+      <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td><strong>Total HT : </strong><%= humanized_money(resource.amount * (1 - ENV['TVA'].to_f))  %> €</td>
+        <td><strong>Total TVA : </strong><%= humanized_money(resource.amount * ENV['TVA'].to_f) %> €</td>
+        <td></td>
+      </tr>
+    </table>
+
+<% if resource.take_away %>
+<p> La commande est à retirer en magasin, pas de frais de port.</p>
+<p><strong>Total TTC :</strong> <%= humanized_money(resource.amount) %> €</p>
+<% else %>
+<p>Frais de port: <%= humanized_money(resource.port) %> €</p>
+<p><strong>Total TTC :</strong> <%= humanized_money(resource.amount + resource.port) %> €</p>
+<% end %>
+
+<h3>Facture règlée le <%= resource.updated_at.strftime("%d/%m/%Y") %> par carte bancaire, sur le site <%= ENV['APPNAME'] %>.</h3>

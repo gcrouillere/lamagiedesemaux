@@ -13,16 +13,8 @@ ActiveAdmin.register Ceramique, as: 'Produits' do
       ceramique.category.name
     end
     column :price_cents
-    column "Nb de ventes - CA" do |ceramique|
-      total = 0
-      sum = 0
-      ceramique.basketlines.each do |basketline|
-        if basketline.order.state == "paid"
-          total += basketline.quantity
-        end
-      end
-      sum = total * ceramique.price
-      "#{total} - #{sum} €"
+    column "Nb de ventes - CA", :sortable => 'ceramique.basketlines.sum(:quantity)* ceramique.price' do |ceramique|
+      "#{ceramique.basketlines.sum(:quantity)} - #{ceramique.basketlines.sum(:quantity) * ceramique.price} €"
     end
     actions
   end

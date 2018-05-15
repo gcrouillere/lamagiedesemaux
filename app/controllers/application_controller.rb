@@ -65,6 +65,7 @@ class ApplicationController < ActionController::Base
       :facebook_picture_url,
       :token,
       :token_expiry,
+      :consented
       ])
 
     # For additional in app/views/devise/registrations/edit.html.erb

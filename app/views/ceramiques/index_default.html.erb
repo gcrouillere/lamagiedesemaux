@@ -81,11 +81,17 @@
                     <div class="ribbon"></div>
                   <% end %>
                 <% end %>
-                <div class="img-container">
-                  <% if ceramique.photos[0].height >= ceramique.photos[0].width %>
-                    <%= cl_image_tag(cl_image_path(ceramique.photos[0].path, :width => 285, :height => 285, :crop => :fit), alt: "#{ceramique.name}", class: "img-resized") %>
-                  <% else %>
-                  <%= cl_image_tag ceramique.photos[0].path, :quality=>"auto", alt: ceramique.name, class: "img" %>
+                <div class="img-container img-container<%=ceramique.id%>">
+                  <style>
+                    .img-container<%=ceramique.id%> {
+                      background-image: url(<%= cl_image_path(ceramique.photos[0].path, :quality => "auto")%>);
+                      background-size: cover;
+                      background-position-y: center;
+                      background-position-x: center;
+                    }
+                  </style>
+                  <% if  ceramique.stock == 0%>
+                    <div class="ceramiques-card-circle soldout default-circle"><p>Epuisé</p></div>
                   <% end %>
                   <% ceramique.offer ? discount =  ceramique.offer.discount : discount = 0 %>
                   <h2 class="prix-index hidden-xs hidden-sm"><%= humanized_money(ceramique.price * (1 - discount))%> <%= currency_symbol %></h2>

@@ -23,6 +23,11 @@
   border-radius: 1px;
 }
 
+.alert-error.alert-default {
+  background: $yellow;
+  border-radius: 1px;
+}
+
 .alert-warning.alert-default {
   background: $red;
   border-radius: 1px;
@@ -33,13 +38,24 @@
   border-radius: 1px;
 }
 
+.alert-error.alert-lighttheme {
+  background: #edb690;
+  border-radius: 1px;
+}
+
 .alert-warning.alert-lighttheme {
   background: #ff6c68;
   border-radius: 1px;
 }
 
-.alert-info.alert-darktheme {
+.alert-info.alert-darktheme{
   background:#99c19f;
+  border-radius: 1px;
+  border: 1px solid black;
+}
+
+.alert-error.alert-darktheme {
+  background:#c19999;
   border-radius: 1px;
   border: 1px solid black;
 }

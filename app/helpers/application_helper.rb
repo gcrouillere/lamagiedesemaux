@@ -40,4 +40,10 @@ module ApplicationHelper
     render partial: "shared/socialbuttons"
   end
 
+  def periodic_stat(duration)
+    duration < 31 ? @text_duration = "#{duration} jours" : @text_duration = "#{duration / 30} mois"
+    @duration = duration
+    render partial: "admin/orders/stat_template"
+  end
+
 end
