@@ -23,6 +23,15 @@
           <% end %>
         </div>
       </div>
+      <div class="connect">
+        <h3>Informations</h3>
+        <%= link_to cgv_path do%>
+          <h4>CGV</h4>
+        <% end %>
+        <%= link_to legal_path do%>
+          <h4>Données</h4>
+        <% end %>
+      </div>
     </div>
     <%= link_to @dev_redirection || session[:dev_redirection_default], title: "Créez votre boutique en ligne avec l'agence de Guillaume Crouillere", class: "link-guillaume" do %>
       <%= image_tag  'legolight.svg', alt: "Guillaume Crouillere - Developpeur WEB indépendant"%>

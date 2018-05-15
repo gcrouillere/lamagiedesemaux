@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home, :confirmation, :info, :contact, :google906057532e2dbb7e, :robots, :legal]
+  skip_before_action :authenticate_user!, only: [:home, :confirmation, :info, :contact, :google906057532e2dbb7e, :robots, :legal, :cgv]
 
   def home
     @dev_redirection = "https://www.creermonecommerce.fr/"
@@ -21,6 +21,10 @@ class PagesController < ApplicationController
   end
 
   def legal
+    @dev_redirection = "https://www.creermonecommerce.fr/produits"
+  end
+
+  def cgv
     @dev_redirection = "https://www.creermonecommerce.fr/produits"
   end
 

@@ -70,62 +70,72 @@
       </div>
     </div>
 
-    <div class="col-xs-12 col-lg-9 ceramique-list">
-      <% @ceramiques.each_with_index do |ceramique, index| %>
-        <div class="col-xs-12 col-sm-6">
-          <%= link_to ceramique_path(ceramique), title: "#{ceramique.name}", class: "cardlink" do %>
-            <div class="ceramiquecard-darktheme ceramiquecardimage-<%=index%>">
-                <style>
-                  .ceramiquecardimage-<%=index%> {
-                    background-image: url(<%= cl_image_path ceramique.photos[0].path, quality: "auto" %>);
-                    background-size: cover;
-                    background-position-y: center;
-                    background-position-x: center;
-                  }
-                </style>
-              <% if ceramique.offer%>
-                <% if ceramique.offer.discount > 0 %>
-                  <p class="discount-offer">-<%= (ceramique.offer.discount * 100).to_i %>%</p>
-                  <div class="ribbon"></div>
+    <% if  @ceramiques.present? %>
+      <div class="col-xs-12 col-lg-9 ceramique-list">
+        <% @ceramiques.each_with_index do |ceramique, index| %>
+          <div class="col-xs-12 col-sm-6">
+            <%= link_to ceramique_path(ceramique), title: "#{ceramique.name}", class: "cardlink" do %>
+              <% ceramique == @ceramiques.last ? additionnal_class = "last-ceramique" : additionnal_class = "" %>
+              <div class="ceramiquecard-darktheme ceramiquecardimage-<%=index%> <%=additionnal_class%>">
+                  <style>
+                    .ceramiquecardimage-<%=index%> {
+                      background-image: url(<%= cl_image_path ceramique.photos[0].path, quality: "auto" %>);
+                      background-size: cover;
+                      background-position-y: center;
+                      background-position-x: center;
+                    }
+                  </style>
+                <% if ceramique.offer%>
+                  <% if ceramique.offer.discount > 0 %>
+                    <p class="discount-offer">-<%= (ceramique.offer.discount * 100).to_i %>%</p>
+                    <div class="ribbon"></div>
+                  <% end %>
                 <% end %>
-              <% end %>
-              <% if  ceramique.stock == 0 %>
-                <div class="ceramiques-card-circle soldout darktheme-circle"><p>Epuisé</p></div>
-              <% end %>
-              <div class="transparent-div"></div>
-              <div class="ceramique-card-text">
-                <h2 class="card-mobile-h2 hidden-md hidden-lg"> <%= ceramique.name.capitalize%> </h2>
-                <h2 class="hidden-xs hidden-sm"> <%= ceramique.name.capitalize%> </h2>
-                <p class="small hidden-xs hidden-sm"> <%= ceramique.description%> </p>
-                <% ceramique.offer ? discount =  ceramique.offer.discount : discount = 0 %>
-                  <h2 class="prix-index hidden-xs hidden-sm"><%= humanized_money(ceramique.price * (1 - discount))%> <%= currency_symbol %></h2>
+                <% if  ceramique.stock == 0 %>
+                  <div class="ceramiques-card-circle soldout darktheme-circle"><p>Epuisé</p></div>
+                <% end %>
+                <div class="transparent-div"></div>
+                <div class="ceramique-card-text">
+                  <h2 class="card-mobile-h2 hidden-md hidden-lg"> <%= ceramique.name.capitalize%> </h2>
+                  <h2 class="hidden-xs hidden-sm"> <%= ceramique.name.capitalize%> </h2>
+                  <p class="small hidden-xs hidden-sm"> <%= ceramique.description%> </p>
+                  <% ceramique.offer ? discount =  ceramique.offer.discount : discount = 0 %>
+                    <h2 class="prix-index hidden-xs hidden-sm"><%= humanized_money(ceramique.price * (1 - discount))%> <%= currency_symbol %></h2>
+                    <% if ceramique.offer %>
+                      <% if ceramique.offer.discount > 0 %>
+                        <h3 class="previous-price hidden-xs hidden-sm"><%= humanized_money(ceramique.price)%> <%= currency_symbol %></h3>
+                      <% end %>
+                    <% end %>
                   <% if ceramique.offer %>
                     <% if ceramique.offer.discount > 0 %>
-                      <h3 class="previous-price hidden-xs hidden-sm"><%= humanized_money(ceramique.price)%> <%= currency_symbol %></h3>
+                      <div class="allpricesmobile-w hidden-md hidden-lg">
+                        <h2 class="prix-index-mobile"><%= humanized_money(ceramique.price * (1 - discount))%> <%= currency_symbol %></h2>
+                        <h3 class="previous-price-mobile"><%= humanized_money(ceramique.price)%> <%= currency_symbol %></h3>
+                      </div>
+                    <% else %>
+                      <div class="allpricesmobile-w-zero hidden-md hidden-lg">
+                        <h2 class="prix-index-mobile"><%= humanized_money(ceramique.price * (1 - discount))%> <%= currency_symbol %></h2>
+                      </div>
                     <% end %>
-                  <% end %>
-                <% if ceramique.offer %>
-                  <% if ceramique.offer.discount > 0 %>
-                    <div class="allpricesmobile-w hidden-md hidden-lg">
-                      <h2 class="prix-index-mobile"><%= humanized_money(ceramique.price * (1 - discount))%> <%= currency_symbol %></h2>
-                      <h3 class="previous-price-mobile"><%= humanized_money(ceramique.price)%> <%= currency_symbol %></h3>
-                    </div>
                   <% else %>
-                    <div class="allpricesmobile-w-zero hidden-md hidden-lg">
+                    <div class="allpricesmobile-wo hidden-md hidden-lg">
                       <h2 class="prix-index-mobile"><%= humanized_money(ceramique.price * (1 - discount))%> <%= currency_symbol %></h2>
                     </div>
                   <% end %>
-                <% else %>
-                  <div class="allpricesmobile-wo hidden-md hidden-lg">
-                    <h2 class="prix-index-mobile"><%= humanized_money(ceramique.price * (1 - discount))%> <%= currency_symbol %></h2>
-                  </div>
-                <% end %>
+                </div>
               </div>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="col-xs-12 col-lg-9 no-ceramique-list">
+        <div class="no-ceramique">
+          <p>Nous sommes désolés, aucun produit ne correspond à cette recherche</p>
+          <%= link_to "AFFICHER TOUS LES PRODUITS", ceramiques_path, class: "btn btn-primary" %>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
 
 <!-- MOBILE -->
 
