@@ -1,0 +1,72 @@
+.top-bloc {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  margin-top: -20px;
+}
+
+.top-bloc .left-right-stat {
+  border: 1px solid #6a7176;
+  box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.top-bloc h3 {
+  font-size: 18px;
+  font-weight: 200;
+}
+
+.top-bloc .left-right-stat h2 {
+  margin: 0px 0px 0px 0px;
+  text-align: center;
+  color: white;
+  background: linear-gradient(180deg, #6a7176, #4d5256);
+  padding: 10px;
+  font-size: 22px;
+  font-weight: 200;
+}
+
+.col-xs-50 {
+  margin: 0px 20px 10px 20px;
+}
+
+.col-xs-50 .CA {
+  font-size: 16px;
+  font-weight: 200;
+  padding: 5px;
+}
+
+.col-xs-50 .inner-CA {
+ font-size: 13px;
+ font-weight: 200;
+ margin-left: 10px;
+}
+
+.head-stat, .total-end-stat  {
+  display: flex;
+}
+
+.inner-CA {
+  display: none;
+}
+
+/*Custom lessons bloc*/
+
+.current-lessons {
+  border: 1px solid #6a7176;
+  border-radius: 5px;margin-bottom: 30px;
+}
+
+.current-lessons h2 {
+  background: linear-gradient(180deg, #6a7176, #4d5256);
+  margin: 10px;
+  padding-left: 10px;
+  color: white;
+  border-radius: 3px;
+}
+
+.lessons-list h3 {
+  margin-left: 40px;
+  display: list-item;
+  /*list-style: circle;*/
+}

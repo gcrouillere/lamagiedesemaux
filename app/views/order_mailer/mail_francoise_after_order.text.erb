@@ -15,10 +15,16 @@ Client: <%= @user.first_name %> <%= @user.last_name %> - <%= @user.email %>
   <% end %>
 <% end %>
 
+<% if @order.take_away %>
+Montant total: <%= humanized_money(@order.amount) %> €
+
+La commande est à retirer en magasin, pas de livraison à prévoir.
+<% else %>
 Frais de port: <%= humanized_money(@order.port) %> €
-Montant total: <%= humanized_money(@amount) %> €
+Montant total: <%= humanized_money(@order.amount + @order.port) %> €
 
 Adresse de livraison : <%= @user.adress %> - <%= @user.zip_code %> - <%= @user.city %>
+<% end %>
 
 Cordialement
 

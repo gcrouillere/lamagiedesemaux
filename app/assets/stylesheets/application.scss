@@ -13,6 +13,7 @@
 // Your CSS
 @import "components/*";
 @import "components/lighttheme/*";
+@import "components/default/*";
 @import "components/darktheme/*";
 @import "config/*";
 @import "layout/*";
@@ -28,4 +29,17 @@
 
 .link-404:hover {
   border-bottom: 1px solid $primary;
+}
+
+.legal {
+  h1, h2, h3, p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  p {
+    text-align: justify;
+  }
+  h1 {
+    margin-bottom: 30px;
+  }
 }

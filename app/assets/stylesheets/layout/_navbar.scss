@@ -9,7 +9,10 @@
   top: 70px;
 }
 .navbar-mobile {
-  margin-bottom: -70px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 3;
 }
 .jumbotron {
   margin-top: -20px;

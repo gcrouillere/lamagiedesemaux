@@ -35,13 +35,16 @@ class CeramiquesController < ApplicationController
 
   def clean_orders
     Order.all.each do |order|
-      if (Time.now - order.created_at)/60/60 > ENV['BASKETDURATION'].to_f && order.state == "pending" && order.lesson.blank?
+      if ((Time.now - order.created_at)/60/60 > ENV['BASKETDURATION'].to_f && order.state == "pending" && order.lesson.blank?) || ((Time.now - order.created_at)/60/60 > 24 && order.state == "payment page" && order.lesson.blank?)
         order.basketlines.each do |basketline|
           ceramique = basketline.ceramique
           ceramique.update(stock: ceramique.stock + basketline.quantity)
         end
+        if session[:order]
+          wip_local_order = Order.find(session[:order])
+          session[:order] = nil if order == wip_local_order
+        end
         order.update(state: "lost")
-        session[:order] = nil
       end
     end
   end

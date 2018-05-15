@@ -89,6 +89,9 @@
                   <div class="ribbon"></div>
                 <% end %>
               <% end %>
+              <% if  ceramique.stock == 0 %>
+                <div class="ceramiques-card-circle soldout darktheme-circle"><p>Epuisé</p></div>
+              <% end %>
               <div class="transparent-div"></div>
               <div class="ceramique-card-text">
                 <h2 class="card-mobile-h2 hidden-md hidden-lg"> <%= ceramique.name.capitalize%> </h2>

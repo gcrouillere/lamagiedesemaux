@@ -57,6 +57,9 @@
   .hidden-md {
     min-width: 250px;
   }
+  .payment-form .input-label-take-away label {
+    color: white;
+  }
 }
 
 // MOBILE
@@ -90,6 +93,12 @@
     i {
       margin: 0px;
     }
+  }
+}
+
+.content-darktheme {
+  .payment-form .input-label-take-away label {
+    color: white;
   }
 }
 

@@ -11,20 +11,26 @@
       <div class="pay-form-<%=@payment_theme%>">
           <% unless @order.lesson.present? %>
             <div class="adress text-center">
-              <h3>Livraison du colis</h3>
-              <h4>Livraison via colissimo, sous <%= @admin.tracking%>, à l'adresse suivante:</h5>
-              <h4><%= current_user.first_name%> <%= current_user.last_name%></h4>
-              <h4><%= current_user.adress%></h4>
-              <h4><%= current_user.zip_code%> - <%= current_user.city%></h4>
-              <% unless @order.lesson.present? %>
-                <%= link_to edit_user_registration_path do %>
-                  <div class="hidden-xs laptop-link-coord">
-                    METTRE A JOUR VOS COORDONNEES
-                  </div>
-                  <div class="hidden-sm hidden-md hidden-lg mobile-link-coord">
-                    CHANGER VOS COORDONNEES
-                  </div>
-              <% end %>
+              <% unless  @order.take_away %>
+
+                <h3>Livraison du colis</h3>
+                <h4>Livraison via colissimo, sous <%= @admin.tracking%>, à l'adresse suivante:</h5>
+                <h4><%= current_user.first_name%> <%= current_user.last_name%></h4>
+                <h4><%= current_user.adress%></h4>
+                <h4><%= current_user.zip_code%> - <%= current_user.city%></h4>
+                <% unless @order.lesson.present? %>
+                  <%= link_to edit_user_registration_path do %>
+                    <div class="hidden-xs laptop-link-coord">
+                      METTRE A JOUR VOS COORDONNEES
+                    </div>
+                    <div class="hidden-sm hidden-md hidden-lg mobile-link-coord">
+                      CHANGER VOS COORDONNEES
+                    </div>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <h3>Retrait de votre commande en magasin</h3>
+                <h4>Une fois votre commande payée, prenez contact avec <%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%> pour récupérer votre commande.</h5>
               <% end %>
             </div>
           <% end %>
@@ -34,7 +40,7 @@
               <h4>Stage de poterie pour <%= @order.lesson.duration%> jours, <%= @order.lesson.student%> personnes.</h4>
               <h4>Début du stage le <%= @order.lesson.start.day%>/<%= @order.lesson.start.month%>/<%= @order.lesson.start.year%></h4>
             <% else %>
-              <h3>Total à payer: <%= humanized_money(@order.amount) %> <%= currency_symbol %></h3>
+              <h3>Total à payer: <%= @order.take_away ? humanized_money(@order.amount) : humanized_money(@order.amount + @order.port) %> <%= currency_symbol %></h3>
             <% end %>
             <%= form_tag order_payments_path(@order) do %>
             <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -43,7 +49,7 @@
               data-email="<%= current_user.email %>"
 
               data-description="<%=ENV['FIRSTNAME'].capitalize%> <%=ENV['LASTNAME'].capitalize%>"
-              data-amount="<%= @order.amount_cents %>"
+              data-amount="<%= @order.take_away ? @order.amount_cents : @order.amount_cents + @order.port_cents %>"
               data-currency="<%= @order.amount.currency %>">
             </script>
             <div class="secure">

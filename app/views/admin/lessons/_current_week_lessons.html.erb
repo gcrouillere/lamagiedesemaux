@@ -1,0 +1,32 @@
+<% if  @pending_lessons.size > 0 %>
+  <div class="current-lessons">
+    <h2>Liste des demandes de visite à traiter :</h2>
+    <div class="lessons-list">
+      <% @pending_lessons.each do |lesson| %>
+        <%= link_to admin_lesson_path(lesson) do %>
+          <h3>Le <%="#{lesson.start.day} #{lesson.start.strftime("%B")} #{lesson.start.year}"%> - <%=lesson.student%> personnes - contact : <%=lesson.user.email %> </h3>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div class="current-lessons">
+    <h2>Aucune demande de visite en attente</h2>
+  </div>
+<% end %>
+
+
+<% if  @current_week_lessons_a.size > 0 %>
+  <div class="current-lessons">
+    <h2>Liste des visites confirmées pour les 7 prochains jours :</h2>
+    <div class="lessons-list">
+      <% @current_week_lessons_a.each do |lesson| %>
+        <h3>Le <%="#{lesson.start.day} #{lesson.start.strftime("%B")} #{lesson.start.year}"%> - <%=lesson.student%> personnes - contact : <%=lesson.user.email %></h3>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div class="current-lessons">
+    <h2>Aucune visite confirmée pour les 7 prochains jours</h2>
+  </div>
+<% end %>

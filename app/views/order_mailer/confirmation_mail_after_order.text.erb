@@ -12,10 +12,16 @@ Merci pour votre commande, elle va être expédiée. Voici le détail de cette c
   <% end %>
 <% end %>
 
+<% if @order.take_away %>
+Montant total: <%= humanized_money(@order.amount) %> €
+
+Appelez moi pour convenir du moment où vous viendrez retirer votre commande.
+<% else %>
 Frais de port: <%= humanized_money(@order.port) %> €
-Montant total: <%= humanized_money(@amount) %> €
+Montant total: <%= humanized_money(@order.amount + @order.port) %> €
 
 Adresse de livraison : <%= @user.adress %> - <%= @user.zip_code %> - <%= @user.city %>
+<% end %>
 
 Cordialement
 

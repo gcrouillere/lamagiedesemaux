@@ -6,12 +6,24 @@ ActiveAdmin.register User, as: 'Clients' do
 
   index do
     column "Prénom - Nom" do |user|
-      user.first_name + " " + user.last_name
+      if user.first_name.include?("newsletter")
+        "Inconnu : newsletter"
+      elsif user.last_name.include?("message")
+        user.first_name
+      else
+        user.first_name + " " + user.last_name
+      end
     end
     column :email
     column "Dernier achat" do |user|
+      if user.first_name.include?("newsletter")
+        "N/A : inscrit newsletter"
+      elsif user.last_name.include?("message")
+        "N/A : envoi message"
+      else
         last_order = Order.where(user: user, state: "paid").order(updated_at: :desc).first
         last_order ? humanized_money(last_order.amount) + " € " + last_order.updated_at.strftime("le %d/%m/%Y") : "Aucun achat"
+      end
     end
     column "Total des achats" do |user|
       total = 0
@@ -20,14 +32,30 @@ ActiveAdmin.register User, as: 'Clients' do
       user_orders.each do |order|
         total += order.amount
       end
-      nb_achat.to_s + " achat(s) : " + humanized_money(total) + " € "
+      if user.first_name.include?("newsletter")
+        "N/A : inscrit newsletter"
+      elsif user.last_name.include?("message")
+        "N/A : envoi message"
+      else
+        nb_achat.to_s + " achat(s) : " + humanized_money(total) + " € "
+      end
     end
     column "Nb de paniers abandonnés" do |user|
-      Order.where(user: user, state: "lost").size
+      if user.first_name.include?("newsletter")
+        "N/A : inscrit newsletter"
+      elsif user.last_name.include?("message")
+        "N/A : envoi message"
+      else
+        Order.where(user: user, state: "lost").size
+      end
     end
     column "Dernier panier abandonné" do |user|
       last_lost_basket = Order.where(user: user, state: "lost").order(updated_at: :desc).first
-      if last_lost_basket
+      if user.first_name.include?("newsletter")
+        "N/A : inscrit newsletter"
+      elsif user.last_name.include?("message")
+        "N/A : envoi message"
+      elsif last_lost_basket
         contenu_panier = last_lost_basket.basketlines.map do |basketline|
           "#{basketline.ceramique.name} - qté: #{basketline.quantity}"
         end

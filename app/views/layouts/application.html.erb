@@ -43,6 +43,7 @@
         </div>
         <%= render "shared/lighttheme_filter" %>
         <%= render "shared/footer_#{@active_theme.name}" %>
+        <%= render 'shared/algolia_search' %>
     <% elsif  @active_theme.name == "darktheme" %>
       <div class="body-<%=@active_theme.name%>">
         <%= render "shared/navbar_#{@active_theme.name}" %>

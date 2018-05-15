@@ -50,5 +50,10 @@
     .devise-bottom-link:hover {
       color: darken($primary, 8%);
     }
+    .user_consented {
+      a {
+        text-decoration: underline;
+      }
+    }
   }
 }

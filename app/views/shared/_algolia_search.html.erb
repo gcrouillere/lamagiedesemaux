@@ -1,0 +1,29 @@
+<% content_for(:after_js) do %>
+  <!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
+  <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
+
+  <!-- Initialize autocomplete menu -->
+  <script>
+  var algoliaAPPID = String('<%=ENV['ALGOLIAPPID']%>')
+  var algoliasearchKey = String('<%=ENV['ALGOLISEARCHKEY']%>')
+  var client = algoliasearch(algoliaAPPID, algoliasearchKey);
+  var index = client.initIndex('Ceramique');
+  //initialize autocomplete on search input (ID selector must match)
+  autocomplete('#aa-search-input',
+  { hint: false }, {
+      source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+      //value to be displayed in input control after user's suggestion selection
+      displayKey: 'name',
+      //hash of templates used when rendering dataset
+      templates: {
+          //'suggestion' templating function used to render a single suggestion
+          suggestion: function(suggestion) {
+            return '<span>' + suggestion._highlightResult.name.value + '</span>'
+            + '<span>' + suggestion._highlightResult.description.value + '</span>'
+            +'<span>' + suggestion._highlightResult.category.name.value + '</span>';
+          }
+      }
+  });
+  </script>
+<% end %>
