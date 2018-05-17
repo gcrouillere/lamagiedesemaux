@@ -96,7 +96,7 @@ Acheter en ligne: <%= @ceramique.name.capitalize %>, de Fabienne Jacob. Prix : <
               <% end %>
                 <div class="col-sm-4 same-category-product-card">
                   <%= link_to ceramique_path(ceramique) , title: "#{ceramique.name}", class: "same-category-product-card-link"  do %>
-                  <img class="same-product-photo" src="<%= cl_image_path ceramique.photos[0].path, quality: "auto"%>" alt="<%=ceramique.name%>">
+                  <img class="same-product-photo" src="<%= cl_image_path ceramique.photos[0].path, quality: "10"%>" alt="<%=ceramique.name%>">
                   <div class="same-category-product-card-text">
                     <p class="ceramique-name"><%= ceramique.name.capitalize%></p>
                     <% ceramique.offer ? discount =  ceramique.offer.discount : discount = 0 %>

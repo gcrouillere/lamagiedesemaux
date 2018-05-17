@@ -1,7 +1,7 @@
 <!-- Right Navigation LAPTOP -->
 <div class="navbar-laptop-darktheme hidden-xs">
   <!-- Logo -->
-  <%= link_to root_path, class: "navbar-brand", title: "Retour à l'accueil de notre offre de boutique ligne" do %>
+  <%= link_to root_path, class: "navbar-brand", title: "Retour à l'accueil de la boutique de Fabienne Jacob" do %>
     <%= "#{ENV['FIRSTNAME']} #{ENV['LASTNAME'].capitalize}" %>
   <% end %>
 
@@ -16,7 +16,7 @@
             <span>Administration</span>
           <% end %>
         <% end %>
-        <%= link_to root_path, title: "Retour à l'accueil de notre offre de boutique ligne", class: "hidden-sm" do %>
+        <%= link_to root_path, title: "Retour à l'accueil de la boutique de Fabienne Jacob", class: "hidden-sm" do %>
           <span>Accueil</span>
         <% end %>
         <%= link_to ceramiques_path, title: "Découvrez les bijoux en vente dans la boutique" do %>
@@ -41,7 +41,7 @@
   <% else %>
     <div class="navbar-item-darktheme">
       <div class="nav-bar-list">
-        <%= link_to root_path, title: "Retour à l'accueil de notre offre de boutique ligne", class: "hidden-sm" do %>
+        <%= link_to root_path, title: "Retour à l'accueil de la boutique de Fabienne Jacob", class: "hidden-sm" do %>
           <span>Accueil</span>
         <% end %>
         <%= link_to ceramiques_path, title: "Découvrez les bijoux en vente dans la boutique" do %>
