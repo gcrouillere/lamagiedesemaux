@@ -15,12 +15,18 @@
       align-items: center;
       margin-left: 25px;
       i {
-        color: $primary;
+        color: white;
+        padding: 5px;
         margin-right: 10px;
         cursor: pointer;
+        transition: all ease 0.2s;
+        &:hover {
+          color: black;
+          background: white;
+        }
       }
       h6 {
-        color: $primary;
+        color: white;
         font-weight: 500;
         opacity: 0;
         transition: ease 0.2s;
@@ -39,7 +45,14 @@
       margin: 0 20px;
     }
     a {
-      font-weight: 100;
+      color: white;
+      font-weight: 400;
+      padding: 5px;
+      transition: all ease 0.2s;
+      &:hover {
+        color: #171717;
+        background: white;
+      }
     }
     .first-a {
       margin-bottom: 10px;

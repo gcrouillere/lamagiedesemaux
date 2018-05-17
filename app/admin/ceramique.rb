@@ -1,10 +1,11 @@
 ActiveAdmin.register Ceramique, as: 'Produits' do
-  permit_params :name, :description, :stock, :weight, :category_id, :price_cents, photos: []
+  permit_params :name, :description, :stock, :weight, :category_id, :price_cents, :position, photos: []
   menu priority: 1
   config.filters = false
 
   index do
     column :id
+    column :position
     column :name
     column :description
     column :stock
@@ -21,6 +22,7 @@ ActiveAdmin.register Ceramique, as: 'Produits' do
 
   form do |f|
   f.inputs "" do
+    f.input :position
     f.input :name
     f.input :description
     f.input :stock

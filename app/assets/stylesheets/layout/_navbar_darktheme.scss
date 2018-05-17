@@ -39,8 +39,8 @@
     align-items: center;
     padding: 0px;
     font-family: Raleway;
-    font-size: 32px;
-    font-weight: 300;
+    font-size: 38px;
+    font-weight: 500;
     letter-spacing: 2px;
     color: white;
     text-shadow: 1px 1px 0px $primary;
@@ -58,17 +58,19 @@
       display: flex;
       list-style: none;
       a {
-          text-decoration: none !important;
-          color: white;
-          margin-right: 20px;
-          padding-bottom: 2px;
-          border-bottom: 1px solid transparent;
-        i {
-          color: white;
+        color: white;
+        margin-right: 20px;
+        font-weight: 400;
+        padding: 5px;
+        transition: all ease 0.2s;
+        &:hover {
+          color: #171717;
+          background: white;
         }
-      }
-      a:hover {
-        border-bottom: 1px solid white;
+        .fa.fa-search {
+         margin-right: 5px;
+         font-size: 20px;
+        }
       }
     }
     /* mobile */
@@ -76,11 +78,21 @@
       display: flex;
       list-style: none;
       a {
-        text-decoration: none !important;
         color: white;
-        margin-right: 15px;
+        margin-right: 20px;
+        font-weight: 400;
+        padding: 5px;
       }
     }
+  }
+}
+
+#darktheme-filter-search {
+  margin-right: 20px;
+  .searchimg {
+    width: 20px;
+    top: -2px;
+    position: relative;
   }
 }
 

@@ -10,17 +10,19 @@
   }
 
   .btn.btn-primary {
-    background: transparent;
-    border-color: $primary;
-    border-radius: $project-border-radius;
+    background: white;
+    color: #171717;
+    border-radius: 0px;
+    border: 3px solid transparent;
     padding: 6px 12px;
-    font-weight: 100;
-    transition: 0.1s background-color linear, 0.1s color linear;
+    font-weight: 400;
+    transition: all ease 0.2s;
   }
   .btn.btn-primary:hover {
-    background-color: $primary;
-    color: black;
-    transition: 0.1s background-color linear, 0.1s color linear;
+    background: transparent;
+    border: 3px solid white;
+    color: white;
+    box-shadow: 5px 5px 0px $primary;
   }
 
   .content-darktheme {

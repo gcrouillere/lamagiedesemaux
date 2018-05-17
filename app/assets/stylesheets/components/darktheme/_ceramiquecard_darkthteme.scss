@@ -6,14 +6,14 @@
       color: white;
     }
     hr {
-      margin: 5px 0px 10px 0px;
+      margin: 5px 0px 27px 0px;
     }
   }
 
   .h1-index.mobile {
     margin: 0px 10px;
     hr {
-      margin: 5px 0px 20px 0px;
+      margin: 5px 0px 27px 0px;
     }
   }
 }
@@ -22,8 +22,101 @@
     text-decoration: none !important;
   }
 
+  .last-product-padding {
+    padding: 0 15px !important;
+    margin: 15px 0 30px 0;
+    .last-product {
+      display: flex;
+      border-radius: $project-border-radius;
+      box-shadow: 5px 5px 0px $primary;
+      background: white;
+      .last-product-image {
+        width: 42%;
+        min-height: 290px;
+        margin: 10px;
+        .nouveaute {
+          position: absolute;
+          width: 30px;
+          height: 100%;
+          text-align: center;
+          top: 0px;
+          left: 40px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          background: $primary;
+          p {
+            color: black;
+            font-weight: 600;
+          }
+        }
+      }
+      .last-product-text {
+        width: 58%;
+        margin-left: 20px;
+        position: relative;
+        h2 {
+          margin-bottom: 20px;
+          color: black;
+        }
+        p {
+          margin-left: 10px;
+          font-weight: 100;
+          color: black;
+        }
+        .prices-bubble {
+          position: absolute;
+          bottom: 15px;
+          left: -110px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 60px;
+          height: 60px;
+          border-radius: 0px ;
+          background: $primary;
+          p {
+            color: black;
+            margin: 0;
+            font-size: 14px;
+            font-weight: 400;
+          }
+          .previous-price {
+            text-decoration: line-through;
+          }
+        }
+      }
+    }
+  }
+
+  @media all and (max-width: 600px) {
+    .last-product-padding {
+      padding: 0 10px !important;
+    }
+    .last-product-image {
+      width: 55% !important;
+      .nouveaute {
+        left: 40px;
+      }
+    }
+    .last-product-text {
+      width: 45% !important;
+      margin-left: 2px !important;
+      h2 {
+        font-size: 20px;
+      }
+      p {
+        font-size: 15px;
+      }
+     .prices-bubble {
+        left: -80px !important;
+      }
+    }
+  }
+
   .ceramiquecard-darktheme {
-    margin: 20px 20px 10px 10px;
+    margin: 15px;
     padding: $padding-large;
     background: $card-background;
     border-radius: $project-border-radius;
@@ -116,11 +209,15 @@
         }
       }
     }
+    transition: all ease 0.2s;
+    &:hover {
+      box-shadow: 5px 5px 0px $primary;
+    }
   }
 
   @media all and (max-width: 800px) {
     .ceramiquecard-darktheme {
-      margin: 0px 10px 10px 10px;
+      margin: 10px 10px 10px 10px;
       padding: 7px 0px 0px 0px;
       min-height: 400px;
       position: relative;
@@ -133,21 +230,21 @@
       .card-mobile-h2 {
         text-align: center;
         margin: 20px 0;
-        text-shadow: 1px 1px #f1f1f1;
         color: black;
       }
       .allpricesmobile-w {
         position: absolute;
         top: -62px;
         right: 16px;
-        width: 109px;
-        height: 44px;
-        background: rgba(255, 255, 255, 0.7);
-        border: 1px solid grey;
+        width: 104px;
+        height: 56px;
+        padding: 5px;
+        background: rgba(255, 255, 255, 1);
+        border: 3px solid $primary;
         text-align: center;
-        border-radius: 27px;
+        border-radius: 0px;
         margin: 0;
-        box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.1);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         .prix-index-mobile {
           font-size: $font-size-h4;
           margin: 0;
@@ -166,14 +263,15 @@
         position: absolute;
         top: -50px;
         right: 16px;
-        width: 109px;
-        height: 31px;
-        background: rgba(255, 255, 255, 0.7);
-        border: 1px solid grey;
+        width: 92px;
+        height: 43px;
+        background: rgba(255, 255, 255, 1);
+        border: 3px solid $primary;
         text-align: center;
-        border-radius: 27px;
+        border-radius: 0px;
         margin: 0;
-        box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.1);
+        padding: 5px;
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         .prix-index-mobile {
           font-size: $font-size-h4;
           margin: 0;

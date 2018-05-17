@@ -32,7 +32,7 @@ Acheter en ligne: <%= @ceramique.name.capitalize %>, de Fabienne Jacob.Prix : <%
               <div class="images">
                 <% @ceramique.photos.each_with_index do |photo, index| %>
                   <% if index < 4 %>
-                    <img class="thumbnail" src="<%= cl_image_path @ceramique.photos[index].path, quality: "auto" %>" alt="<%=@ceramique.name%>">
+                    <img class="thumbnail" src="<%= cl_image_path @ceramique.photos[index].path, width: "0.4", crop: "scale", quality: "auto"%>" alt="<%=@ceramique.name%>">
                   <% end %>
                 <% end %>
               </div>

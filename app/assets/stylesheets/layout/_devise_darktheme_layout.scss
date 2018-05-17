@@ -26,28 +26,27 @@
     }
 
     .facebook-button, .btn.btn-primary {
-      background: transparent;
+      background: white;
+      color: #171717;
       border-radius: $project-border-radius;
+      border: 3px solid transparent;
       padding: 6px 12px;
-      font-weight: 100;
-      transition: 0.1s background-color linear, 0.1s color linear;
-    }
-    .btn.btn-primary {
-      border: 1px solid $primary;
-    }
-    .facebook-button {
-      border: 1px solid #365899;
+      font-weight: 400;
+      transition: all ease 0.2s;
     }
     .btn.btn-primary:hover {
-      background-color: $primary;
-      color: black;
-      transition: 0.1s background-color linear, 0.1s color linear;
+      border: 3px solid white;
+      box-shadow: 5px 5px 0px $primary;
+      background: transparent;
+      color: white;
     }
     .facebook-button:hover {
-      color: black;
-      background-color: #365899;
-      transition: 0.1s background-color linear, 0.1s color linear;
+      border: 3px solid white;
+      box-shadow: 5px 5px 0px #365899;
+      background: transparent;
+      color: white;
     }
+
     .facebook-separator {
       color: white;
       text-align: center;
