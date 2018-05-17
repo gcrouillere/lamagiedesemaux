@@ -7,7 +7,7 @@
       <div class="filter-category">
         <ul>
           <% @uniq_categories.each do |category| %>
-            <li><label class="label-search"><input type="checkbox" name="categories[]" value="<%= category %>"><%= category %></label></li>
+            <li><label class="label-search"><input type="checkbox" name="categories[]" value="<%= category %>"><%= category.capitalize %></label></li>
           <% end %>
         </ul>
         <h3>Prix max €</h3>
