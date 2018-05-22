@@ -159,7 +159,7 @@
 
 <!-- MOBILE -->
 
-<div class="hidden-md hidden-lg">
+<div class="hidden-sm hidden-md hidden-lg">
   <div id="ceramique-filters-content-mobile-darktheme">
     <h2>Filtrer<i id="close-search" class="fa cross-1" aria-hidden="true">&times;</i></h2>
     <form action="/<%=ENV['MODEL']%>" method='get'>
@@ -169,7 +169,15 @@
         <div class="filter-category">
           <ul>
             <% @uniq_categories.each do |category| %>
-              <li><label class="label-search"><input type="checkbox" name="categories[]" value="<%= category %>"><%= category %></label></li>
+              <% category.categories.present? ? uniq_class = "with-sub-cat" : uniq_class = "no-sub_category" %>
+              <li><label class="label-search <%= uniq_class %>"><input type="checkbox" name="categories[]" value="<%= category.id %>"><%= category.name.capitalize %></label></li>
+              <% if category.categories.present? %>
+                <div class="sub-categories">
+                  <% category.categories.each do |category| %>
+                    <li><div class="square"></div><label class="subcategory label-search"><input type="checkbox" name="categories[]" value="<%= category.id %>"><%= category.name.capitalize %></label></li>
+                  <% end %>
+                </div>
+              <% end %>
             <% end %>
           </ul>
           <h3>Prix max €</h3>
@@ -186,7 +194,7 @@
   </div>
 </div>
 
-<div id="mobile-filter-search-darktheme" class="hidden-md hidden-lg">
+<div id="mobile-filter-search-darktheme" class="hidden-sm hidden-md hidden-lg">
   <i class="fa fa-search" aria-hidden="true"></i>
 </div>
 

@@ -52,7 +52,7 @@ class CeramiquesController < ApplicationController
 
   def filter_by_category
     selected_categories = Category.where(id: params[:categories].map(&:to_i))
-    selected_categories += selected_categories.map {|category| category.categories}.flatten
+    selected_categories += selected_categories.map {|category| category.categories }.flatten
     @ceramiques = @ceramiques.joins(:category).where(category: selected_categories)
   end
 
