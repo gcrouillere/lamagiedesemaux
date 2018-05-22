@@ -25,6 +25,22 @@
     font-size: 16px;
     color: white;
   }
+  .sub-categories {
+    margin-left: 25px;
+    margin-bottom: 10px;
+    .square {
+      width: 10px;
+      height: 10px;
+      border-left: 1px solid white;
+      border-bottom: 1px solid white;
+      position: absolute;
+      left: -10px;
+      top: 4px;
+    }
+  }
+  .no-sub_category {
+    margin-bottom: 10px;
+  }
   .label-search.all {
     width: 100%;
     margin: 0px 0px 20px 0px;
@@ -69,6 +85,7 @@
     margin: 0;
     li {
       margin-left: 20px;
+      position: relative;
     }
     li:last-child {
       margin-bottom: 10px;

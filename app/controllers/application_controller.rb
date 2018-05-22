@@ -22,10 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def uniq_categories
-    @uniq_categories = Ceramique.all.map do |ceramique|
-      ceramique.category.name
-    end
-    @uniq_categories = @uniq_categories.uniq.sort
+    @uniq_categories = Category.where(id: Ceramique.all.map {|ceramique| ceramique.category_id}.uniq)
   end
 
   #DEVISE methods:

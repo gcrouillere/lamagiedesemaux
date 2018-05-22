@@ -51,8 +51,9 @@ class CeramiquesController < ApplicationController
   end
 
   def filter_by_category
-    categories = params[:categories].map {|category| "%#{category}%" }
-    @ceramiques = @ceramiques.joins(:category).where('categories.name ILIKE ANY ( array[?] )', categories)
+    selected_categories = Category.where(id: params[:categories].map(&:to_i))
+    selected_categories += selected_categories.map {|category| category.categories}.flatten
+    @ceramiques = @ceramiques.joins(:category).where(category: selected_categories)
   end
 
   def filter_by_price
