@@ -1,0 +1,30 @@
+<% @agendaphoto1 = image_path ENV['AGENDAPHOTO1'] %>
+<% @agendaphoto2 = image_path ENV['AGENDAPHOTO2'] %>
+<% @agendaphoto3 = image_path ENV['AGENDAPHOTO3'] %>
+<% @agendaphoto4 = image_path ENV['AGENDAPHOTO4'] %>
+<% @agendaphoto5 = image_path ENV['AGENDAPHOTO5'] %>
+<% @agendaphoto6 = image_path ENV['AGENDAPHOTO6'] %>
+<% @agendaphoto7 = image_path ENV['AGENDAPHOTO7'] %>
+<% if @admin %>
+  <% if  @admin.agenda1photo.present? %>
+    <% @agendaphoto1 = cl_image_path @admin.agenda1photo.path %>
+  <% end %>
+  <% if  @admin.agenda2photo.present? %>
+    <% @agendaphoto2 = cl_image_path @admin.agenda2photo.path %>
+  <% end %>
+  <% if  @admin.agenda3photo.present? %>
+    <% @agendaphoto3 = cl_image_path @admin.agenda3photo.path %>
+  <% end %>
+  <% if  @admin.agenda4photo.present? %>
+    <% @agendaphoto4 = cl_image_path @admin.agenda4photo.path %>
+  <% end %>
+  <% if  @admin.agenda5photo.present? %>
+    <% @agendaphoto5 = cl_image_path @admin.agenda5photo.path %>
+  <% end %>
+  <% if  @admin.agenda6photo.present? %>
+    <% @agendaphoto6 = cl_image_path @admin.agenda6photo.path %>
+  <% end %>
+  <% if  @admin.agenda7photo.present? %>
+    <% @agendaphoto7 = cl_image_path @admin.agenda7photo.path %>
+  <% end %>
+<% end %>

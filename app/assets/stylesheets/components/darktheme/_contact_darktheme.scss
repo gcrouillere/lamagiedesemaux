@@ -1,9 +1,5 @@
-
 .contact-coord {
-
-  display: flex;
   .coord {
-    margin-left: 15px;
     label {
       color: white;
     }
@@ -16,6 +12,8 @@
         font-weight: 100;
         line-height: 1.5;
       }
+      width: 80%;
+      margin: 0 auto;
     }
     .social-buttons-contact {
       a {

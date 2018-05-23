@@ -51,6 +51,27 @@
   }
 }
 
+.dropdown {
+  .dropdown-toggle {
+    width: 59px;
+    display: block;
+  }
+  .dropdown-menu {
+    border-radius: 0px;
+    left: -100px;
+    a {
+      color: black !important;
+      text-align: center !important;
+      margin-right: 0px !important;
+      transition: all ease 0.2s;
+      &:hover {
+        color: white !important;
+        background: #171717 !important;
+      }
+    }
+  }
+}
+
 .navbar-laptop-darktheme, .navbar-mobile-darktheme {
   .navbar-item-darktheme {
     cursor: pointer;

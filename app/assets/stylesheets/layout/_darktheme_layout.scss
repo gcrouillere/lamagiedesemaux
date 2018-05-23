@@ -26,6 +26,14 @@
     box-shadow: 5px 5px 0px $primary;
   }
 
+  .photo-button {
+    border: 3px solid black !important;
+  }
+
+  .photo-button:hover {
+    color: black !important;
+  }
+
   .content-darktheme {
     min-height: calc(100vh - 90px);
   }

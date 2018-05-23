@@ -77,4 +77,53 @@ $(document).on('ready', function() {
     $('.darktheme4photo .photo-button').removeClass('hidden');
   });
 
+  $('.agenda1photo .attachinary_container').on('click', function(e){
+    $('.agenda1photo .photo-button').removeClass('hidden');
+  });
+  $('.agenda1photo input').on('click', function(e){
+    $('.agenda1photo .photo-button').removeClass('hidden');
+  });
+
+  $('.agenda2photo .attachinary_container').on('click', function(e){
+    $('.agenda2photo .photo-button').removeClass('hidden');
+  });
+  $('.agenda2photo input').on('click', function(e){
+    $('.agenda2photo .photo-button').removeClass('hidden');
+  });
+
+  $('.agenda3photo .attachinary_container').on('click', function(e){
+    $('.agenda3photo .photo-button').removeClass('hidden');
+  });
+  $('.agenda3photo input').on('click', function(e){
+    $('.agenda3photo .photo-button').removeClass('hidden');
+  });
+
+  $('.agenda4photo .attachinary_container').on('click', function(e){
+    $('.agenda4photo .photo-button').removeClass('hidden');
+  });
+  $('.agenda4photo input').on('click', function(e){
+    $('.agenda4photo .photo-button').removeClass('hidden');
+  });
+
+  $('.agenda5photo .attachinary_container').on('click', function(e){
+    $('.agenda5photo .photo-button').removeClass('hidden');
+  });
+  $('.agenda5photo input').on('click', function(e){
+    $('.agenda5photo .photo-button').removeClass('hidden');
+  });
+
+  $('.agenda6photo .attachinary_container').on('click', function(e){
+    $('.agenda6photo .photo-button').removeClass('hidden');
+  });
+  $('.agenda6photo input').on('click', function(e){
+    $('.agenda6photo .photo-button').removeClass('hidden');
+  });
+
+  $('.agenda7photo .attachinary_container').on('click', function(e){
+    $('.agenda7photo .photo-button').removeClass('hidden');
+  });
+  $('.agenda7photo input').on('click', function(e){
+    $('.agenda7photo .photo-button').removeClass('hidden');
+  });
+
 });

@@ -1,0 +1,142 @@
+.h1-temoignage {
+  margin-bottom: 10px;
+  padding: 0 10px;
+  margin-left: 0px !important;
+}
+.connection-temoignage {
+  p {
+    margin-bottom: 40px;
+    margin-left: 15px;
+    font-weight: 100;
+  }
+  i{
+    margin-right: 10px;
+  }
+}
+
+.article-block {
+  width: 100%;
+  background: white;
+  border: none;
+  border-radius: 1px;
+  margin-bottom: 40px;
+  box-shadow: 5px 5px 0px $primary;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  h1, h2, h3, h4, p {
+    color: black !important;
+  }
+  .article-delete-link {
+    z-index: 2;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: black;
+  }
+  .left-block-temoignage {
+    transform: skew(20deg);
+    display: flex;
+    min-width: 40%;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -3px 0px 0px 0px white, 2px 0px 4px rgba(0, 0, 0, 0.4);
+    h2 {
+      transform: skew(-20deg);
+      padding: 20px;
+    }
+  }
+  .right-block-temoignage {
+    width: 50%;
+    margin: 0 30px 0 50px;
+    text-align: center;
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+  .right-block-temoignage:before {
+    font-family: Georgia, serif;
+    position: absolute;
+    font-size: 6em;
+    content: "\201C";
+    top: -17px;
+    left: -30px;
+  }
+  .right-block-temoignage:after {
+    font-family: Georgia, serif;
+    position: absolute;
+    float:right;
+    font-size:6em;
+    content: "\201D";
+    right:-20px;
+    bottom:-73px;
+  }
+}
+
+.article-block-mobile {
+  background: white;
+  border: none;
+  border-radius: 1px;
+  box-shadow: 5px 5px 0px $primary;
+  padding: 10px;
+  margin: 0 10px 40px 10px;
+  h1, h2, h3, h4, p {
+    color: black !important;
+  }
+  .left-block-temoignage-mobile {
+    h2 {
+      margin-top: 10px;
+    }
+  }
+  .right-block-temoignage-mobile {
+    margin: 50px 10px 50px 10px;
+    text-align: center;
+    position: relative;
+  }
+  .right-block-temoignage-mobile:before {
+    font-family: Georgia, serif;
+    position: absolute;
+    font-size: 6em;
+    content: "\201C";
+    top: -56px;
+    left: -16px;
+  }
+  .right-block-temoignage-mobile:after {
+    font-family: Georgia, serif;
+    position: absolute;
+    float:right;
+    font-size:6em;
+    content: "\201D";
+    right:-20px;
+    bottom:-107px;
+  }
+}
+
+.temoignage-form {
+  margin-bottom: 40px;
+  padding: 10px;
+}
+
+.article-typing-and-display {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid $primary;
+  border-radius: 0px;
+  label {
+    color: white;
+  }
+  .temoignage-typing {
+    min-width: 50%;
+    flex: 1 0 auto;
+  }
+  .live-article-display {
+    width: 50%;
+    margin-left: 20px;
+    #live-text-temoignages {
+      width: 100%;
+    }
+  }
+}

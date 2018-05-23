@@ -1,0 +1,19 @@
+function refreshForm(innerHTML) {
+  const newArticleForm = document.getElementById('new_article');
+  newArticleForm.innerHTML = innerHTML;
+}
+
+function addArticle(reviewHTML) {
+  const articles = document.getElementById('articles');
+  articles.insertAdjacentHTML('beforeend', reviewHTML);
+}
+
+<% if @article.errors.any? %>
+  refreshForm('<%= j render "articles/form", article: @article %>');
+<% else %>
+  addArticle('<%= j render "articles/show", article: @article %>');
+  $('#article-temoignage-name').val('');
+  $('#article_content').val('');
+  $('#live-name-temoignages').html('');
+  $('#live-text-temoignages').html('');
+<% end %>

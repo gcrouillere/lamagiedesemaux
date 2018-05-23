@@ -1,54 +1,44 @@
 <% content_for(:description) do %>
-  Fabienne Jacob, céramiste dans le Morbihan. Retrouvez les informations concernant mon parcours, mes céramiques et les techniques utilisées dans la fabrication.
+  Contactez Fabienne Jacob grâce au formulaire présent sur le site.
 <% end %>
 <% content_for(:title_tag) do %>
-  Parcours, céramiques et techniques de Fabienne Jacob.
+  Contactez Fabienne Jacob, créatrice de bijoux en céramique
 <% end %>
 
 <%= render 'shared/info_pics' %>
 
- <div class="contact-coord">
-  <div class="col-md-12 hidden-xs hidden-sm coord">
-    <% if user_signed_in? && current_user.admin %>
-      <% article_typing("contact", "vertical", "markdown1", "live-text5", "input5") %>
-      <% @markdown = @markdown1 %>
-      <div class="live-text">
-        <%= render 'shared/articletyping' %>
+<div class="container">
+  <div class="row">
+     <div class="contact-coord">
+      <div class="col-xs-12 coord">
+        <% if user_signed_in? && current_user.admin %>
+          <% article_typing("contact", "vertical", "markdown1", "live-text1", "input1") %>
+          <% @markdown = @markdown1 %>
+          <div class="live-text">
+            <%= render 'shared/articletyping' %>
+          </div>
+        <% else %>
+          <div class="plain-text">
+            <% article_display("contact", "vertical") %>
+            <%= @markdown.html_safe %>
+            <div class="social-buttons-contact">
+              <a class="twitter-share-button" href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+              <a id="facebook-contact" href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+              <a href="#"><i class="fa fa-instagram"></i></a>
+            </div>
+          </div>
+        <% end %>
       </div>
-    <% else %>
-      <div class="plain-text">
-        <% article_display("contact", "vertical") %>
-        <%= @markdown.html_safe %>
-        <div class="social-buttons-contact">
-          <a class="twitter-share-button" href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
-          <a id="facebook-contact" href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
-          <a href="#"><i class="fa fa-instagram"></i></a>
-        </div>
-      </div>
-    <% end %>
-  </div>
-  <div class="col-xs-12 hidden-md hidden-lg coord">
-    <div class="live-text">
-      <%= @markdown.html_safe %>
     </div>
-    <div class="social-buttons-contact">
-      <a class="twitter-share-button" href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
-      <a id="facebook-contact" href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
-      <a href="#"><i class="fa fa-instagram"></i></a>
-    </div>
-  </div>
-  <div class="hidden-xs col-sm-12 contact-form">
-    <%= render 'shared/subscribe_default' %>
-  </div>
-</div>
 
-<!-- MOBILE -->
-<div class="col-xs-12 hidden-sm hidden-md hidden-lg contact-form">
-  <%= render 'shared/subscribe_default' %>
+    <div class="col-xs-12 contact-form">
+      <%= render 'shared/subscribe_default' %>
+    </div>
+  </div>
 </div>
 
 <!-- LAPTOP -->
-<div class="hidden-xs photos-and-maps">
+<!-- <div class="hidden-xs photos-and-maps">
   <div class="atelier">
     <%= photo_update('avatarphoto', '', '', '', 30, '.avatarpic', "Mise à jour photo perso")%>
     <%= @avatarpictag %>
@@ -70,46 +60,16 @@
     </div>
     <div class="map-container"><div id="map"></div></div>
   </div>
-</div>
+</div> -->
 
 <!-- MOBILE -->
-<div class="hidden-sm hidden-md hidden-lg photos-and-maps-mobile">
+<!-- <div class="hidden-sm hidden-md hidden-lg photos-and-maps-mobile">
   <%= image_tag "avatar.jpg", alt: "Atelier d'Hélène Raynal, céramiste à Saint Quentin La Poterie"%>
   <div id="map-mobile"></div>
   <%= image_tag "city.jpg", alt: "Saint Quentin La Poterie. Village de céramistes."%>
-</div>
+</div> -->
 
 <% content_for(:after_js) do %>
-  <script>
-   $(document).ready(function() {
-      var handler1 = Gmaps.build('Google');
-      handler1.buildMap({internal: {id: 'map'}}, function(){
-        markers1 = handler1.addMarkers([
-          {
-            lat: <%= ENV['LAT'].to_f %>,
-            lng: <%= ENV['LNG'].to_f %>,
-            infowindow: "<%= "Les #{ENV['MODEL']} de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>"
-          }
-        ]);
-        handler1.bounds.extendWith(markers1);
-        handler1.getMap().setCenter({lat: <%= ENV['LAT'].to_f %>, lng: <%= ENV['LNG'].to_f %>});
-        handler1.getMap().setZoom(6);
-      });
-
-      var handler = Gmaps.build('Google');
-      handler.buildMap({internal: {id: 'map-mobile'}}, function(){
-        marker = handler.addMarkers([
-          {
-            lat: <%= ENV['LAT'].to_f %>,
-            lng: <%= ENV['LNG'].to_f %>
-          }
-        ]);
-        handler.bounds.extendWith(marker);
-        handler.getMap().setCenter({lat: <%= ENV['LAT'].to_f %>, lng: <%= ENV['LNG'].to_f %>});
-        handler.getMap().setZoom(6);
-      });
-    });
-   </script>
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",

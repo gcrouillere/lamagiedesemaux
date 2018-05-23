@@ -1,13 +1,21 @@
 <div id="ceramique-filters-content-darktheme-nav">
   <h2>FILTRER<i id="close-search-darktheme" class="fa cross-1" aria-hidden="true">&times;</i></h2>
-  <form action="/céramiques" method='get'>
+  <form action="/<%=ENV['MODEL']%>" method='get'>
     <div class="form-body">
     <input type="search" id="aa-search-input" class="aa-input-search aa-input-mobile" placeholder="Que recherchez-vous ?" name="search" autocomplete="off" />
       <h3>Catégories</h3>
       <div class="filter-category">
         <ul>
           <% @uniq_categories.each do |category| %>
-            <li><label class="label-search"><input type="checkbox" name="categories[]" value="<%= category %>"><%= category.capitalize %></label></li>
+          <% category.categories.present? ? uniq_class = "with-sub-cat" : uniq_class = "no-sub_category" %>
+            <li><label class="label-search <%= uniq_class %>"><input type="checkbox" name="categories[]" value="<%= category.id %>"><%= category.name.capitalize %></label></li>
+            <% if category.categories.present? %>
+              <div class="sub-categories">
+                <% category.categories.each do |category| %>
+                  <li><div class="square"></div><label class="subcategory label-search"><input type="checkbox" name="categories[]" value="<%= category.id %>"><%= category.name.capitalize %></label></li>
+                <% end %>
+              </div>
+            <% end %>
           <% end %>
         </ul>
         <h3>Prix max €</h3>

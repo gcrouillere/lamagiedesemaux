@@ -15,14 +15,16 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :update, :create]
 
-  resources :articles, only: [:update, :create]
+  resources :articles, only: [:update, :create, :destroy]
 
   #Stages
   get '/stage_confirmation', to: 'lessons#stage_confirmation'
   get '/stage_payment_confirmation', to: 'lessons#stage_payment_confirmation'
 
   #Pages
+  get '/temoignages', to: 'pages#temoignages'
   get '/confirmation', to: 'pages#confirmation'
+  get '/agenda', to: 'pages#agenda'
   get '/info', to: 'pages#info'
   get '/contact', to: 'pages#contact'
   get '/cgv', to: 'pages#cgv'
