@@ -18,186 +18,190 @@
   }
 }
 
-  .cardlink {
-    text-decoration: none !important;
-  }
+.cardlink {
+  text-decoration: none !important;
+}
 
-  .last-product-padding {
-    padding: 0 15px !important;
-    margin: 15px 0 30px 0;
-    .last-product {
-      display: flex;
-      border-radius: $project-border-radius;
-      box-shadow: 5px 5px 0px $primary;
-      background: white;
-      .last-product-image {
-        width: 42%;
-        min-height: 290px;
-        margin: 10px;
-        .nouveaute {
-          position: absolute;
-          width: 30px;
-          height: 100%;
-          text-align: center;
-          top: 0px;
-          left: 40px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          background: $primary;
-          p {
-            color: black;
-            font-weight: 600;
-          }
-        }
-      }
-      .last-product-text {
-        width: 58%;
-        margin-left: 20px;
-        position: relative;
-        h2 {
-          margin-bottom: 20px;
-          color: black;
-        }
-        p {
-          margin-left: 10px;
-          font-weight: 100;
-          color: black;
-        }
-        .prices-bubble {
-          position: absolute;
-          bottom: 15px;
-          left: -110px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          width: 60px;
-          height: 60px;
-          border-radius: 0px ;
-          background: $primary;
-          p {
-            color: black;
-            margin: 0;
-            font-size: 14px;
-            font-weight: 400;
-          }
-          .previous-price {
-            text-decoration: line-through;
-            margin: 0;
-          }
-        }
-      }
-    }
-  }
-
-  @media all and (max-width: 600px) {
-    .last-product-padding {
-      padding: 0 10px !important;
-    }
+.last-product-padding {
+  padding: 0 15px !important;
+  margin: 15px 0 30px 0;
+  .last-product {
+    display: flex;
+    border-radius: $project-border-radius;
+    box-shadow: 5px 5px 0px $primary;
+    background: white;
     .last-product-image {
-      width: 55% !important;
+      width: 42%;
+      min-height: 290px;
+      margin: 10px;
       .nouveaute {
+        position: absolute;
+        width: 30px;
+        height: 100%;
+        text-align: center;
+        top: 0px;
         left: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: $primary;
+        p {
+          color: black;
+          font-weight: 600;
+        }
       }
     }
     .last-product-text {
-      width: 45% !important;
-      margin-left: 2px !important;
-      h2 {
-        font-size: 20px;
-      }
-      p {
-        font-size: 15px;
-      }
-     .prices-bubble {
-        left: -80px !important;
-      }
-    }
-  }
-
-  .ceramiquecard-darktheme {
-    margin: 15px;
-    background: $card-background;
-    border-radius: $project-border-radius;
-    text-decoration: none;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    .ceramiquecardimage {
-      height: 400px;
-    }
-    .ribbon {
-      z-index: 1;
-      position: absolute;
-      top: -1px;
-      right: 15px;
-      -webkit-box-sizing: content-box;
-      -moz-box-sizing: content-box;
-      box-sizing: content-box;
-      width: 0;
-      height: 55px;
-      border: 28px solid $discount;
-      border-top: 0 solid;
-      border-bottom: 17px solid rgba(0,0,0,0);
-      border-radius: 2px 2px 5px 5px;
-      font: normal 100%/normal Arial, Helvetica, sans-serif;
-      color: rgba(0,0,0,1);
-      -o-text-overflow: clip;
-      text-overflow: clip;
-    }
-
-    p.discount-offer {
-      z-index: 2;
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      margin: 0px;
-      font-size: 17px;
-      font-weight: 600;
-      color: $card-text;
-      letter-spacing: 1px;
-      transform: rotate(1.05turn);
-    }
-
-    .previous-price {
-      font-size: 13px;
-      font-weight: 100;
-      text-decoration: line-through;
-      color: black;
-    }
-
-    .ceramique-card-text {
-      padding: $padding-large;
-      background: rgba(255, 255, 255, 0.7);
-      border-radius: $project-border-radius;
+      width: 58%;
+      margin-left: 20px;
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 95px;
       h2 {
-        margin-top: 10px;
-        font-size: $font-size-h4;
+        margin-bottom: 20px;
         color: black;
       }
-      h2, h3 {
+      p {
         margin-left: 10px;
-        margin-right: 10px;
-        h2:hover, h2:hover {
-          text-decoration: none;
+        font-weight: 100;
+        color: black;
+      }
+      .prices-bubble {
+        position: absolute;
+        bottom: 15px;
+        left: -110px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+        border-radius: 0px ;
+        background: $primary;
+        p {
+          color: black;
+          margin: 0;
+          font-size: 14px;
+          font-weight: 400;
+        }
+        .previous-price {
+          text-decoration: line-through;
+          margin: 0;
         }
       }
-      .lap-top-prices {
-        text-align: center;
-      }
-    }
-    transition: all ease 0.2s;
-    &:hover {
-      box-shadow: 5px 5px 0px $primary;
     }
   }
+}
+
+@media all and (max-width: 600px) {
+  .last-product-padding {
+    padding: 0 10px !important;
+  }
+  .last-product-image {
+    width: 55% !important;
+    .nouveaute {
+      left: 40px;
+    }
+  }
+  .last-product-text {
+    width: 45% !important;
+    margin-left: 2px !important;
+    h2 {
+      font-size: 20px;
+    }
+    p {
+      font-size: 15px;
+    }
+   .prices-bubble {
+      left: -80px !important;
+    }
+  }
+}
+
+.card-padding {
+  padding: 0px !important;
+}
+
+.ceramiquecard-darktheme {
+  margin: 15px;
+  background: $card-background;
+  border-radius: $project-border-radius;
+  text-decoration: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .ceramiquecardimage {
+    height: 400px;
+  }
+  .ribbon {
+    z-index: 1;
+    position: absolute;
+    top: -1px;
+    right: 15px;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    width: 0;
+    height: 55px;
+    border: 28px solid $discount;
+    border-top: 0 solid;
+    border-bottom: 17px solid rgba(0,0,0,0);
+    border-radius: 2px 2px 5px 5px;
+    font: normal 100%/normal Arial, Helvetica, sans-serif;
+    color: rgba(0,0,0,1);
+    -o-text-overflow: clip;
+    text-overflow: clip;
+  }
+
+  p.discount-offer {
+    z-index: 2;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    margin: 0px;
+    font-size: 17px;
+    font-weight: 600;
+    color: $card-text;
+    letter-spacing: 1px;
+    transform: rotate(1.05turn);
+  }
+
+  .previous-price {
+    font-size: 13px;
+    font-weight: 100;
+    text-decoration: line-through;
+    color: black;
+  }
+
+  .ceramique-card-text {
+    padding: $padding-large;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: $project-border-radius;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 95px;
+    h2 {
+      margin-top: 10px;
+      font-size: $font-size-h4;
+      color: black;
+    }
+    h2, h3 {
+      margin-left: 10px;
+      margin-right: 10px;
+      h2:hover, h2:hover {
+        text-decoration: none;
+      }
+    }
+    .lap-top-prices {
+      text-align: center;
+    }
+  }
+  transition: all ease 0.2s;
+  &:hover {
+    box-shadow: 5px 5px 0px $primary;
+  }
+}
 
   @media all and (max-width: 800px) {
     .ceramiquecard-darktheme {

@@ -1,0 +1,26 @@
+<div class="article-block hidden-xs" data-article-id="<%= article.id %>">
+  <% if user_signed_in? && current_user.admin? %>
+    <%= link_to article, method: :delete, remote: true, class: "article-delete-link" do %>
+      <i class="fa fa-trash" aria-hidden="true"></i>
+    <% end %>
+  <% end %>
+  <div class="left-block-temoignage">
+    <h2><%= article.name %></h2>
+  </div>
+  <div class="right-block-temoignage">
+    <% markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions = {}) %>
+    <% markdown = markdown.render(article.content) %>
+    <%= markdown.html_safe %>
+  </div>
+</div>
+
+<div class="article-block-mobile hidden-sm hidden-md hidden-lg">
+  <div class="left-block-temoignage-mobile">
+    <h2><%= article.name %></h2>
+  </div>
+  <div class="right-block-temoignage-mobile">
+    <% markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions = {}) %>
+    <% markdown = markdown.render(article.content) %>
+    <%= markdown.html_safe %>
+  </div>
+</div>

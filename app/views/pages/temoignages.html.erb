@@ -1,0 +1,43 @@
+<% content_for(:description) do %>
+  Les clients de Fabienne Jacob témoignent de leur expérience. Retrouvez leurs avis sur le délai de livraison, la qualité des objets recus et le service après vente.
+<% end %>
+<% content_for(:title_tag) do %>
+  Témoignages des clients de Fabienne Jacob
+<% end %>
+
+ <div class="container">
+   <div class="row">
+    <h1 class="h1-temoignage">Les témoignages laissés par les clients</h1>
+     <% if user_signed_in? %>
+     <a href="#write-comment" class="connection-temoignage">
+      <p><i class="fa fa-arrow-right" aria-hidden="true"></i>Accéder au formulaire de témoignage</p>
+    </a>
+    <% else %>
+      <%= link_to new_user_session_path(:anchor => "write-comment"), class: "connection-temoignage" do %>
+        <p><i class="fa fa-arrow-right" aria-hidden="true"></i>Connectez vous pour écrire un témoignage</p>
+      <% end %>
+    <% end %>
+
+    <div id="articles">
+      <% @articles.each do |article| %>
+        <%= render 'articles/show', article: article %>
+      <% end %>
+    </div>
+    <div class="temoignage-form">
+      <% if user_signed_in? %>
+        <h2 id="write-comment">Laissez votre témoignage sur le site : </h2>
+        <div class="article-typing-and-display">
+          <div class="temoignage-typing">
+            <%= render 'articles/form', article: @article %>
+          </div>
+          <div class="live-article-display hidden-xs">
+            <h4><em>Aperçu du témoignage : </em></h4>
+            <div id="live-name-temoignages"></div>
+            <div id="live-text-temoignages"></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

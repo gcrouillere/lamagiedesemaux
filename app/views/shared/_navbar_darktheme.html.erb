@@ -22,9 +22,19 @@
         <%= link_to ceramiques_path, title: "Découvrez les bijoux en vente dans la boutique" do %>
           <span>Boutique</span>
         <% end %>
-        <%= link_to contact_path, title: "Retrouvez les coordonnées et informations sur Fabienne Jacob" do %>
-          <span>Infos</span>
-        <% end %>
+
+        <div class="dropdown">
+          <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+            Infos
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Où me trouver", agenda_path, title: "Agenda des expositions et lieu de vente pour retrouver Fabienne Jacob" %></li>
+            <li><%= link_to "Témoignages", temoignages_path, title: "Les témoignages laissés par les clients du site" %></li>
+            <li><%= link_to "Contact", contact_path, title: "Contactez Fabienne Jacob, elle vous répond personnellement."%></li>
+          </ul>
+        </div>
+
         <a href="#" id="darktheme-filter-search" title="Filtrez la liste des bijoux en vente dans la boutique"><i class="fa fa-search"></i>Filtrer</a>
         <% if session[:order].present? %>
           <% if Order.where(id: session[:order]).present? %>
@@ -47,9 +57,19 @@
         <%= link_to ceramiques_path, title: "Découvrez les bijoux en vente dans la boutique" do %>
           <span>Boutique</span>
         <% end %>
-        <%= link_to contact_path, title: "Retrouvez les coordonnées et informations sur Fabienne Jacob" do %>
-          <span>Infos</span>
-        <% end %>
+
+        <div class="dropdown">
+          <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+            Infos
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Où me trouver", agenda_path, title: "Agenda des expositions et lieu de vente pour retrouver Fabienne Jacob" %></li>
+            <li><%= link_to "Témoignages", temoignages_path, title: "Les témoignages laissés par les clients du site" %></li>
+            <li><%= link_to "Contact", contact_path, title: "Contactez Fabienne Jacob, elle vous répond personnellement."%></li>
+          </ul>
+        </div>
+
         <a href="#" id="darktheme-filter-search" title="Filtrez la liste des bijoux en vente dans la boutique"><i class="fa fa-search"></i>Filtrer</a>
         <% if session[:order].present? %>
           <% if Order.where(id: session[:order]).present? %>
@@ -77,9 +97,19 @@
       <%= link_to ceramiques_path, title: "Retour à l'accueil de notre offre de boutique ligne" do %>
         <span>Shop</span>
       <% end %>
-      <%= link_to contact_path, title: "Retrouvez les coordonnées et informations sur Fabienne Jacob" do %>
-        <span>Info</span>
-      <% end %>
+
+      <div class="dropdown">
+        <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+          Infos
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><%= link_to "Où me trouver", agenda_path, title: "Agenda des expositions et lieu de vente pour retrouver Fabienne Jacob" %></li>
+          <li><%= link_to "Témoignages", temoignages_path, title: "Les témoignages laissés par les clients du site" %></li>
+          <li><%= link_to "Contact", contact_path, title: "Contactez Fabienne Jacob, elle vous répond personnellement."%></li>
+        </ul>
+      </div>
+
       <% if session[:order].present? %>
         <% if Order.where(id: session[:order]).present? %>
           <% if Order.where(id: session[:order]).first.state != "lost" %>

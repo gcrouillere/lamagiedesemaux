@@ -1,0 +1,158 @@
+<% content_for(:description) do %>
+  Agenda des salons et expositions dans lesquels vous retrouverez Fabienne Jacob. Les lieux de ventes temporaires ou permanents sont également listés.
+<% end %>
+<% content_for(:title_tag) do %>
+  Salons, expositions et lieux de ventes pour retrouver Fabienne Jacob.
+<% end %>
+
+<%= render 'shared/agenda_pics' %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 agenda-text">
+      <% if user_signed_in? && current_user.admin %>
+        <% article_typing("agenda-front", "vertical", "markdown1", "live-text1", "input1") %>
+        <% @markdown = @markdown1 %>
+        <%= render 'shared/articletyping' %>
+      <% else %>
+          <div id="live-text">
+            <% article_display("agenda-front", "vertical") %>
+            <%= @markdown.html_safe %>
+          </div>
+      <% end %>
+    </div>
+    <div class="col-xs-12 col-sm-6 agenda-next-show">
+      <h2>L'exposition du moment pour retrouver les bijoux de Fabienne Jacob</h2>
+      <div class="agenda-right-photo">
+        <%= photo_update('agenda1photo', 100, '', '', 30, '.agenda1photo', "Mise à jour photo agenda 1")%>
+        <%= cl_image_tag @agendaphoto1, class: "agendaphoto1", alt: "L'exposition où vous retrouverez Fabienne Jacob" %>
+      </div>
+      <% if user_signed_in? && current_user.admin %>
+        <% article_typing("next-show-text", "vertical", "markdown2", "live-text2", "input2") %>
+        <% @markdown = @markdown2 %>
+        <%= render 'shared/articletyping' %>
+      <% else %>
+          <div id="live-text">
+            <% article_display("next-show-text", "vertical") %>
+            <%= @markdown.html_safe %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row intermediate-agenda-photos">
+    <div class="col-xs-12 col-sm-4 agenda-sub-photo">
+      <div class="sub-1">
+        <%= photo_update('agenda2photo', 100, '', '', 30, '.agenda2photo', "Mise à jour photo agenda 2")%>
+        <style>
+          .sub-1 {
+            background-image: url(<%= cl_image_path @agendaphoto2, quality: "auto" %>);
+            background-size: cover;
+            background-position-y: center;
+            background-position-x: center;
+          }
+        </style>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 agenda-sub-photo">
+      <div class="sub-2">
+         <%= photo_update('agenda3photo', 100, '', '', 30, '.agenda3photo', "Mise à jour photo agenda 3")%>
+         <style>
+          .sub-2 {
+            background-image: url(<%= cl_image_path @agendaphoto3, quality: "auto" %>);
+            background-size: cover;
+            background-position-y: center;
+            background-position-x: center;
+          }
+        </style>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 agenda-sub-photo">
+      <div class="sub-3">
+        <%= photo_update('agenda4photo', 100, '', '', 30, '.agenda4photo', "Mise à jour photo agenda 4")%>
+         <style>
+          .sub-3 {
+            background-image: url(<%= cl_image_path @agendaphoto4, quality: "auto" %>);
+            background-size: cover;
+            background-position-y: center;
+            background-position-x: center;
+          }
+        </style>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="agenda-h2">Une boutique avec un contact humain</h2>
+
+  <div class="row final-agenda-photos">
+    <div class="col-xs-12 col-sm-4 agenda-sub-photo">
+      <div class="sub-4">
+        <%= photo_update('agenda5photo', 100, '', '', 30, '.agenda5photo', "Mise à jour photo agenda 5")%>
+        <style>
+          .sub-4 {
+            background-image: url(<%= cl_image_path @agendaphoto5, quality: "auto" %>);
+            background-size: cover;
+            background-position-y: center;
+            background-position-x: center;
+          }
+        </style>
+      </div>
+      <% if user_signed_in? && current_user.admin %>
+        <% article_typing("final-agenda-photo-text-1", "vertical", "markdown3", "live-text3", "input3") %>
+        <% @markdown = @markdown3 %>
+        <%= render 'shared/articletyping' %>
+      <% else %>
+        <div id="live-text">
+          <% article_display("final-agenda-photo-text-1", "vertical") %>
+          <%= @markdown.html_safe %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-xs-12 col-sm-4 agenda-sub-photo">
+      <div class="sub-5">
+         <%= photo_update('agenda6photo', 100, '', '', 30, '.agenda6photo', "Mise à jour photo agenda 6")%>
+         <style>
+          .sub-5 {
+            background-image: url(<%= cl_image_path @agendaphoto6, quality: "auto" %>);
+            background-size: cover;
+            background-position-y: center;
+            background-position-x: center;
+          }
+        </style>
+      </div>
+      <% if user_signed_in? && current_user.admin %>
+        <% article_typing("final-agenda-photo-text-2", "vertical", "markdown4", "live-text4", "input4") %>
+        <% @markdown = @markdown4 %>
+        <%= render 'shared/articletyping' %>
+      <% else %>
+        <div id="live-text">
+          <% article_display("final-agenda-photo-text-2", "vertical") %>
+          <%= @markdown.html_safe %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-xs-12 col-sm-4 agenda-sub-photo">
+      <div class="sub-6">
+        <%= photo_update('agenda7photo', 100, '', '', 30, '.agenda7photo', "Mise à jour photo agenda 7")%>
+         <style>
+          .sub-6 {
+            background-image: url(<%= cl_image_path @agendaphoto7, quality: "auto" %>);
+            background-size: cover;
+            background-position-y: center;
+            background-position-x: center;
+          }
+        </style>
+      </div>
+      <% if user_signed_in? && current_user.admin %>
+        <% article_typing("final-agenda-photo-text-3", "vertical", "markdown5", "live-text5", "input5") %>
+        <% @markdown = @markdown5 %>
+        <%= render 'shared/articletyping' %>
+      <% else %>
+        <div id="live-text">
+          <% article_display("final-agenda-photo-text-3", "vertical") %>
+          <%= @markdown.html_safe %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,8 +1,13 @@
 class ArticlesController < ApplicationController
 
   def create
-    @article = Article.create(article_params)
-    redirect_to request.referrer
+    @article = Article.new(article_params)
+    if @article.save
+      respond_to do |format|
+        format.html { redirect_to request.referrer }
+        format.js
+      end
+    end
   end
 
   def update
@@ -10,9 +15,14 @@ class ArticlesController < ApplicationController
     redirect_to request.referrer
   end
 
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+  end
+
   private
 
   def article_params
-    params.require(:article).permit(:content, :name, :user_id, :id)
+    params.require(:article).permit(:content, :name, :user_id, :id, :page)
   end
 end

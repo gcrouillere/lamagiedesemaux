@@ -1,0 +1,10 @@
+<%= simple_form_for([article], remote: true) do |form| %>
+  <%= form.input :name, label: "Prénom Nom", :input_html => { id: "article-temoignage-name" } %>
+  <%= form.input :content, as: :text, required: true, label: "Témoignage" %>
+  <%= form.hidden_field :page, value: "temoignages" %>
+  <%= form.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+  <%= form.button :submit, "Enregistrer", id: "temoignage-submit", class: "btn-primary" %>
+<% end %>
+
+
+

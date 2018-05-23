@@ -90,7 +90,7 @@
 
     <div class="col-xs-12 col-lg-12 ceramique-list">
       <% @ceramiques[1..-1].each_with_index do |ceramique, index| %>
-        <div class="col-xs-12 col-sm-4">
+        <div class="col-xs-12 col-sm-4 card-padding">
           <%= link_to ceramique_path(ceramique), title: "#{ceramique.name}", class: "cardlink" do %>
             <% ceramique == @ceramiques.last ? additionnal_class = "last-ceramique" : additionnal_class = "" %>
             <div class="ceramiquecard-darktheme <%=additionnal_class%>">

@@ -26,6 +26,13 @@ class User < ApplicationRecord
   has_attachment :darktheme2photo
   has_attachment :darktheme3photo
   has_attachment :darktheme4photo
+  has_attachment :agenda1photo
+  has_attachment :agenda2photo
+  has_attachment :agenda3photo
+  has_attachment :agenda4photo
+  has_attachment :agenda5photo
+  has_attachment :agenda6photo
+  has_attachment :agenda7photo
 
   def display_name
     return self.email
