@@ -53,6 +53,9 @@ class CeramiquesController < ApplicationController
   def filter_by_category
     selected_categories = Category.where(id: params[:categories].map(&:to_i))
     selected_categories += selected_categories.map {|category| category.categories }.flatten
+    categories_name = params[:categories].map {|category| "%#{category}%" }
+    selected_categories += Category.where('categories.name ILIKE ANY ( array[?] )', categories_name)
+
     @ceramiques = @ceramiques.joins(:category).where(category: selected_categories)
   end
 
