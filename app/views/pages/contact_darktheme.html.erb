@@ -37,37 +37,6 @@
   </div>
 </div>
 
-<!-- LAPTOP -->
-<!-- <div class="hidden-xs photos-and-maps">
-  <div class="atelier">
-    <%= photo_update('avatarphoto', '', '', '', 30, '.avatarpic', "Mise à jour photo perso")%>
-    <%= @avatarpictag %>
-  </div>
-  <div class="localisation-contact">
-    <div class="city-img">
-      <%= photo_update('cityphoto', -3, '', '', 15, '.citypic', "Mise à jour photo ville")%>
-      <style>
-        .city-img {
-          background-image: url(<%= cl_image_path @citypicpath %>);
-          background-size: cover;
-          background-position-y: center;
-          background-position-x: center;
-          width: 100%;
-          height: 50%;
-        }
-      </style>
-    <div class="black-bar"></div>
-    </div>
-    <div class="map-container"><div id="map"></div></div>
-  </div>
-</div> -->
-
-<!-- MOBILE -->
-<!-- <div class="hidden-sm hidden-md hidden-lg photos-and-maps-mobile">
-  <%= image_tag "avatar.jpg", alt: "Atelier d'Hélène Raynal, céramiste à Saint Quentin La Poterie"%>
-  <div id="map-mobile"></div>
-  <%= image_tag "city.jpg", alt: "Saint Quentin La Poterie. Village de céramistes."%>
-</div> -->
 
 <% content_for(:after_js) do %>
   <script type="application/ld+json">

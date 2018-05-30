@@ -43,4 +43,11 @@ Rails.application.routes.draw do
 
   #Errors
   get "/404", to: "errors#error_404"
+
+  #API
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :shipping_categories, only: [:show]
+    end
+  end
 end

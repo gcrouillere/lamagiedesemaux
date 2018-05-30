@@ -1,47 +1,44 @@
-<!-- LAPTOP -->
-<div class="">
-  <div id="footer">
-    <div class="contact-default">
-      <a href="https://www.google.fr/maps/place/<%=ENV['ADDRESS']%>" target="blank">
-        <div class="icone-bloc">
-          <i class="fa fa-map"></i>
-          <h6 class="info-text hidden-xs"><%=ENV['ADDRESS'].gsub('+',' ')%></h6>
-        </div>
-      </a>
+<div id="footer">
+  <div class="contact-default">
+    <a href="https://www.google.fr/maps/place/<%=ENV['ADDRESS']%>" target="blank">
       <div class="icone-bloc">
-        <i class="fa fa-envelope-o"></i>
-        <h6 class="info-text middle-text"><%=ENV['EMAIL']%></h6>
+        <i class="fa fa-map"></i>
+        <h6 class="info-text hidden-xs"><%=ENV['ADDRESS'].gsub('+',' ')%></h6>
       </div>
+    </a>
+    <div class="icone-bloc">
+      <i class="fa fa-envelope"></i>
+      <h6 class="info-text middle-text info-text-1"><%=ENV['EMAIL']%></h6>
+    </div>
+    <div class="icone-bloc">
+      <i class="fa fa-phone"></i>
+      <h6 class="info-text info-text-2"><%=ENV['TELEPHONE']%></h6>
+    </div>
+    <% if user_signed_in? %>
       <div class="icone-bloc">
-        <i class="fa fa-phone"></i>
-        <h6 class="info-text"><%=ENV['TELEPHONE']%></h6>
-      </div>
-      <% if user_signed_in? %>
-        <div class="icone-bloc">
-          <i class="fa fa-sign-in"></i>
-        <%= link_to destroy_user_session_path, method: :delete do %>
-          <h6 class="info-text">Se déconnecter</h6>
-        <% end %>
-        </div>
-      <% else %>
-        <div class="icone-bloc">
-          <i class="fa fa-sign-out"></i>
-        <%= link_to new_user_session_path, class: "navbar-item navbar-link" do %>
-          <h6 class="info-text">Se connecter</h6>
-        <% end %>
-        </div>
+        <i class="fa fa-sign-in-alt"></i>
+      <%= link_to destroy_user_session_path, method: :delete do %>
+        <h6 class="info-text info-text-3">Se déconnecter</h6>
       <% end %>
-    </div>
-    <div class="footer-center-infos">
-      <div class="center-bloc">
-        <%= link_to "CGV", cgv_path , class: "first-a" %>
-        <%= link_to "Données", legal_path %>
       </div>
-    </div>
-    <div class="mylink">
-      <%= link_to @dev_redirection || session[:dev_redirection_default], title: "Créez votre boutique en ligne avec l'agence de Guillaume Crouillere" do %>
-        <%= image_tag  'lego.svg', alt: "Guillaume Crouillere - Developpeur WEB indépendant"%>
+    <% else %>
+      <div class="icone-bloc">
+        <i class="fa fa-sign-out-alt"></i>
+      <%= link_to new_user_session_path, class: "navbar-item navbar-link" do %>
+        <h6 class="info-text info-text-3">Se connecter</h6>
+      <% end %>
+      </div>
     <% end %>
+  </div>
+  <div class="footer-center-infos">
+    <div class="center-bloc">
+      <%= link_to "CGV", cgv_path , class: "first-a" %>
+      <%= link_to "Données", legal_path %>
     </div>
+  </div>
+  <div class="mylink">
+    <%= link_to @dev_redirection || session[:dev_redirection_default], title: "Créez votre boutique en ligne avec l'agence de Guillaume Crouillere" do %>
+      <%= image_tag  'lego.svg', alt: "Guillaume Crouillere - Developpeur WEB indépendant"%>
+  <% end %>
   </div>
 </div>

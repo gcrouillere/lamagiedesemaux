@@ -2,25 +2,29 @@
   <h2>Ventes sur <%= @text_duration %></h2>
   <div class="month-stat">
     <div class="high-level-stat">
-      <h3> Nombre de ventes : <%= @last_month_orders.count %></h3>
-      <h3> Chiffre d'affaire : <%= @last_month_orders.sum(:amount_cents) / 100.0 %> €</h3>
+      <% @duration == 30 ? local_orders = @last_month_orders : local_orders = @last_six_month_orders %>
+      <% @duration == 30 ? local_hash_category = @categories_sales_data_one : local_hash_category = @categories_sales_data_six %>
+      <h3> Nombre de ventes : <%= local_orders %></h3>
+      <h3> Chiffre d'affaire : <%= local_hash_category.map{|k, v| v[:"sum"]}.inject(0) {|sum, n| sum + n} %> €</h3>
     </div>
     <h3 class="display-one-month">Ventes par catégories (<a href="#">afficher les produits)</a> : </h3>
     <div class="detailed-stat">
-      <% @one_month_categories.each do |couple|%>
-        <% category = Category.find(couple[1]) %>
-        <div class="col-xs-50">
-        <p class="CA"><%= category.name.capitalize %> : <%= couple[0] %> €</p>
-        <% sum = 0 %>
-        <% category.ceramiques.each do |ceramique| %>
-          <% ceramique.offer ? discount = ceramique.offer.discount : discount = 0 %>
-          <% current_ceramique_value = ceramique.basketlines.where("updated_at >= ?", Time.now - @duration * 3600 * 24).sum(:quantity) * ceramique.price * (1 - discount) %>
-          <% if  current_ceramique_value > 0 %>
-            <p class="inner-CA">ID <%= ceramique.id %> - <%= ceramique.name %> : <%= current_ceramique_value %> €</p>
-          <% end %>
+
+      <% local_hash_category.each do |k, hash_value|%>
+        <% if  hash_value[:"sum"] > 0 %>
+          <div class="col-xs-50">
+            <p class="CA"><%= Category.find(k.to_s.to_i).name.capitalize %> : <%= hash_value[:"sum"] %> €</p>
+            <% hash_value.each do |ceramique_id, ceramique_data|%>
+              <% if Ceramique.find_by_id(ceramique_id.to_s.to_i)%>
+                <% if ceramique_data[:"ceramique_sum"] > 0 %>
+                  <p class="inner-CA">ID <%= ceramique_data[:"ceramique_id"]%> - <%= ceramique_data[:"ceramique_name"]%> : <%= ceramique_data[:"ceramique_sum"]%> €</p>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
         <% end %>
-        </div>
       <% end %>
+
     </div>
   </div>
 </div>

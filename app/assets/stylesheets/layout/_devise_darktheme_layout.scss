@@ -7,6 +7,9 @@
 
 .devise-container-darktheme {
     min-height: calc(100vh - 90px);
+    #country {
+      -webkit-appearance: none;
+    }
   .content-devise {
     margin-top: 130px;
     margin-bottom: 60px;

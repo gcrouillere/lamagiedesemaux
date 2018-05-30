@@ -10,7 +10,7 @@
   .adress, .product-amount, .lesson-amount {
     margin-top: 20px;
     margin-bottom: 10px;
-    background: #171717;
+    background: $darktheme-card-background;
     padding: $padding-large;
     border-radius: 1px;
     border: 1px solid $primary-opacified;
@@ -37,13 +37,14 @@
   .mobile-link-coord {
     text-align: center;
     width: 90%;
-    color: white;
-    background: transparent;
-    border: 1px solid $primary;
-    border-radius: $project-border-radius;
+    color: #171717;
+    background: white;
+    border: 3px solid transparent;
+    border-radius: 0px;
     padding: 6px 12px;
-    font-weight: 100;
+    font-weight: 400;
     margin: 10px auto;
+    transition: all ease 0.2s;
   }
   .laptop-link-coord {
     width: 60%;
@@ -56,7 +57,7 @@
     transition: all ease 0.2s;
     margin: auto;
   }
-  .laptop-link-coord:hover {
+  .laptop-link-coord:hover, .mobile-link-coord:hover {
     background: transparent;
     border: 3px solid white;
     color: white;

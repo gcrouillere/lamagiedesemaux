@@ -75,6 +75,12 @@
 .navbar-laptop-darktheme, .navbar-mobile-darktheme {
   .navbar-item-darktheme {
     cursor: pointer;
+    .lightcart {
+      width: 23px;
+      height: 23px;
+      top: -1px;
+      position: relative;
+    }
     .nav-bar-list {
       display: flex;
       list-style: none;
@@ -110,6 +116,7 @@
 
 #darktheme-filter-search {
   margin-right: 20px;
+  display: flex;
   .searchimg {
     width: 20px;
     top: -2px;

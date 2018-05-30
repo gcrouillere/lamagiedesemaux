@@ -23,7 +23,7 @@ La commande est à retirer en magasin, pas de livraison à prévoir.
 Frais de port: <%= humanized_money(@order.port) %> €
 Montant total: <%= humanized_money(@order.amount + @order.port) %> €
 
-Adresse de livraison : <%= @user.adress %> - <%= @user.zip_code %> - <%= @user.city %>
+Adresse de livraison : <%= @user.adress %> - <%= @user.zip_code %> - <%= @user.city %> - <%= @user.country %>
 <% end %>
 
 Cordialement

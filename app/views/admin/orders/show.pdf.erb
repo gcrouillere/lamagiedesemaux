@@ -6,7 +6,7 @@
 <h3><%="#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%></h3>
 <h3>Tel : <%= ENV['TELEPHONE']%></h3>
 <h3>Adresse : <%= ENV['ADDRESS'].gsub("+"," ")%></h3>
-<h3>SIRET : </h3>
+<h3>SIRET : 434926473 </h3>
 <br>
 <h2>Client : <%= resource.user.first_name%> <%= resource.user.last_name%></h2>
 <h3>Adresse : <%= "#{resource.user.adress} #{resource.user.zip_code} - #{resource.user.city}"%></h3>

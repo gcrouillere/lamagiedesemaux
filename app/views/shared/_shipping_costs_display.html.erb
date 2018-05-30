@@ -1,0 +1,51 @@
+<% content_for(:after_js) do %>
+  <script>
+    $(document).ready(function() {
+      var total = <%= @amount.to_f %>;
+      var weight = <%= @weight %>;
+      var urlRoot = window.location.origin;
+
+      $('.payment-form input, .payment-form-mobile input').on('click', function(event) {
+        if ($('h3.total_amount').hasClass('take_away-checked')) {
+          $('.shipping-cost').css({'visibility':'visible'});
+          $('.total_amount').removeClass('take_away-checked')
+
+          if ($(this).parent().parent().attr('class').includes('mobile')) {
+            var country = $('#user_country_mobile').val();
+          } else {
+            var country = $('#user_country').val();
+          }
+
+          var url_params = "?country=" + country + "&weight=" + weight
+          updateDOMWithShippingData(urlRoot, url_params, false)
+
+        } else {
+          $('.shipping-cost').css({'visibility':'hidden'});
+          $('.total_amount').addClass('take_away-checked')
+          $('.total_amount').text('Montant total: '+ String(total).replace(".", ",") + " €")
+        }
+      });
+
+    $('#user_country, #user_country_mobile').on('change', function(event) {
+      var country = $(this).val();
+      var url_params = "?country=" + country + "&weight=" + weight
+      updateDOMWithShippingData(urlRoot, url_params, true)
+    });
+
+    function updateDOMWithShippingData(urlRoot, url_params, port_cost_exsits) {
+      fetch(urlRoot + "/api/v1/shipping_categories/show" + url_params).then(response_api =>response_api.json()).then((data_api) => {
+          if (port_cost_exsits) {
+            $('.port-cost').each(function() {
+              $(this).text(String(data_api.price_cents / 100).replace(".", ",")+ " €")
+            })
+          }
+          value = (total * 100 + data_api.price_cents) / 100
+          $('.total_amount').each(function() {
+            $(this).text('Montant total: '+ String(value).replace(".", ",") + " €")
+          })
+      });
+    }
+
+    });
+  </script>
+<% end %>

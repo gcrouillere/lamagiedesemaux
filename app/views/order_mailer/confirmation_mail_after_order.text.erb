@@ -20,7 +20,7 @@ Appelez moi pour convenir du moment où vous viendrez retirer votre commande.
 Frais de port: <%= humanized_money(@order.port) %> €
 Montant total: <%= humanized_money(@order.amount + @order.port) %> €
 
-Adresse de livraison : <%= @user.adress %> - <%= @user.zip_code %> - <%= @user.city %>
+Adresse de livraison : <%= @user.adress %> - <%= @user.zip_code %> - <%= @user.city %> - <%= @user.country %>
 <% end %>
 
 Cordialement

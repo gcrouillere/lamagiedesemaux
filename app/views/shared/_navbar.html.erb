@@ -32,9 +32,6 @@
             <% end %>
           <% end %>
         <% end %>
-        <%= link_to destroy_user_session_path, method: :delete do %>
-          <span><i class="fa fa-sign-out"></i> Se déconnecter</span>
-        <% end %>
       </div>
     </div>
 
@@ -56,9 +53,6 @@
             <% end %>
           <% end %>
         <% end %>
-        <%= link_to new_user_session_path, class: "navbar-item navbar-link" do %>
-          <span><i class="fa fa-sign-in"></i> Se connecter</span>
-        <% end %>
       </div>
     </div>
   <% end %>
@@ -75,11 +69,12 @@
   <div class="navbar-item">
     <div class="list-mobile">
       <%= link_to ceramiques_path do %>
-        <span><i class="fa fa-bars"></i> Shop</span>
-      <% end %>
+          <span>Shop</span>
+        <% end %>
       <%= link_to info_path do %>
-        <li><span><i class="fa fa-female"></i> Infos</span></li>
-      <% end %>
+        <li><span>Infos</span></li>
+      <% end %>>
+
       <% if session[:order].present? %>
         <% if Order.where(id: session[:order]).present? %>
           <% if Order.where(id: session[:order]).first.state != "lost" %>
