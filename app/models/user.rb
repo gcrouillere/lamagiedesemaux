@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true, format: {with: Regexp.new('\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]{2,}\z'), message:"Adresse email invalide"}
   validates :first_name, presence: true
+  validates :country, presence: true
   validates :last_name, presence: true
   validates :adress, presence: true
   # validates :zip_code, presence: true
@@ -46,6 +47,7 @@ class User < ApplicationRecord
     user_params[:token_expiry] = Time.at(auth.credentials.expires_at)
     user_params[:adress] = "------ à mettre à jour ------"
     user_params[:city] = "------ à mettre à jour ------"
+    user_params[:country] = "FR"
     user_params = user_params.to_h
 
     user = User.find_by(provider: auth.provider, uid: auth.uid)
@@ -66,6 +68,7 @@ class User < ApplicationRecord
     user_params[:first_name] ||= "newsletter"
     user_params[:adress] = "------ à mettre à jour ------"
     user_params[:city] = "------ à mettre à jour ------"
+    user_params[:country] = "------ à mettre à jour ------"
     user_params[:first_name] == "newsletter" ? user_params[:last_name] = "." : user_params[:last_name] = "message"
 
     user = User.find_by(email: user_params[:email])

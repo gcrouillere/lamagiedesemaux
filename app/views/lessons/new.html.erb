@@ -24,7 +24,7 @@ Module de prise de réservations. Offrez la possibilité à vos clients d'effect
           <div class="form-group">
             <div class='input-group date' id='datetimepicker1'>
               <span class="input-group-addon">
-                <span class="fa fa-calendar-o"></span>
+                <i class="far fa-calendar-alt"></i>
               </span>
               <input type='text' class="form-control" name="lesson[start]" placeholder="Cliquez sur l'icône calendrier pour sélectionner une date"/>
             </div>
@@ -62,7 +62,7 @@ Module de prise de réservations. Offrez la possibilité à vos clients d'effect
           <div class="form-group">
             <div class='input-group date' id='datetimepicker2'>
               <span class="input-group-addon">
-                <span class="fa fa-calendar-o"></span>
+                <i class="far fa-calendar-alt"></i>
               </span>
               <input type='text' class="form-control" name="lesson[start]" placeholder="JJ.MM.AAAA"/>
             </div>
@@ -89,7 +89,7 @@ Module de prise de réservations. Offrez la possibilité à vos clients d'effect
 
 <% content_for(:after_js) do %>
   <script>
-    $(document).on('ready', function() {
+    $(document).ready(function() {
 
       var confirmed_course_js_format = <%= raw @confirmed_course_js_format%>
       var jsArray = <%= @first_possible_day.to_json.html_safe %>

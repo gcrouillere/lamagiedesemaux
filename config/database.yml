@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: ecommercebase_development
+  database: ecommercebase_rails52_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: ecommercebase_test
+  database: ecommercebase_rails52_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: ecommercebase_production
-  username: ecommercebase
+  database: ecommercebase_rails52_production
+  username: ecommercebase_rails52
   password: <%= ENV['ECOMMERCE_DATABASE_PASSWORD'] %>

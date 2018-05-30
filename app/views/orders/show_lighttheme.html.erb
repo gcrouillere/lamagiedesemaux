@@ -43,7 +43,7 @@
 
             <div class="total-lighttheme">
               <div class="cost-details">
-                <h5 class="port">Frais de port: <%= humanized_money(@port) %> <%= currency_symbol %></h5>
+                <%= render 'shared/shipping_cost_bloc' %>
                 <h3 class="total_amount">Montant total: <%= humanized_money(@amount + @port) %> <%= currency_symbol %></h3>
               </div>
               <form action="/orders/<%= @order.id%>/payments/new" method="get" class="hidden-xs payment-form pay-form-lighttheme">
@@ -57,7 +57,7 @@
                 </button>
               </form>
             </div>
-              <form action="/orders/<%= @order.id%>/payments/new" method="get" class="hidden-sm hidden-md hidden-lg text-center payment-form pay-form-lighttheme-mobile">
+              <form action="/orders/<%= @order.id%>/payments/new" method="get" class="hidden-sm hidden-md hidden-lg text-center payment-form pay-form-lighttheme-mobil">
                 <input type="hidden" name="order_id" value="<%= @order.id%>">
                 <div class="input-label-take-away">
                   <input id="take_away-checkbox-mobile" type="checkbox" name="take_away">
@@ -74,31 +74,4 @@
 
 </div>
 
-<% content_for(:after_js) do %>
-  <script>
-    $(document).on('ready', function() {
-      total = <%= @amount.to_f %>
-      port = <%= @port.to_f %>
-      $('.payment-form input').on('click', function(event) {
-        if ($('.cost-details').css('width') == '0px') {
-          width = NaN
-        } else {
-          width = parseFloat($('.cost-details').css('width').replace("px","")) + 0.9
-        }
-        if ($('h3.total_amount').hasClass('take_away-checked')) {
-          $('.port').css({'visibility':'visible'});
-          $('.total_amount').removeClass('take_away-checked')
-          width += 2
-          $('.total_amount').css({'width': width + 'px'});
-          $('.total_amount').text('Montant total: '+ String(total + port).replace(".", ",") + " €")
-        } else {
-          width -= 2
-          $('.port').css({'visibility':'hidden'});
-          $('.total_amount').addClass('take_away-checked')
-          $('.total_amount').css({'width': width + 'px'});
-          $('.total_amount').text('Montant total: '+ String(total).replace(".", ",") + " €")
-        }
-      });
-    });
-  </script>
-<% end %>
+<%= render 'shared/shipping_costs_display' %>

@@ -4,10 +4,11 @@ ruby '2.3.5'
 gem 'devise'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
-gem 'pg'
+gem 'pg', '~> 0.21'
 gem 'puma'
-gem 'rails', '5.0.3'
+gem 'rails', '~> 5.1', '>= 5.1.4'
 gem 'redis'
+gem 'bootsnap'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
@@ -15,13 +16,14 @@ gem 'font-awesome-sass'
 gem 'jquery-rails'
 gem 'sass-rails'
 gem 'simple_form'
+gem 'country_select'
 gem 'uglifier'
 
 # pictures
 gem 'cloudinary', '1.1.7'
-gem 'attachinary', github: 'assembler/attachinary'
-gem 'jquery-fileupload-rails'
-gem 'coffee-rails'
+gem "attachinary"
+gem "jquery-fileupload-rails"
+gem "coffee-rails"
 
 # seed
 gem 'faker'
@@ -44,7 +46,7 @@ gem 'elevatezoom-rails'
 gem "letter_opener", group: :development
 
 #admin
-gem 'activeadmin', github: 'activeadmin/activeadmin'
+gem 'activeadmin', '~> 1.3'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'activeadmin-index_as_calendar', github: 'bys-control/activeadmin-index_as_calendar'
 

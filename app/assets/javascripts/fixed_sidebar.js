@@ -23,16 +23,16 @@ $(document).ready(function() {
 
   function checkOffset(list_header_name, navbar_name) {
     var offset = $('.last-ceramique').offset().top - $(navbar_name).height() - 40
-    if ($(list_header_name).size() > 0) {
+    if ($(list_header_name).length > 0) {
       offset -=  312
     }
     return offset
   }
 
   $(document).scroll(function() {
-    if ($('#ceramique-filters-content').size() > 0) {
+    if ($('#ceramique-filters-content').length > 0) {
       changeButtonFixeNav('#ceramique-filters-content', '.navbar-laptop', '.list-header-1')
-    } else if ($('#ceramique-filters-content-darktheme').size() > 0) {
+    } else if ($('#ceramique-filters-content-darktheme').length > 0) {
       changeButtonFixeNav('#ceramique-filters-content-darktheme', '.navbar-laptop-darktheme', '.list-header-1-darktheme')
     }
   });

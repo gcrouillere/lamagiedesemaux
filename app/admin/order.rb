@@ -50,28 +50,40 @@ ActiveAdmin.register Order do
     def index
       super do |format|
         @orders = Order.where(state: "paid").order(updated_at: :desc).page(params[:page]).per(20)
-        @last_month_orders = Order.where("state LIKE ? AND updated_at >= ?", "paid", Time.now - 30 * 3600 * 24)
-        @last_six_month_orders = Order.where("state LIKE ? AND updated_at >= ?", "paid", Time.now - 180 * 3600 * 24)
-        @six_month_categories = sort_category_by_turn_over(180)
-        @one_month_categories = sort_category_by_turn_over(30)
+        @last_month_orders = Order.where("state LIKE ? AND updated_at >= ?", "paid", Time.now - 30 * 3600 * 24).count
+        @last_six_month_orders = Order.where("state LIKE ? AND updated_at >= ?", "paid", Time.now - 180 * 3600 * 24).count
+        @categories_sales_data_six = categories_data(180)
+        @categories_sales_data_one = categories_data(30)
       end
     end
 
-    def sort_category_by_turn_over(duration)
-      category_sorted = []
+    def categories_data(duration)
+      categories_sales_data = {}
       Category.all.each do |category|
         sum = 0
-        id = category.id
         category.ceramiques.each do |ceramique|
           ceramique.offer ? discount = ceramique.offer.discount : discount = 0
-          sum += ceramique.basketlines.where("updated_at >= ?", Time.now - duration * 3600 * 24).sum(:quantity) * ceramique.price * (1 - discount)
+
+          addition = Basketline.where("basketlines.updated_at >= ? AND ceramique_id = ?", Time.now - duration * 3600 * 24, ceramique.id)
+            .left_outer_joins(:order).where("orders.state = ?", "paid").sum(:quantity) * ceramique.price * (1 - discount)
+
+          if addition > 0
+            categories_sales_data[category.id.to_s.to_sym] = {}
+            categories_sales_data[category.id.to_s.to_sym][ceramique.id.to_s.to_sym] = {}
+            categories_sales_data[category.id.to_s.to_sym][ceramique.id.to_s.to_sym][:"ceramique_sum"] = addition
+            categories_sales_data[category.id.to_s.to_sym][ceramique.id.to_s.to_sym][:"ceramique_name"] = ceramique.name
+            categories_sales_data[category.id.to_s.to_sym][ceramique.id.to_s.to_sym][:"ceramique_id"] = ceramique.id
+          end
+
+          sum += addition
         end
         if sum > 0
-          category_sorted << [sum, id]
+          categories_sales_data[category.id.to_s.to_sym][:"sum"] = sum
         end
       end
-      category_sorted.sort.reverse
+      categories_sales_data
     end
+
   end
 
 end

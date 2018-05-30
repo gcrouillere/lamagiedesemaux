@@ -1,5 +1,4 @@
-$(document).on('ready', function() {
-
+$(document).ready(function() {
   var imglength = $('tr:last-child td:last-child span').length;
   var htmlcontent = "";
 
@@ -11,11 +10,10 @@ $(document).on('ready', function() {
 
   $('tr.row-images:last-child td:last-child').text("");
   $('tr.row-images:last-child td:last-child').html(htmlcontent);
-
 });
 
 
-$(document).on('ready', function() {
+$(document).ready(function() {
   $('.display-one-month').on('click', function() {
     if ($('.display-one-month').hasClass('clicked')) {
       $('.inner-CA').css({'display': 'none'});

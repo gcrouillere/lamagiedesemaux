@@ -1,4 +1,4 @@
-$(document).on('ready', function() {
+$(document).ready(function() {
 
   $('.logopic .attachinary_container').on('click', function(e){
     $('.logopic .photo-button').removeClass('hidden');

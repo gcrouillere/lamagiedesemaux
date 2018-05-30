@@ -13,7 +13,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #171717;
+  background: $darktheme-card-background;
   padding: $padding-small;
   border-radius: $project-border-radius;
   border-bottom: 1px solid $primary-opacified;
@@ -34,17 +34,42 @@
   }
 }
 
+.shipping-cost {
+  display: flex;
+  justify-content: center;
+  select {
+    width: 150px;
+    margin: 0 10px;
+  }
+}
+@media all and (max-width: 600px) {
+  .shipping-cost {
+    select {
+      width: 110px !important;
+      margin: 0 5px;
+    }
+    h5 {
+      font-size: 16px;
+    }
+  }
+}
+
 .total-darktheme {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 35px;
   margin-bottom: 50px;
-  .empty{
-    width: 300px;
+  .cost-details {
+    width: 400px;
+    margin-right: 20px;
+    h4 {
+      text-align: center;
+    }
   }
   .hidden-sm {
     margin: 11px 0px 20px 0px;
+    text-align: center;
       h3, h4 {
         margin: 20px 0px 0px 0px;
         color: white;
@@ -63,15 +88,14 @@
 }
 
 // MOBILE
-
-.h5mobile {
-  margin-left: 30px;
-  margin-top: 20px;
+.cost-details-mobile {
+  text-align: center;
+  margin-top: 30px;
 }
 
 .h3mobile {
-  margin-left: 20px;
-  margin-top: 20px;
+  margin-left: 0px;
+  margin-top: 5px;
   font-weight: $font-weight-h3-mobile;
   font-size: 25px;
 }
@@ -79,7 +103,7 @@
 .basket-item.mobile-darktheme {
   margin: 0px 10px 10px 10px;
   justify-content: space-around;
-  background: #171717;
+  background: $darktheme-card-background;
   border-bottom: 1px solid $primary-opacified;
     &:nth-child(1) {
     border-top: 1px solid $primary-opacified;
@@ -104,5 +128,6 @@
 
 .total.mobile {
   margin-bottom: 30px;
+  margin-top: 30px;
 }
 

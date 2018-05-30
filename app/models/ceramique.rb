@@ -9,7 +9,7 @@ class Ceramique < ApplicationRecord
   # friendly_id :slug_candidates, use: :slugged
 
   belongs_to :category
-  belongs_to :offer
+  belongs_to :offer, required: false
   has_attachments :photos, maximum: 4, dependent: :destroy
   has_many :basketlines, dependent: :destroy
 

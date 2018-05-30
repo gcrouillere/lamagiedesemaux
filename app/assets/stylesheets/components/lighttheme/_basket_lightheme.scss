@@ -65,6 +65,14 @@
 .total-lighttheme {
   margin-right: 30px;
   margin-top: 30px;
+  .shipping-cost {
+    display: flex;
+    justify-content: flex-end;
+    select {
+      width: 150px;
+      margin: 0 10px;
+    }
+  }
   h3, h5 {
     text-align: right;
     font-weight: 300;
@@ -111,18 +119,11 @@
   }
   .total-lighttheme {
     margin: 20px auto ;
-    h3, h5 {
+    h5 {
       text-align: right;
       font-weight: 300;
-      margin-right: 10px;
+      margin: 5px auto;
     }
-    h3 {
-      font-size: 26px;
-      margin-bottom: 25px;
-    }
-  }
-  form {
-    margin-bottom: 20px;
   }
 }
 
@@ -132,7 +133,7 @@
   text-align: center;
 }
 
-.pay-form-lighttheme-mobile.payment-form {
+.pay-form-lighttheme-mobil.payment-form {
   display: block;
   text-align: center;
   margin: 0 auto;

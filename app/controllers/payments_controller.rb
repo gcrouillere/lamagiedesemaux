@@ -4,6 +4,7 @@ class PaymentsController < ApplicationController
 
   def new
     @payment_theme = @active_theme.name
+    final_order_amount
     if @order.state == "lost"
       flash[:notice] = "Votre panier a expiré"
       redirect_to ceramiques_path and return
@@ -21,11 +22,11 @@ class PaymentsController < ApplicationController
       email:  params[:stripeEmail]
     )
 
-    @order.take_away ? final_amount = @order.amount_cents : final_amount = @order.amount_cents + @order.port_cents
+    @order.take_away ? @final_amount = @order.amount_cents : @final_amount = @order.amount_cents + @order.port_cents
 
     charge = Stripe::Charge.create(
       customer:     customer.id,   # You should store this customer id and re-use it.
-      amount:       final_amount, # or amount_pennies
+      amount:       @final_amount, # or amount_pennies
       description:  "Payment for #{@order.ceramique || "lesson"}, for order #{@order.id}",
       currency:     @order.amount.currency
     )
@@ -60,14 +61,15 @@ class PaymentsController < ApplicationController
     @order = Order.find(params[:order_id])
     @order.update(state: "payment page") unless @order.state == "lost"
     @order.update(user: current_user) unless @order.user
-    if (/\A(F-)?(((2[A|B])|[0-8]{1}[0-9]{1})|(9{1}[0-5]{1}))[0-9]{3}\z/).match("#{current_user.zip_code}") == nil
-      flash[:alert] = "Les livraisons ne sont possibles qu'en France métropolitaine. Modifiez votre adresse si vous souhaitez poursuivre."
-      redirect_to edit_user_registration_path
-    end
   end
 
   def logistic_check
     params[:take_away] == "on" ? @order.update(take_away: true) : @order.update(take_away: false)
+  end
+
+  def final_order_amount
+    costs = Amountcalculation.new(@order).calculate_amount(@order, current_user)
+    @order.update(amount: costs[:total], port: costs[:port], weight: costs[:weight])
   end
 
 end
