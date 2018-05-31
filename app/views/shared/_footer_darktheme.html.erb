@@ -16,14 +16,14 @@
     </div>
     <% if user_signed_in? %>
       <div class="icone-bloc">
-        <i class="fa fa-sign-in-alt"></i>
+        <i class="fa fa-sign-out-alt"></i>
       <%= link_to destroy_user_session_path, method: :delete do %>
         <h6 class="info-text info-text-3">Se déconnecter</h6>
       <% end %>
       </div>
     <% else %>
       <div class="icone-bloc">
-        <i class="fa fa-sign-out-alt"></i>
+        <i class="fa fa-sign-in-alt"></i>
       <%= link_to new_user_session_path, class: "navbar-item navbar-link" do %>
         <h6 class="info-text info-text-3">Se connecter</h6>
       <% end %>

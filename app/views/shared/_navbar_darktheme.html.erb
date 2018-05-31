@@ -50,7 +50,7 @@
                   }
                   body:after {
                     display: none;
-                    content: <%= image_path "cart.svg" %>;
+                    content: url(<%= image_path "cart.svg" %>);
                   }
                 </style>
               <% end %>
@@ -87,7 +87,19 @@
           <% if Order.where(id: session[:order]).present? %>
             <% if Order.where(id: session[:order]).first.state != "lost" %>
               <%= link_to order_path(Order.find(session[:order])) do %>
-                <span><%= image_tag "whitecart.svg", class: "lightcart"%></span>
+                <div class="lightcart"></div>
+                <style>
+                  .lightcart {
+                    background-image: url(<%= image_path "whitecart.svg" %>);
+                  }
+                  .lightcart:hover {
+                    background-image: url(<%= image_path "cart.svg" %>);
+                  }
+                  body:after {
+                    display: none;
+                    content: url(<%= image_path "cart.svg" %>);
+                  }
+                </style>
               <% end %>
             <% end %>
           <% end %>

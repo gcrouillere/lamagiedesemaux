@@ -2,6 +2,7 @@
   <script>
     $(document).ready(function() {
       var total = <%= @amount.to_f %>;
+      var port = <%= @port.to_f %>;
       var weight = <%= @weight %>;
       var urlRoot = window.location.origin;
 
@@ -16,8 +17,12 @@
             var country = $('#user_country').val();
           }
 
-          var url_params = "?country=" + country + "&weight=" + weight
-          updateDOMWithShippingData(urlRoot, url_params, false)
+          if (country == "FR") {
+            updateDOMForFR(port, false)
+          } else {
+            var url_params = "?country=" + country + "&weight=" + weight
+            updateDOMWithShippingData(urlRoot, url_params, false)
+          }
 
         } else {
           $('.shipping-cost').css({'visibility':'hidden'});
@@ -29,7 +34,11 @@
     $('#user_country, #user_country_mobile').on('change', function(event) {
       var country = $(this).val();
       var url_params = "?country=" + country + "&weight=" + weight
-      updateDOMWithShippingData(urlRoot, url_params, true)
+      if (country == "FR") {
+        updateDOMForFR(port, true)
+      } else {
+        updateDOMWithShippingData(urlRoot, url_params, true)
+      }
     });
 
     function updateDOMWithShippingData(urlRoot, url_params, port_cost_exsits) {
@@ -44,6 +53,18 @@
             $(this).text('Montant total: '+ String(value).replace(".", ",") + " €")
           })
       });
+    }
+
+    function updateDOMForFR(port, port_cost_exsits) {
+      if (port_cost_exsits) {
+        $('.port-cost').each(function() {
+          $(this).text(String(port).replace(".", ",")+ " €")
+        })
+      }
+      value = (total + port)
+      $('.total_amount').each(function() {
+        $(this).text('Montant total: '+ String(value).replace(".", ",") + " €")
+      })
     }
 
     });

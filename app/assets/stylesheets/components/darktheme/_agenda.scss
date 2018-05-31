@@ -34,9 +34,15 @@
   label {
     color: white;
   }
-  .agendaphoto1 {
-    width: 101%;
-    margin: 20px 0;
+  .agenda-right-photo {
+    width: 66%;
+    height: 500px;
+    margin: 20px auto;
+  }
+  @media all and (max-width: 700px) {
+    .agenda-right-photo {
+      width: 100%;
+    }
   }
 }
 

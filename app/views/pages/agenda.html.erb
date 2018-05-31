@@ -25,7 +25,14 @@
       <h2>L'exposition du moment pour retrouver les bijoux de Fabienne Jacob</h2>
       <div class="agenda-right-photo">
         <%= photo_update('agenda1photo', 100, '', '', 30, '.agenda1photo', "Mise à jour photo agenda 1")%>
-        <%= cl_image_tag @agendaphoto1, class: "agendaphoto1", alt: "L'exposition où vous retrouverez Fabienne Jacob" %>
+        <style>
+          .agenda-right-photo {
+            background-image: url(<%= cl_image_path @agendaphoto1, quality: "auto" %>);
+            background-size: cover;
+            background-position-y: center;
+            background-position-x: center;
+          }
+        </style>
       </div>
       <% if user_signed_in? && current_user.admin %>
         <% article_typing("next-show-text", "vertical", "markdown2", "live-text2", "input2") %>

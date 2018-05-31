@@ -30,9 +30,10 @@ class OrdersController < ApplicationController
     if Order.find(params[:id])
       @order = Order.find(params[:id])
       if @order.state == "pending" || @order.state == "payment page"
-        if current_user
-          costs = Amountcalculation.new(@order).calculate_amount(@order, current_user)
-          @order.update(amount: costs[:total], port: costs[:port], weight: costs[:weight], user: current_user)
+        if current_user || @order.user.present?
+          known_user = current_user || @order.user
+          costs = Amountcalculation.new(@order).calculate_amount(@order, known_user)
+          @order.update(amount: costs[:total], port: costs[:port], weight: costs[:weight], user: known_user)
         end
         @amount = @order.amount
         @port = @order.port
