@@ -1,8 +1,8 @@
 <% content_for(:description) do %>
-  Liste des céramiques à vendre, dans la boutique en ligne de Fabienne Jacob. Des pièces utilitaires, des pièces uniques et des bijoux sont proposées dans la boutique. Paiement par CB, expédition par colissimo.
+  Liste des bijoux en céramiques à vendre, dans la boutique en ligne de Fabienne Jacob. Vous retrouverez des bagues, des colliers et des boucles d'oreilles. Paiement par CB, expédition par colissimo.
 <% end %>
 <% content_for(:title_tag) do %>
-  Les bijoux en céramique à vendre dans la boutique de Fabienne Jacob.
+  Les bagues, colliers et boucles d'oreilles en céramique dans la boutique de Fabienne Jacob.
 <% end %>
 <% if @front_offer %>
   <% content_for(:meta_image) do %>
@@ -204,16 +204,20 @@
 <% content_for(:after_js) do %>
   <script type="application/ld+json">
   {
-    "@context": "http://schema.org",
-    "@type": "ArtGallery",
-    "name": "Les bijoux en céramique de Fabienne Jacob",
-    "description": "Online craft store",
-    "openingHours": "Mo-Fr 09:00-18:00",
-    "telephone": "<%= ENV['TELEPHONE']%>",
-    "url": "<%=request.original_url%>",
-    "image":"<%=request.original_url%><%= image_path ENV['HOMEPIC']%>",
-    "address":"<%= ENV['ADDRESS'].gsub(/[+]/, ' ')%>",
-    "priceRange":"20€ à 800€"
+    "@context": "http://schema.org/",
+    "@type": "Product",
+    "name": "Les <%="#{ENV['MODEL']} de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>",
+    "image": <%= raw @ceramiques.map {|ceramique| cl_image_path ceramique.photos[0].path}.to_json %>,
+    "brand": {
+      "@type": "Thing",
+      "name": "<%="#{ENV['LASTNAME'].capitalize}"%>"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "<%= humanized_money(@ceramiques.minimum(:price_cents) / 100) %>",
+      "highPrice": "<%= humanized_money(@ceramiques.maximum(:price_cents) / 100) %>",
+      "priceCurrency": "EUR"
+    }
   }
   </script>
   <script

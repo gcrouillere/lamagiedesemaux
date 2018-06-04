@@ -126,4 +126,31 @@ $(document).ready(function() {
     $('.agenda7photo .photo-button').removeClass('hidden');
   });
 
+  $('.agenda7photo .attachinary_container').on('click', function(e){
+    $('.agenda7photo .photo-button').removeClass('hidden');
+  });
+  $('.agenda7photo input').on('click', function(e){
+    $('.agenda7photo .photo-button').removeClass('hidden');
+  });
+
+  $('.partenaire-page-photo-1 .attachinary_container').on('click', function(e){
+    $('.partenaire-page-photo-1 .photo-button').removeClass('hidden');
+  });
+  $('.partenaire-page-photo-1 input').on('click', function(e){
+    $('.partenaire-page-photo-1 .photo-button').removeClass('hidden');
+  });
+
+  $('.partenaire-page-photo-2 .attachinary_container').on('click', function(e){
+    $('.partenaire-page-photo-2 .photo-button').removeClass('hidden');
+  });
+  $('.partenaire-page-photo-2 input').on('click', function(e){
+    $('.partenaire-page-photo-2 .photo-button').removeClass('hidden');
+  });
+
+  $('.partenaire-page-photo-3 .attachinary_container').on('click', function(e){
+    $('.partenaire-page-photo-3 .photo-button').removeClass('hidden');
+  });
+  $('.partenaire-page-photo-3 input').on('click', function(e){
+    $('.partenaire-page-photo-3 .photo-button').removeClass('hidden');
+  });
 });

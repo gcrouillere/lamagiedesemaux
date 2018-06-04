@@ -1,5 +1,5 @@
 <% content_for(:description) do %>
-  Vente de bijoux artisanaux en céramique. Ma production se compose de bijoux et de poteries utilitaires.
+  Vente de bijoux artisanaux en céramique. Ma production se compose de bagues, colliers et boucles d'oreilles. Le décor est au platine, les fermoirs sont en argent.
 <% end %>
 <% content_for(:title_tag) do %>
   Acheter en ligne les bijoux en céramique de Fabienne Jacob.
@@ -87,9 +87,9 @@
             </div>
             <div class="bottom-bloc">
               <div class="home-links">
-                <%= link_to "VOIR LES BOUCLES D'OREILLES", ceramiques_path(categories: ["boucle d'oreille", "boucles d'oreilles", "boucles d'oreille", "boucle d'oreilles"]), title: "boucles d'oreilles" %>
-                <%= link_to "VOIR LES BAGUES", ceramiques_path(categories: ["bague", "bagues"]), title: "bagues" %>
-                <%= link_to "VOIR LES COLLIERS", ceramiques_path(categories: ["collier", "colliers"]), title: "collier" %>
+                <%= link_to "VOIR LES BOUCLES D'OREILLES", ceramiques_path(categories: ["boucle d'oreille", "boucles d'oreilles", "boucles d'oreille", "boucle d'oreilles"]), title: "découvrir les boucles d'oreilles en vente sur le site" %>
+                <%= link_to "VOIR LES BAGUES", ceramiques_path(categories: ["bague", "bagues"]), title: "découvrir les bagues en vente sur le site" %>
+                <%= link_to "VOIR LES COLLIERS", ceramiques_path(categories: ["collier", "colliers"]), title: "découvrir les colliers en vente sur le site" %>
               </div>
               <div class="photo-background-3">
                 <%= photo_update('darktheme4photo', '', 1, 100, '', '.darktheme4photo', "Mise à jour photo d'accueil 4")%>
@@ -127,18 +127,18 @@
 <!-- MOBILE -->
   <div class="hidden-sm hidden-md hidden-lg">
     <div class="banner-xs-darktheme">
-      <%= cl_image_tag @darktheme1photopath, alt: "Bijoux n° 1 de la page d'accueil", class: "mobile-image-1" %>
+      <%= cl_image_tag @darktheme1photopath, alt: "Bague en céramique décor au platine", class: "mobile-image-1" %>
        <div class="plain-text">
         <% article_display("accueil-top-left", "horizontal") %>
         <%= @markdown.html_safe %>
       </div>
-      <div class="photo3"><%= cl_image_tag @darktheme2photopath, alt: "Bijoux n° 2 de la page d'accueil", class: "mobile-image-2"%></div>
-      <div class="photo4"><%= cl_image_tag @darktheme3photopath, alt: "Bijoux n° 3 de la page d'accueil", class: "mobile-image-3"%></div>
+      <div class="photo3"><%= cl_image_tag @darktheme2photopath, alt: "Bague en céramique avec émail vert", class: "mobile-image-2"%></div>
+      <div class="photo4"><%= cl_image_tag @darktheme3photopath, alt: "Boucles d'oreilles en céramiques, attaches en argent", class: "mobile-image-3"%></div>
        <div class="plain-text">
         <% article_display("accueil-bottom-right", "horizontal") %>
         <%= @markdown.html_safe %>
       </div>
-      <%= cl_image_tag @darktheme4photopath, alt: "Bijoux n° 4 de la page d'accueil", class: "mobile-image-4"%>
+      <%= cl_image_tag @darktheme4photopath, alt: "Collier en céramique avec décor au platine", class: "mobile-image-4"%>
       <div class="plain-text">
         <% article_display("accueil-final", "vertical") %>
         <%= @markdown.html_safe %>
@@ -148,17 +148,42 @@
 
 <% content_for(:after_js) do %>
   <script type="application/ld+json">
-  {
+    {
     "@context": "http://schema.org",
     "@type": "ArtGallery",
+    "image": ["<%=request.original_url%><%= image_path ENV['HOMEPIC']%>"],
+    "@id": "<%=request.original_url%>",
     "name": "Les bijoux en céramique de Fabienne Jacob",
-    "description": "Online craft store",
-    "openingHours": "Mo-Fr 09:00-18:00",
-    "telephone": "<%= ENV['TELEPHONE']%>",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Keraudran",
+      "addressLocality": "PLOEMEL",
+      "addressRegion": "Morbihan",
+      "postalCode": "56400",
+      "addressCountry": "FR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": <%= ENV['LAT'].to_f %>,
+      "longitude": <%= ENV['LAT'].to_f %>
+    },
     "url": "<%=request.original_url%>",
-    "image": "<%=request.original_url%><%= image_path ENV['HOMEPIC']%>",
-    "address":"<%= ENV['ADDRESS'].gsub(/[+]/, ' ')%>",
-    "priceRange":"20€ à 800€"
+    "telephone": "+33699249538",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "10:00",
+        "closes": "17:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Saturday","Sunday"],
+        "opens": "closed",
+        "closes": "closed"
+      }
+    ],
+   "priceRange":"20€ à 800€"
   }
   </script>
 <% end %>

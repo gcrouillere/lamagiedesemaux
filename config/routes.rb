@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get '/temoignages', to: 'pages#temoignages'
   get '/confirmation', to: 'pages#confirmation'
   get '/agenda', to: 'pages#agenda'
+  get '/sites_partenaires', to: 'pages#sites_partenaires'
   get '/info', to: 'pages#info'
   get '/contact', to: 'pages#contact'
   get '/cgv', to: 'pages#cgv'

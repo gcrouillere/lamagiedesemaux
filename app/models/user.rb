@@ -34,6 +34,9 @@ class User < ApplicationRecord
   has_attachment :agenda5photo
   has_attachment :agenda6photo
   has_attachment :agenda7photo
+  has_attachment :partenaires1photo
+  has_attachment :partenaires2photo
+  has_attachment :partenaires3photo
 
   def display_name
     return self.email

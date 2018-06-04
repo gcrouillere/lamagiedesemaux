@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home, :confirmation, :info, :contact, :google906057532e2dbb7e, :robots, :legal, :cgv, :temoignages, :agenda]
+  skip_before_action :authenticate_user!, only: [:home, :confirmation, :info, :contact, :google906057532e2dbb7e, :robots, :legal, :cgv, :temoignages, :agenda, :sites_partenaires]
 
   def home
     @dev_redirection = "https://www.creermonecommerce.fr/"
@@ -19,6 +19,10 @@ class PagesController < ApplicationController
     @article = Article.new
     @articles = Article.where(page: "temoignages").order(created_at: :desc)
     @dev_redirection = "https://www.creermonecommerce.fr/product_claim_details"
+  end
+
+  def sites_partenaires
+    @dev_redirection = "https://www.creermonecommerce.fr"
   end
 
   def agenda

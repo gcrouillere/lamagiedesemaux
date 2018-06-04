@@ -1,0 +1,76 @@
+<% content_for(:description) do %>
+  Fabienne Jacob vous propose une sélection de sites et de découvertes liés à son univers.
+<% end %>
+<% content_for(:title_tag) do %>
+  Découvrez des sites et des curiosités proposés par Fabienne Jacob
+<% end %>
+
+<%= render 'shared/partenaires_pics' %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 partenaires-bloc1">
+      <h1 class="partenaires-header">Sélection de sites à découvrir</h1>
+      <% if user_signed_in? && current_user.admin %>
+        <% article_typing("partenaires", "vertical", "markdown1", "live-text1", "input1") %>
+        <% @markdown = @markdown1 %>
+        <%= render 'shared/articletyping' %>
+      <% else %>
+        <div id="live-text">
+          <% article_display("partenaires", "vertical") %>
+          <%= @markdown.html_safe %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-xs-12 partenaires-bloc2">
+      <h2 class="partenaires-header">Découvrez les curiosités proposées par Fabienne Jacob</h1>
+      <div class="col-xs-12 col-sm-6">
+        <% if user_signed_in? && current_user.admin %>
+          <% article_typing("curiosites", "vertical", "markdown2", "live-text2", "input2") %>
+          <% @markdown = @markdown2 %>
+          <%= render 'shared/articletyping' %>
+        <% else %>
+          <div id="live-text">
+            <% article_display("curiosites", "vertical") %>
+            <%= @markdown.html_safe %>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-xs-12 col-sm-6 bloc2-photos">
+        <div class="partenaires-photo partenaires-photo-1">
+          <%= photo_update('partenaires1photo', 100, '', '', 30, '.partenaire-page-photo-1', "Mise à jour photo 1")%>
+          <style>
+            .partenaires-photo-1 {
+              background-image: url(<%= cl_image_path @partenaires1photo, quality: "auto" %>);
+              background-size: cover;
+              background-position-y: center;
+              background-position-x: center;
+            }
+          </style>
+        </div>
+        <div class="partenaires-photo partenaires-photo-2">
+          <%= photo_update('partenaires2photo', 100, '', '', 30, '.partenaire-page-photo-2', "Mise à jour photo 2")%>
+          <style>
+            .partenaires-photo-2 {
+              background-image: url(<%= cl_image_path @partenaires2photo, quality: "auto" %>);
+              background-size: cover;
+              background-position-y: center;
+              background-position-x: center;
+            }
+          </style>
+        </div>
+        <div class="partenaires-photo partenaires-photo-3">
+          <%= photo_update('partenaires3photo', 100, '', '', 30, '.partenaire-page-photo-3', "Mise à jour photo 3")%>
+          <style>
+            .partenaires-photo-3 {
+              background-image: url(<%= cl_image_path @partenaires3photo, quality: "auto" %>);
+              background-size: cover;
+              background-position-y: center;
+              background-position-x: center;
+            }
+          </style>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

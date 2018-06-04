@@ -1,0 +1,14 @@
+<% @partenaires1photo = image_path ENV['HOMEPIC'] %>
+<% @partenaires2photo = image_path ENV['HOMEPIC'] %>
+<% @partenaires3photo = image_path ENV['HOMEPIC'] %>
+<% if @admin %>
+  <% if  @admin.partenaires1photo.present? %>
+    <% @partenaires1photo = cl_image_path @admin.partenaires1photo.path %>
+  <% end %>
+  <% if  @admin.partenaires2photo.present? %>
+    <% @partenaires2photo = cl_image_path @admin.partenaires2photo.path %>
+  <% end %>
+  <% if  @admin.partenaires3photo.present? %>
+    <% @partenaires3photo = cl_image_path @admin.partenaires3photo.path %>
+  <% end %>
+<% end %>

@@ -1,0 +1,41 @@
+.partenaires-bloc1 {
+  label {
+    color: white;
+  }
+  textarea {
+    min-height: 200px;
+  }
+  p {
+    font-weight: 100;
+  }
+}
+
+.partenaires-bloc2 {
+  margin-bottom: 30px;
+  p {
+    font-weight: 100;
+  }
+  label {
+    color: white;
+  }
+  textarea {
+    min-height: 200px;
+  }
+  .bloc2-photos {
+    .partenaires-photo {
+      height: 300px;
+      width: 100%;
+      margin-top: 22px;
+      position: relative;
+    }
+  }
+}
+
+.partenaires-header {
+  font-size: 35px;
+  margin: 30px 0 20px 0 !important;
+  background: white;
+  color: black !important;
+  box-shadow: 5px 5px 0px $primary;
+  padding: 5px;
+}

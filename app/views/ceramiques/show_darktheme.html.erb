@@ -189,17 +189,29 @@ Acheter en ligne: <%= @ceramique.name.capitalize %>, de Fabienne Jacob. Prix : <
 <% content_for(:after_js) do %>
   <script type="application/ld+json">
   {
-    "@context": "http://schema.org",
+    "@context": "http://schema.org/",
     "@type": "Product",
     "name": "<%=@ceramique.name.capitalize%>",
+    "image": [
+      "<%=cl_image_path @ceramique.photos[0].path%>"
+     ],
     "description": "<%=@ceramique.description%>",
+    "brand": {
+      "@type": "Thing",
+      "name": "<%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>"
+    },
     "offers": {
       "@type": "Offer",
+      "priceCurrency": "EUR",
       "price": "<%= humanized_money(@ceramique.price)%>",
-      "priceCurrency": "€"
-    },
-    "url": "<%=request.original_url%>",
-    "image": "<%=cl_image_path @ceramique.photos[0].path%>"
+      "priceValidUntil": "2020-12-12",
+      "itemCondition": "http://schema.org/UsedCondition",
+      "availability": "http://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "<%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>"
+      }
+    }
   }
   </script>
   <script
