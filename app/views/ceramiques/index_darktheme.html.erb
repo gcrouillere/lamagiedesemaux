@@ -210,7 +210,7 @@
     "image": <%= raw @ceramiques.map {|ceramique| cl_image_path ceramique.photos[0].path}.to_json %>,
     "brand": {
       "@type": "Thing",
-      "name": "<%="#{ENV['LASTNAME'].capitalize}"%>"
+      "name": "<%="#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>"
     },
     "offers": {
       "@type": "AggregateOffer",
