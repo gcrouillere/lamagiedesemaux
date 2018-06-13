@@ -1,6 +1,9 @@
 .h1-temoignage {
   font-size: 35px;
   margin: 30px 0 10px 0 !important;
+  @media all and (max-width: 800px) {
+    margin: 10px 0 10px 0 !important;
+  }
   background: white;
   color: black !important;
   box-shadow: 5px 5px 0px $primary;
@@ -140,6 +143,14 @@
     margin-left: 20px;
     #live-text-temoignages {
       width: 100%;
+    }
+  }
+}
+@media all and (max-width: 700px) {
+  .temoignage-container {
+    padding: 0 10px;
+    h1 {
+      font-size: 30px;
     }
   }
 }

@@ -9,11 +9,14 @@
   }
   h1 {
     font-size: 30px;
-    margin: 0px !important;
+    margin: 0px 0px 30px 0px !important;
     background: white;
     color: black !important;
     box-shadow: 5px 5px 0px $primary;
     padding: 5px;
+  }
+  h2 {
+    font-size: 28px;
   }
 }
 
@@ -23,13 +26,19 @@
     text-align: justify;
     font-weight: 100;
   }
-  h2 {
+  h2:first-of-type {
     font-size: 30px;
     margin: 0px !important;
     background: white;
     color: black !important;
     box-shadow: 5px 5px 0px $primary;
     padding: 5px;
+  }
+  h1 {
+    margin-left: 0px !important;
+  }
+  h2 {
+    font-size: 28px;
   }
   label {
     color: white;
@@ -85,6 +94,7 @@
 @media all and (max-width: 600px) {
   .agenda-text, .agenda-next-show {
     padding: 0 10px !important;
+    margin-bottom: 20px;
   }
   .agendaphoto1 {
     width: 98%;

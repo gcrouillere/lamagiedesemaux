@@ -18,6 +18,12 @@
   h1 {
    box-shadow: 5px 5px 0px $primary;
   }
+  @media all and (max-width: 800px) {
+    h1 {
+      width: 115%;
+      text-align: center;
+    }
+  }
   h2 {
    box-shadow: 5px 5px 0px grey;
   }
@@ -101,46 +107,30 @@
           align-items: center;
           position: relative;
         }
-        .home-links {
-          display: flex;
-          flex-direction: column;
-          position: relative;
-          top: -20%;
-          a {
-            text-align: center;
-              background: white;
-              color: #171717;
-              padding: 10px;
-              font-size: 19px;
-              margin: 0 0 13px 0;
-              border: 3px solid transparent;
-              transition: all ease 0.2s;
-              &:hover {
-                background: transparent;
-                border: 3px solid white;
-                color: white;
-                box-shadow: 5px 5px 0px $primary;
-              }
-          }
-          @media all and (max-width: 850px) and (min-width: 600px) {
-            a {
-              margin-right: 40px;
-              font-size: 13px;
-            }
-          }
-        }
         .photo-background-3 {
           width: 200px;
-          height: 58%;
+          height: 50%;
           box-shadow: -10px -10px 0px #59BEDF;
           position: relative;
-          bottom: -10%;
+          bottom: 7%;
+          right: -8%;
         }
       }
+      .last-right-bloc {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        position: relative;
+        right: -25px;
+       @media all and (max-width: 800px) {
+        justify-content: center;
+       }
+        width: 50%;
+      }
       .right-text {
-        width: 33%;
+        width: 80%;
         padding-left: 20px;
-        margin: auto;
         .plain-text {
           width: 90%;
           margin: 0 auto;
@@ -161,6 +151,42 @@
   label {
     color: white;
   }
+}
+
+.home-links {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  a {
+    text-align: center;
+      background: white;
+      color: #171717;
+      padding: 10px;
+      font-size: 19px;
+      margin: 0 0 13px 0;
+      border: 3px solid transparent;
+      transition: all ease 0.2s;
+      &:hover {
+        background: transparent;
+        border: 3px solid white;
+        color: white;
+        box-shadow: 5px 5px 0px $primary;
+      }
+  }
+  @media all and (max-width: 850px) and (min-width: 600px) {
+    a {
+      margin-right: 0px;
+      font-size: 13px;
+    }
+  }
+}
+
+.home-links-right {
+
+}
+
+.home-links-left {
+  top: -20%;
 }
 
 .jumbotron-darktheme .banner-xs-darktheme {
@@ -199,9 +225,13 @@
   }
   h1 {
    box-shadow: 5px 5px 0px $primary;
+   text-align: left;
+   font-size: 25px;
   }
   h2 {
    box-shadow: 5px 5px 0px grey;
+   text-align: left;
+   font-size: 25px;
   }
   .photos3and4 {
     width: 100%;

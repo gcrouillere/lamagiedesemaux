@@ -5,5 +5,5 @@ class Category < ApplicationRecord
   :foreign_key => "category_a_id",
   :association_foreign_key => "category_b_id")
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
 end

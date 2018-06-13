@@ -8,12 +8,28 @@
   p {
     font-weight: 100;
   }
+  @media all and (max-width: 800px) {
+    h1, h2 {
+      font-size: 30px;
+    }
+  }
 }
 
 .partenaires-bloc2 {
   margin-bottom: 30px;
+  margin-top: 20px;
   p {
     font-weight: 100;
+  }
+  #live-text {
+    h2 {
+      margin: 11px 0;
+    }
+  }
+  @media all and (max-width: 800px) {
+    h1, h2 {
+      font-size: 30px;
+    }
   }
   label {
     color: white;
@@ -34,6 +50,10 @@
 .partenaires-header {
   font-size: 35px;
   margin: 30px 0 20px 0 !important;
+  @media all and (max-width: 800px) {
+    margin: 10px 0 20px 0 !important;
+    font-size: 30px;
+  }
   background: white;
   color: black !important;
   box-shadow: 5px 5px 0px $primary;

@@ -14,9 +14,9 @@ class Amountcalculation
       total_weight += basketline.ceramique.weight * basketline.quantity
     end
     if user
-      if user.country == "FR" && total_weight > 0 && total_weight < 250
-        fr_shipping_cost(amount_ceramique, total_weight, "lettre")
-      elsif user.country == "FR" && total_weight >= 250
+      if user.country == "FR" && total_weight > 0 && total_weight < 200
+        return {total: amount_ceramique, port: (3.72).to_money, weight: total_weight}
+      elsif user.country == "FR" && total_weight >= 200
         fr_shipping_cost(amount_ceramique, total_weight, "colis")
       elsif total_weight > 0
         shipping_cost = ShippingCategory.where(alpha2: user.country).where("weight >= ?", total_weight).min.price_cents.to_f / 100
@@ -25,9 +25,9 @@ class Amountcalculation
         {total: 0, port: 0, weight: 0}
       end
     else
-      if total_weight > 0 && total_weight < 250
+      if total_weight > 0 && total_weight < 200
         fr_shipping_cost(amount_ceramique, total_weight, "lettre")
-      elsif total_weight >= 250
+      elsif total_weight >= 200
         fr_shipping_cost(amount_ceramique, total_weight, "colis")
       else
         {total: 0, port: 0, weight: 0}

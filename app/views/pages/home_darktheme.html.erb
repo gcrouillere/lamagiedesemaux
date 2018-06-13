@@ -86,7 +86,7 @@
               </style>
             </div>
             <div class="bottom-bloc">
-              <div class="home-links">
+              <div class="home-links home-links-left">
                 <%= link_to "VOIR LES BOUCLES D'OREILLES", ceramiques_path(categories: ["boucle d'oreille", "boucles d'oreilles", "boucles d'oreille", "boucle d'oreilles"]), title: "découvrir les boucles d'oreilles en vente sur le site" %>
                 <%= link_to "VOIR LES BAGUES", ceramiques_path(categories: ["bague", "bagues"]), title: "découvrir les bagues en vente sur le site" %>
                 <%= link_to "VOIR LES COLLIERS", ceramiques_path(categories: ["collier", "colliers"]), title: "découvrir les colliers en vente sur le site" %>
@@ -104,6 +104,7 @@
               </div>
             </div>
           </div>
+          <div class="last-right-bloc">
           <div class="right-text">
             <% if user_signed_in? && current_user.admin %>
               <% article_typing("accueil-final", "vertical", "markdown3", "live-text3", "input3") %>
@@ -117,6 +118,12 @@
                 <%= @markdown.html_safe %>
               </div>
             <% end %>
+          </div>
+           <div class="home-links home-links-right">
+            <%= link_to "VOIR LES BRACELETS", ceramiques_path(categories: ["bracelets", "bracelet"]), title: "découvrir les bracelets en vente sur le site" %>
+            <%= link_to "VOIR LES BROCHES", ceramiques_path(categories: ["broche", "broches"]), title: "découvrir les broches en vente sur le site" %>
+            <%= link_to "VOIR LES CERAMIQUES", ceramiques_path(categories: ["céramique", "céramiques"]), title: "découvrir les céramiques en vente sur le site" %>
+          </div>
           </div>
         </div>
       </div>

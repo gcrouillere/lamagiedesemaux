@@ -35,6 +35,13 @@ $(document).ready(function() {
       $('#live-text5').html(html);
   });
 
+  $('#input6').keyup(function() {
+    var converter = new showdown.Converter(),
+    text = $(this).val(),
+    html = converter.makeHtml(text);
+      $('#live-text6').html(html);
+  });
+
   $('#article_content').keyup(function() {
     var converter = new showdown.Converter(),
     text = $(this).val(),

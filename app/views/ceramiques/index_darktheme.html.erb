@@ -24,7 +24,7 @@
       <%= render 'shared/general_info_bubble_darktheme' %>
     </div>
     <div class="h1-index mobile hidden-md hidden-lg">
-      <h1>Bijoux: les pièces uniques en vente sur le site</h1>
+      <h1>Les pièces uniques en céramique en vente sur le site</h1>
       <hr>
     </div>
   <% elsif params[:offer].present? %>
@@ -34,7 +34,7 @@
     </div>
   <% else %>
     <div class="h1-index hidden-xs hidden-sm">
-      <h1>Bijoux: les pièces uniques en vente sur le site</h1>
+      <h1>Les pièces uniques en céramique en vente sur le site</h1>
       <hr>
     </div>
     <div class="h1-index mobile hidden-md hidden-lg">
@@ -214,8 +214,8 @@
     },
     "offers": {
       "@type": "AggregateOffer",
-      "lowPrice": "<%= humanized_money(@ceramiques.minimum(:price_cents) / 100) %>",
-      "highPrice": "<%= humanized_money(@ceramiques.maximum(:price_cents) / 100) %>",
+      "lowPrice": "<%= humanized_money((@ceramiques.minimum(:price_cents) || 0)/ 100) %>",
+      "highPrice": "<%= humanized_money((@ceramiques.maximum(:price_cents) || 0)/ 100) %>",
       "priceCurrency": "EUR"
     }
   }
