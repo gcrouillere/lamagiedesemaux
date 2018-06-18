@@ -22,7 +22,8 @@ class ApplicationController < ActionController::Base
   end
 
   def uniq_categories
-    @uniq_categories = Category.where(id: Ceramique.all.map {|ceramique| ceramique.category_id}.uniq)
+    @uniq_categories = Category.joins(:ceramiques).where("ceramiques.id IS NOT NULL").uniq
+    @uniq_subcategories = Subcategory.joins(:ceramiques).where("ceramiques.id IS NOT NULL").uniq
   end
 
   #DEVISE methods:

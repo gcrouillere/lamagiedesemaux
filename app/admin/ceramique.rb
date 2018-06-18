@@ -1,5 +1,5 @@
 ActiveAdmin.register Ceramique, as: 'Produits' do
-  permit_params :name, :description, :stock, :weight, :category_id, :price_cents, :position, photos: []
+  permit_params :name, :description, :stock, :weight, :price_cents, :position, :category_id, :subcategory_id, photos: []
   menu priority: 1
   config.filters = false
 
@@ -10,8 +10,8 @@ ActiveAdmin.register Ceramique, as: 'Produits' do
     column :description
     column :stock
     column :weight
-    column "Catégorie" do |ceramique|
-      ceramique.category.name
+    column "Catégories" do |ceramique|
+      "#{ceramique.subcategory.category.name} - #{ceramique.subcategory.name}"
     end
     column :price_cents
     column "Nb de ventes - CA", :sortable => 'ceramique.basketlines.sum(:quantity)* ceramique.price' do |ceramique|
@@ -27,7 +27,7 @@ ActiveAdmin.register Ceramique, as: 'Produits' do
     f.input :description
     f.input :stock
     f.input :weight, :hint => "Poids en grammes"
-    f.input :category
+    f.input :subcategory, :as => :select, :collection => Subcategory.all.map{|subcategory| ["#{subcategory.category.name} - #{subcategory.name}", subcategory.id]}
     f.input :price_cents, :hint => "Prix en centimes d'euros. Ex: entrez 1200 pour un prix de 12 €"
     f.input :photos, :as => :formtastic_attachinary, :hint => "Sélectionnez les photos du produit. Maintenez Ctrl appuyé pour en sélectionner plusieurs."
   end
@@ -40,9 +40,6 @@ show do |ceramique|
     row :description
     row :stock
     row :weight
-    row "Categorie" do |ceramique|
-      ceramique.category.name
-    end
     row :price_cents
     row :images do |ceramique|
       ceramique.photos.each do |photo|
@@ -57,9 +54,7 @@ show do |ceramique|
     column :description
     column :stock
     column :weight
-    column "Catégorie" do |ceramique|
-      ceramique.category.name
-    end
+    column :category
     column :price_cents
     column "Nb de ventes - CA" do |ceramique|
       total = 0
@@ -78,8 +73,9 @@ show do |ceramique|
 
   def create
     super do |format|
+      resource.update(category: resource.subcategory.category)
       if resource.valid?
-        flash[:notice] = "Produit mis à jour"
+        flash[:notice] = "Produit créé"
         redirect_to admin_produits_path and return
       else
         flash[:alert] = "Certains champs ont été oubliés ou ne sont pas correctement remplis. Voir ci-dessous."

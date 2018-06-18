@@ -1,6 +1,6 @@
-class Category < ApplicationRecord
+class Subcategory < ApplicationRecord
+  belongs_to :category
   has_many :ceramiques
-  has_many :subcategories
 
   validates :name, presence: true
 end

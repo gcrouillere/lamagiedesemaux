@@ -87,9 +87,9 @@
             </div>
             <div class="bottom-bloc">
               <div class="home-links home-links-left">
-                <%= link_to "VOIR LES BOUCLES D'OREILLES", ceramiques_path(categories: ["boucle d'oreille", "boucles d'oreilles", "boucles d'oreille", "boucle d'oreilles"]), title: "découvrir les boucles d'oreilles en vente sur le site" %>
-                <%= link_to "VOIR LES BAGUES", ceramiques_path(categories: ["bague", "bagues"]), title: "découvrir les bagues en vente sur le site" %>
-                <%= link_to "VOIR LES COLLIERS", ceramiques_path(categories: ["collier", "colliers"]), title: "découvrir les colliers en vente sur le site" %>
+                <%= link_to "VOIR LES BOUCLES D'OREILLES", ceramiques_path(categories: Category.where("name ILIKE ?", "%oreille%").map(&:id)), title: "découvrir les boucles d'oreilles en vente sur le site" %>
+                <%= link_to "VOIR LES BAGUES", ceramiques_path(categories: Category.where("name ILIKE ?", "%bague%").map(&:id)), title: "découvrir les bagues en vente sur le site" %>
+                <%= link_to "VOIR LES COLLIERS", ceramiques_path(categories: Category.where("name ILIKE ?", "%collier%").map(&:id)), title: "découvrir les colliers en vente sur le site" %>
               </div>
               <div class="photo-background-3">
                 <%= photo_update('darktheme4photo', '', 1, 100, '', '.darktheme4photo', "Mise à jour photo d'accueil 4")%>
@@ -120,9 +120,9 @@
             <% end %>
           </div>
            <div class="home-links home-links-right">
-            <%= link_to "VOIR LES BRACELETS", ceramiques_path(categories: ["bracelets", "bracelet"]), title: "découvrir les bracelets en vente sur le site" %>
-            <%= link_to "VOIR LES BROCHES", ceramiques_path(categories: ["broche", "broches"]), title: "découvrir les broches en vente sur le site" %>
-            <%= link_to "VOIR LES CERAMIQUES", ceramiques_path(categories: ["céramique", "céramiques"]), title: "découvrir les céramiques en vente sur le site" %>
+            <%= link_to "VOIR LES BRACELETS", ceramiques_path(categories: Category.where("name ILIKE ?", "%bracelet%").map(&:id)), title: "découvrir les bracelets en vente sur le site" %>
+            <%= link_to "VOIR LES BROCHES", ceramiques_path(categories: Category.where("name ILIKE ?", "%broche%").map(&:id)), title: "découvrir les broches en vente sur le site" %>
+            <%= link_to "VOIR LES CERAMIQUES", ceramiques_path(categories: Category.where("name ILIKE ?", "%céramique%").map(&:id)), title: "découvrir les céramiques en vente sur le site" %>
           </div>
           </div>
         </div>

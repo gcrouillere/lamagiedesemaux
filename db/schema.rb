@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_11_100921) do
+ActiveRecord::Schema.define(version: 2018_06_18_101527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 2018_06_11_100921) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "title"
     t.string "page"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
@@ -90,11 +89,6 @@ ActiveRecord::Schema.define(version: 2018_06_11_100921) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "category_connections", id: false, force: :cascade do |t|
-    t.integer "category_a_id", null: false
-    t.integer "category_b_id", null: false
-  end
-
   create_table "ceramiques", id: :serial, force: :cascade do |t|
     t.string "name", null: false
     t.text "description", null: false
@@ -107,8 +101,10 @@ ActiveRecord::Schema.define(version: 2018_06_11_100921) do
     t.integer "weight"
     t.integer "offer_id"
     t.integer "position"
+    t.bigint "subcategory_id"
     t.index ["category_id"], name: "index_ceramiques_on_category_id"
     t.index ["offer_id"], name: "index_ceramiques_on_offer_id"
+    t.index ["subcategory_id"], name: "index_ceramiques_on_subcategory_id"
   end
 
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
@@ -168,6 +164,14 @@ ActiveRecord::Schema.define(version: 2018_06_11_100921) do
     t.integer "price_cents", default: 0, null: false
   end
 
+  create_table "subcategories", force: :cascade do |t|
+    t.string "name"
+    t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_subcategories_on_category_id"
+  end
+
   create_table "themes", id: :serial, force: :cascade do |t|
     t.string "name", null: false
     t.boolean "active", default: false, null: false
@@ -214,4 +218,5 @@ ActiveRecord::Schema.define(version: 2018_06_11_100921) do
   add_foreign_key "lessons", "users"
   add_foreign_key "orders", "lessons"
   add_foreign_key "orders", "users"
+  add_foreign_key "subcategories", "categories"
 end

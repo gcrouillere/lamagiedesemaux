@@ -59,26 +59,26 @@ ActiveAdmin.register Order do
 
     def categories_data(duration)
       categories_sales_data = {}
-      Category.all.each do |category|
+      Subcategory.all.each do |subcategory|
         sum = 0
-        category.ceramiques.each do |ceramique|
+        subcategory.ceramiques.each do |ceramique|
           ceramique.offer ? discount = ceramique.offer.discount : discount = 0
 
           addition = Basketline.where("basketlines.updated_at >= ? AND ceramique_id = ?", Time.now - duration * 3600 * 24, ceramique.id)
             .left_outer_joins(:order).where("orders.state = ?", "paid").sum(:quantity) * ceramique.price * (1 - discount)
 
           if addition > 0
-            categories_sales_data[category.id.to_s.to_sym] = {}
-            categories_sales_data[category.id.to_s.to_sym][ceramique.id.to_s.to_sym] = {}
-            categories_sales_data[category.id.to_s.to_sym][ceramique.id.to_s.to_sym][:"ceramique_sum"] = addition
-            categories_sales_data[category.id.to_s.to_sym][ceramique.id.to_s.to_sym][:"ceramique_name"] = ceramique.name
-            categories_sales_data[category.id.to_s.to_sym][ceramique.id.to_s.to_sym][:"ceramique_id"] = ceramique.id
+            categories_sales_data[subcategory.id.to_s.to_sym] = {}
+            categories_sales_data[subcategory.id.to_s.to_sym][ceramique.id.to_s.to_sym] = {}
+            categories_sales_data[subcategory.id.to_s.to_sym][ceramique.id.to_s.to_sym][:"ceramique_sum"] = addition
+            categories_sales_data[subcategory.id.to_s.to_sym][ceramique.id.to_s.to_sym][:"ceramique_name"] = ceramique.name
+            categories_sales_data[subcategory.id.to_s.to_sym][ceramique.id.to_s.to_sym][:"ceramique_id"] = ceramique.id
           end
 
           sum += addition
         end
         if sum > 0
-          categories_sales_data[category.id.to_s.to_sym][:"sum"] = sum
+          categories_sales_data[subcategory.id.to_s.to_sym][:"sum"] = sum
         end
       end
       categories_sales_data

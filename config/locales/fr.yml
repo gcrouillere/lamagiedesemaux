@@ -41,6 +41,9 @@ fr:
       category:
         one: "Catégories"
         other: "Catégories"
+      subcategory:
+        one: "Sous-catégorie"
+        other: "Sous-catégories"
       calendarupdate: "Bloquage de période"
       lesson:
         one: "Réservation"
@@ -63,6 +66,8 @@ fr:
         price_cents: "Prix en cents d'€"
         weight: "Poids"
       category:
+        name: "Nom"
+      subcategory:
         name: "Nom"
       lesson:
         start: "Début de la réservation"

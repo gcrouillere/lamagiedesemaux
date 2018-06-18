@@ -3,14 +3,14 @@ class CeramiquesController < ApplicationController
 
   def index
     @dev_redirection = "https://www.creermonecommerce.fr/product_claim_details"
-    @ceramiques = Ceramique.all
     Offer.where(showcased: true).first ? (Offer.where(showcased: true).first.ceramiques.present? ? @front_offer = Offer.all.where(showcased: true).first : nil) : nil
     @front_offer ? @ceramiques_to_display_in_offer = Ceramique.all.where(offer: @front_offer) : nil
     clean_orders
+    @ceramiques = Ceramique.all
     if params[:all].present?
       @ceramiques
     else
-      filter_by_category if params[:categories].present?
+      filter_by_category if (params[:categories].present? || params[:subcategories].present?)
       filter_by_offer if params[:offer].present?
       filter_globally if params[:search].present?
       filter_by_price if params[:prix_max].present?
@@ -27,7 +27,7 @@ class CeramiquesController < ApplicationController
     @dev_redirection = "https://www.creermonecommerce.fr/produits"
     clean_orders
     @ceramique = Ceramique.find(params[:id])
-    @same_category_products = @ceramique.category.ceramiques - [@ceramique]
+    @same_category_products = Ceramique.where(subcategory: @ceramique.subcategory) - [Ceramique.find(@ceramique.id)]
     @twitter_url = request.original_url.to_query('url')
     render "show_#{@active_theme.name}"
   end
@@ -51,12 +51,10 @@ class CeramiquesController < ApplicationController
   end
 
   def filter_by_category
-    selected_categories = Category.where(id: params[:categories].map(&:to_i))
-    selected_categories += selected_categories.map {|category| category.categories }.flatten
-    categories_name = params[:categories].map {|category| "%#{category}%" }
-    selected_categories += Category.where('categories.name ILIKE ANY ( array[?] )', categories_name)
-
-    @ceramiques = @ceramiques.joins(:category).where(category: selected_categories)
+    ceramiques_ids = []
+    params["categories"].map(&:to_i).each {|id| ceramiques_ids << Ceramique.where(category: id).map(&:id)} if params["categories"]
+    params["subcategories"].map(&:to_i).each {|id| ceramiques_ids << Ceramique.where(subcategory: id).map(&:id)} if params["subcategories"]
+    @ceramiques = Ceramique.where(id: ceramiques_ids.flatten.uniq)
   end
 
   def filter_by_price

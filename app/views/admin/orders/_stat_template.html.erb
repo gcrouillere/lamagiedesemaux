@@ -13,7 +13,8 @@
       <% local_hash_category.each do |k, hash_value|%>
         <% if  hash_value[:"sum"] > 0 %>
           <div class="col-xs-50">
-            <p class="CA"><%= Category.find(k.to_s.to_i).name.capitalize %> : <%= hash_value[:"sum"] %> €</p>
+            <% subcategory = Subcategory.find(k.to_s.to_i) %>
+            <p class="CA"><%= subcategory.category.name.capitalize + " - " + subcategory.name.capitalize %> : <%= hash_value[:"sum"] %> €</p>
             <% hash_value.each do |ceramique_id, ceramique_data|%>
               <% if Ceramique.find_by_id(ceramique_id.to_s.to_i)%>
                 <% if ceramique_data[:"ceramique_sum"] > 0 %>

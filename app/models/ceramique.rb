@@ -9,6 +9,7 @@ class Ceramique < ApplicationRecord
   # friendly_id :slug_candidates, use: :slugged
 
   belongs_to :category
+  belongs_to :subcategory
   belongs_to :offer, required: false
   has_attachments :photos, maximum: 4, dependent: :destroy
   has_many :basketlines, dependent: :destroy
@@ -16,7 +17,6 @@ class Ceramique < ApplicationRecord
   monetize :price_cents
 
   validates :photos, presence: true
-  validates :category, presence: true
   validates :name, presence: true
   validates :weight, presence: true, numericality: { greater_than: 0, less_than: 30001 , only_integer: true, message: 'Le poids doit être compris entre 1 et 30 000 grammes. Pas d\'expédition Colissimo possible en dehors de cette plage.' }
   validates :stock, presence: true, numericality: { only_integer: true , message:'Doit être un entier'}
@@ -28,7 +28,8 @@ class Ceramique < ApplicationRecord
   #     [:name, category.name, "#{Ceramique.count + 1}"]
   #   ]
   # end
+
   def to_param
-    [id, name.parameterize, category.name.parameterize].join("-")
+    [id, name.parameterize, category.name].join("-")
   end
 end

@@ -169,12 +169,12 @@
         <div class="filter-category">
           <ul>
             <% @uniq_categories.each do |category| %>
-              <% category.categories.present? ? uniq_class = "with-sub-cat" : uniq_class = "no-sub_category" %>
+              <% category.subcategories.present? ? uniq_class = "with-sub-cat" : uniq_class = "no-sub_category" %>
               <li><label class="label-search <%= uniq_class %>"><input type="checkbox" name="categories[]" value="<%= category.id %>"><%= category.name.capitalize %></label></li>
-              <% if category.categories.present? %>
+              <% if category.subcategories.present? %>
                 <div class="sub-categories">
-                  <% category.categories.each do |category| %>
-                    <li><div class="square"></div><label class="subcategory label-search"><input type="checkbox" name="categories[]" value="<%= category.id %>"><%= category.name.capitalize %></label></li>
+                  <% category.subcategories.each do |category| %>
+                    <li><div class="square"></div><label class="subcategory label-search"><input type="checkbox" name="subcategories[]" value="<%= category.id %>"><%= category.name.capitalize %></label></li>
                   <% end %>
                 </div>
               <% end %>
