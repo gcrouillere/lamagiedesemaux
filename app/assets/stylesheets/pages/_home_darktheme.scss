@@ -17,6 +17,8 @@
   }
   h1 {
    box-shadow: 5px 5px 0px $primary;
+   text-align: center;
+   font-size: 36px !important;
   }
   @media all and (max-width: 800px) {
     h1 {
@@ -50,6 +52,7 @@
         top: calc(50% - 130px);
         width: 70%;
         text-align: justify;
+
       }
     }
   }
