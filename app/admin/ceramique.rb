@@ -92,6 +92,7 @@ show do |ceramique|
 
   def update
     super do |format|
+      resource.update(category: resource.subcategory.category)
       if resource.valid?
         flash[:notice] = "Produit mis à jour"
         redirect_to admin_produits_path and return

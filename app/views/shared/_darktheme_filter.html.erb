@@ -12,7 +12,9 @@
               <li><label class="label-search <%= uniq_class %>"><input type="checkbox" name="categories[]" value="<%= category.id %>"><%= category.name.capitalize %></label></li>
               <div class="sub-categories">
                 <% category.subcategories.each do |subcategory| %>
-                  <li><div class="square"></div><label class="subcategory label-search"><input type="checkbox" name="subcategories[]" value="<%= subcategory.id %>"><%= subcategory.name.capitalize %></label></li>
+                  <% if  Ceramique.where(subcategory: subcategory).present?%>
+                    <li><div class="square"></div><label class="subcategory label-search"><input type="checkbox" name="subcategories[]" value="<%= subcategory.id %>"><%= subcategory.name.capitalize %></label></li>
+                  <% end %>
                 <% end %>
               </div>
             <% end %>
