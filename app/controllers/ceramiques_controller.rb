@@ -55,7 +55,6 @@ class CeramiquesController < ApplicationController
     params["subcategories"].map(&:to_i).each {|id| ceramiques_ids << Ceramique.where(subcategory: id).map(&:id)} if params["subcategories"]
     params["categories"].map(&:to_i).each {|id| ceramiques_ids << Ceramique.where(category: id).map(&:id)} if params["categories"]
     @ceramiques = Ceramique.where(id: ceramiques_ids.flatten.uniq)
-    binding.pry
   end
 
   def filter_by_price
