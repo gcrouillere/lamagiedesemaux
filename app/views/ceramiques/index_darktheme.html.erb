@@ -214,8 +214,8 @@
     },
     "offers": {
       "@type": "AggregateOffer",
-      "lowPrice": "<%= humanized_money((@ceramiques.minimum(:price_cents) || 0)/ 100) %>",
-      "highPrice": "<%= humanized_money((@ceramiques.maximum(:price_cents) || 0)/ 100) %>",
+      "lowPrice": "<%= humanized_money((@ceramiques.map(&:price_cents).min || 0)/ 100) %>",
+      "highPrice": "<%= humanized_money((@ceramiques.map(&:price_cents).max || 0)/ 100) %>",
       "priceCurrency": "EUR"
     }
   }

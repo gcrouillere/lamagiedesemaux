@@ -15,7 +15,7 @@ class CeramiquesController < ApplicationController
       filter_globally if params[:search].present?
       filter_by_price if params[:prix_max].present?
     end
-    @ceramiques = Ceramique.where(id: @ceramiques.map(&:id)).order(position: :asc).order(updated_at: :desc)
+    final_order
     @ceramique_1 = @ceramiques.first
     @twitter_url = request.original_url.to_query('url')
     @facebookid = ""
@@ -51,10 +51,11 @@ class CeramiquesController < ApplicationController
   end
 
   def filter_by_category
-    ceramiques_ids = []
-    params["subcategories"].map(&:to_i).each {|id| ceramiques_ids << Ceramique.where(subcategory: id).map(&:id)} if params["subcategories"]
-    params["categories"].map(&:to_i).each {|id| ceramiques_ids << Ceramique.where(category: id).map(&:id)} if params["categories"]
-    @ceramiques = Ceramique.where(id: ceramiques_ids.flatten.uniq)
+    @ceramiques_ids_by_category = []
+    params["subcategories"].map(&:to_i).each {|id| @ceramiques_ids_by_category << Ceramique.where(subcategory: id).map(&:id)} if params["subcategories"]
+    params["categories"].map(&:to_i).each {|id| @ceramiques_ids_by_category << Ceramique.where(category: id).map(&:id)} if params["categories"]
+    @ceramiques_ids_by_category = @ceramiques_ids_by_category.flatten.uniq
+    @ceramiques = Ceramique.where(id: @ceramiques_ids_by_category)
   end
 
   def filter_by_price
@@ -70,6 +71,19 @@ class CeramiquesController < ApplicationController
     raw_json = Ceramique.raw_search(params[:search])
     ceramiques_ids = raw_json["hits"].map {|hit| hit["objectID"].to_i}
     @ceramiques = @ceramiques.where(id: ceramiques_ids)
+  end
+
+  def final_order
+    if params[:categories].present? || params[:subcategories].present?
+      ordered_ids = @ceramiques_ids_by_category & @ceramiques.map(&:id)
+      if ordered_ids.size > 0
+        @ceramiques = Ceramique.where(id: ordered_ids).order(%Q{case id #{ordered_ids.map.each_with_index { |id, i| "when #{id} then #{i}" }.join(' ')} end })
+      else
+        @ceramiques = Ceramique.where(id: ordered_ids)
+      end
+    else
+      @ceramiques = Ceramique.where(id: @ceramiques.map(&:id)).order(position: :asc).order(updated_at: :desc)
+    end
   end
 end
 
