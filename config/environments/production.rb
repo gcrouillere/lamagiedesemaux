@@ -46,7 +46,7 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = false
+  config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -103,9 +103,9 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
 
-  Dynopoker.configure do |config|
-    config.address = 'https://'+ENV['APPNAME']+'.herokuapp.com'
-    config.poke_frequency = 600 # default is 1800s (30min)
-  end
+  # Dynopoker.configure do |config|
+  #   config.address = 'https://'+ENV['APPNAME']+'.herokuapp.com'
+  #   config.poke_frequency = 600 # default is 1800s (30min)
+  # end
 
 end
