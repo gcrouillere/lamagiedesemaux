@@ -5,41 +5,41 @@
   xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://<%=ENV['APPNAME']%>.herokuapp.com</loc>
+    <loc>https://www.jacobceramique.fr</loc>
     <image:image>
-      <image:loc>https://<%=ENV['APPNAME']%>.herokuapp.com<%= image_path ENV['HOMEPIC']%></image:loc>
+      <image:loc>https://www.jacobceramique.fr<%= image_path ENV['HOMEPIC']%></image:loc>
     </image:image>
     <lastmod>2018-01-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://<%=ENV['APPNAME']%>.herokuapp.com/ceramiques</loc>
+    <loc>https://www.jacobceramique.fr/ceramiques</loc>
     <lastmod>2018-01-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://<%=ENV['APPNAME']%>.herokuapp.com/agenda</loc>
+    <loc>https://www.jacobceramique.fr/agenda</loc>
     <lastmod>2018-01-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://<%=ENV['APPNAME']%>.herokuapp.com/contact</loc>
+    <loc>https://www.jacobceramique.fr/contact</loc>
     <lastmod>2018-01-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://<%=ENV['APPNAME']%>.herokuapp.com/temoignages</loc>
+    <loc>https://www.jacobceramique.fr/temoignages</loc>
     <lastmod>2018-01-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <% @ceramiques.each do |ceramique| %>
     <url>
-      <loc>https://<%=ENV['APPNAME']%>.herokuapp.com/<%=ENV['MODEL']%>/<%= "#{ceramique.id}-#{ceramique.name.parameterize}-#{ceramique.category.name.parameterize}" %></loc>
+      <loc>https://www.jacobceramique.fr/<%=ENV['MODEL']%>/<%= "#{ceramique.id}-#{ceramique.name.parameterize}-#{ceramique.category.name.parameterize}" %></loc>
       <lastmod><%= ceramique.updated_at.strftime("%Y-%m-%d") %></lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
