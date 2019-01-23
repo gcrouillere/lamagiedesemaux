@@ -1,6 +1,10 @@
 #footer {
-  background-color: $footer;
+  background-color: #171717;
+  border-top: 1px solid black;
   margin-top: 20px;
+  @media all and (max-width: 768px) {
+    margin-top: 0px !important;
+  }
   display: flex;
   .contact-default {
     width: 25%;
@@ -13,13 +17,20 @@
       display: flex;
       align-items: center;
       margin-left: 25px;
+      position: relative;
       i {
-        color: $primary;
+        color: white;
+        padding: 5px;
         margin-right: 10px;
         cursor: pointer;
+        transition: all ease 0.2s;
+        &:hover {
+          color: black;
+          background: white;
+        }
       }
       h6 {
-        color: $primary;
+        color: white;
         font-weight: 500;
         opacity: 0;
         transition: ease 0.2s;
@@ -38,7 +49,14 @@
       margin: 0 20px;
     }
     a {
-      font-weight: 100;
+      color: white;
+      font-weight: 400;
+      padding: 5px;
+      transition: all ease 0.2s;
+      &:hover {
+        color: #171717;
+        background: white;
+      }
     }
     .first-a {
       margin-bottom: 10px;
@@ -94,9 +112,12 @@ h6.visible {
     }
   }
   .mylink {
-    margin-right: 5px !important;
+    width: 100% !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 20px 0 !important;
     img {
-      margin-right: 10px;
+      margin-right: 0px;
     }
   }
 }

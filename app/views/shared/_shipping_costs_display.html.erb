@@ -5,29 +5,33 @@
       var port = <%= @port.to_f %>;
       var weight = <%= @weight %>;
       var urlRoot = window.location.origin;
+      var port = <%= @port.to_f %>;
 
-      $('.payment-form input, .payment-form-mobile input').on('click', function(event) {
+      $('.cost-details, .cost-details-mobile').attr("port-cost", port)
+      $('.cost-details, .cost-details-mobile').attr("code-check", 0)
+
+      $('.payment-form #take_away-checkbox, .payment-form-mobile #take_away-checkbox-mobile').on('click', function(event) {
         if ($('h3.total_amount').hasClass('take_away-checked')) {
+
           $('.shipping-cost').css({'visibility':'visible'});
           $('.total_amount').removeClass('take_away-checked')
-
           if ($(this).parent().parent().attr('class').includes('mobile')) {
             var country = $('#user_country_mobile').val();
           } else {
             var country = $('#user_country').val();
           }
 
-          if (country == "FR") {
-            updateDOMForFR(port, false)
-          } else {
-            var url_params = "?country=" + country + "&weight=" + weight
-            updateDOMWithShippingData(urlRoot, url_params, false)
-          }
+          var url_params = "?country=" + country + "&weight=" + weight
+          updateDOMWithShippingData(urlRoot, url_params, false)
 
         } else {
           $('.shipping-cost').css({'visibility':'hidden'});
           $('.total_amount').addClass('take_away-checked')
-          $('.total_amount').text('Montant total: '+ String(total).replace(".", ",") + " €")
+          discount = $('.cost-details, .cost-details-mobile').attr("code-check")
+          value = total * (1 - parseFloat(discount))
+          value = (Math.round(value * 100)/100).toFixed(2)
+          $('.cost-details, .cost-details-mobile').attr("port-cost", 0)
+          $('.total_amount').text(totalAmountPerLocale() + String(value).replace(".", ",") + " €")
         }
       });
 
@@ -41,30 +45,64 @@
       }
     });
 
+    $('#order_promo, #order_promo_mobile').on('input', function() {
+      userPromo = $('#order_promo').val()
+      userPromoMobile = $('#order_promo_mobile').val()
+      if (userPromo === "") { userPromo = userPromoMobile }
+      var url_params = "?code=" + userPromo
+      updatePriceWithPromoCode(urlRoot, url_params)
+    });
+
+    function totalAmountPerLocale() {
+      if (window.location.href.includes("=en")) {
+        return "Total amount: "
+      } else {
+        return "Montant total : "
+      }
+    }
+
+    function savingPerLocale() {
+      if (window.location.href.includes("=en")) {
+        return " % on total amount"
+      } else {
+        return " % sur le montant total"
+      }
+    }
+
     function updateDOMWithShippingData(urlRoot, url_params, port_cost_exsits) {
-      fetch(urlRoot + "/api/v1/shipping_categories/show" + url_params).then(response_api =>response_api.json()).then((data_api) => {
+      fetch(urlRoot + "/api/v1/shipping_categories/show" + url_params).then(response_api => response_api.json()).then((data_api) => {
           if (port_cost_exsits) {
             $('.port-cost').each(function() {
               $(this).text(String(data_api.price_cents / 100).replace(".", ",")+ " €")
             })
           }
-          value = (total * 100 + data_api.price_cents) / 100
+          $('.cost-details, .cost-details-mobile').attr("port-cost", data_api.price_cents / 100 )
+          discount = $('.cost-details, .cost-details-mobile').attr("code-check")
+          value = (total * 100 + data_api.price_cents) / 100 * (1 - parseFloat(discount))
+          value = (Math.round(value * 100)/100).toFixed(2)
           $('.total_amount').each(function() {
-            $(this).text('Montant total: '+ String(value).replace(".", ",") + " €")
+            $(this).text(totalAmountPerLocale() + String(value).replace(".", ",") + " €")
           })
       });
     }
 
-    function updateDOMForFR(port, port_cost_exsits) {
-      if (port_cost_exsits) {
-        $('.port-cost').each(function() {
-          $(this).text(String(port).replace(".", ",")+ " €")
-        })
-      }
-      value = (total + port)
-      $('.total_amount').each(function() {
-        $(this).text('Montant total: '+ String(value).replace(".", ",") + " €")
-      })
+
+    function updatePriceWithPromoCode(urlRoot, url_params) {
+      fetch(urlRoot + "/api/v1/promos/show" + url_params).then(response_api => response_api.json()).then((data_api) => {
+        port = parseFloat($('.cost-details, .cost-details-mobile').attr("port-cost"))
+        if (data_api.code != "unkown") {
+          value = (total + port) * (1 - data_api.percentage)
+          value = (Math.round(value * 100)/100).toFixed(2)
+          $('.total_amount').text(totalAmountPerLocale() + String(value).replace(".", ",") + " €")
+          $('.promo-detail').html((data_api.percentage * 100) + savingPerLocale())
+          $('.cost-details, .cost-details-mobile').attr("code-check", data_api.percentage)
+        } else {
+          value = (total + port)
+          $('.total_amount').text(totalAmountPerLocale() + String(value).replace(".", ",") + " €")
+          $('.promo-detail').html("")
+          $('.cost-details, .cost-details-mobile').attr("code-check", 0)
+        }
+      });
     }
 
     });

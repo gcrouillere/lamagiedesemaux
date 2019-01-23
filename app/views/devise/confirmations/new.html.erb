@@ -1,3 +1,7 @@
+<% content_for(:noindex) do %>
+<meta name="robots" content="noindex">
+<% end %>
+
 <h2>Renvoyer les instructions de confirmation</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>

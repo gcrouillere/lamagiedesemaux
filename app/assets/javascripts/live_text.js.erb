@@ -52,4 +52,9 @@ $(document).ready(function() {
     text = $(this).val(),
     $('#live-name-temoignages').html('<h2>' + text + '</h2>');
   });
+
+  $('#article_title').keyup(function() {
+    text = $(this).val(),
+    $('#h1-live_article_title').html("<h1>" + text + "</h1>");
+  });
 });

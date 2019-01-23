@@ -8,7 +8,8 @@ Client: <%= @user.first_name %> <%= @user.last_name %> - <%= @user.email %>
   Référence du produit dans l'administration: ID: <%= basketline.ceramique.id %> - <%= basketline.ceramique.name.capitalize %>
   Quantité: <%= basketline.quantity %>
   <% basketline.ceramique.offer ? discount =  basketline.ceramique.offer.discount : discount = 0 %>
-  Total pour cet article: <%= humanized_money(basketline.ceramique.price * (1 - discount) * basketline.quantity)%> €
+  <% @order.promo ? promo_order = @order.promo.percentage : promo_order = 0 %>
+  Total pour cet article: <%= humanized_money(basketline.ceramique.price * (1 - discount) * basketline.quantity * (1 - promo_order)) %> €
   <% if  %>
     <% @order.basketlines.size > 1 %>
   ---------------------------------

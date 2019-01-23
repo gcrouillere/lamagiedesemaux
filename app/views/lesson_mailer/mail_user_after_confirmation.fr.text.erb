@@ -1,0 +1,13 @@
+Bonjour <%= @lesson.user.first_name %> <%= @lesson.user.last_name %>,
+
+Votre demande de stage est confirmée. Premier jour de stage <%= l @lesson.start, format: :short %>, pour une durée de <%= "#{@lesson.duration}" %> jours.
+
+Vous devez maintenant payer les arrhes pour qu'elle soit définitivement validée : https://<%=ENV['APPNAME']%>.herokuapp.com/lessons/<%= @lesson.id %>
+
+Cordialement
+
+<%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}" %>
+
+email : <%= "#{ENV['EMAIL']}" %>
+
+téléphone : <%= "#{ENV['TELEPHONE']}" %>

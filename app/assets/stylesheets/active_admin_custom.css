@@ -70,3 +70,23 @@
   display: list-item;
   /*list-style: circle;*/
 }
+
+/*PHOTOS IN CERAMIQUES*/
+.product_images {
+  display: flex;
+  justify-content: space-around;
+}
+
+.input_with_thumbnail {
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+}
+
+.input_with_thumbnail img {
+  margin-right: 10px;
+}
+
+.input_with_thumbnail input {
+  margin-right: 5px;
+}

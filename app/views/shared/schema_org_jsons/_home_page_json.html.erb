@@ -1,0 +1,43 @@
+<% content_for(:after_js) do %>
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "ArtGallery",
+    "image": ["<%=request.original_url%><%= image_path ENV['HOMEPIC']%>"],
+    "@id": "<%=request.original_url%>",
+    "name": "<%=t(:les_produits_de_machin, product:"#{ENV['MODEL']}", name: "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}")%>",
+    "currenciesAccepted": "EUR",
+    "paymentAccepted": "[Credit Card]",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "12 rue de la paix",
+      "addressLocality": "Paris",
+      "addressRegion": "IDF",
+      "postalCode": "75000",
+      "addressCountry": "FR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": <%= ENV['LAT'].to_f %>,
+      "longitude": <%= ENV['LAT'].to_f %>
+    },
+    "url": "<%=request.original_url%>",
+    "telephone": "<%= ENV['TELEPHONE']%>",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "10:00",
+        "closes": "17:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Saturday","Sunday"],
+        "opens": "closed",
+        "closes": "closed"
+      }
+    ],
+   "priceRange":"€€"
+  }
+  </script>
+<% end %>

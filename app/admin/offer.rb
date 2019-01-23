@@ -29,12 +29,15 @@ ActiveAdmin.register Offer, as: 'Offres' do
   end
 
   form do |f|
+    ceramique_selection = Ceramique.all.map {|product|"ID: #{product.id} - #{product.name}"}
     f.inputs "" do
       f.input :title
       f.input :description
       f.input :showcased
       f.input :discount, :hint => "Nombre à virgule entre 0 et 1. Correspond à une réduction de 0 à 100%."
-      f.input :ceramiques,  :label => "Produits", :hint => "Sélectionnez les produits auxquels l'offre s'applique. Maintenez Ctrl appuyé pour en sélectionner plusieurs."
+    end
+    f.inputs "Produits associés", class: 'product_images' do
+      f.input :ceramiques, as: :checkbox_image, :collection => ceramique_selection
     end
     f.actions
   end
@@ -67,14 +70,14 @@ ActiveAdmin.register Offer, as: 'Offres' do
       @offer = Offer.find(params[:id].to_i)
       @offer.ceramiques.each {|ceramique| ceramique.update(offer: nil)}
       super do |format|
-        redirect_to admin_offres_path and return if resource.valid?
+        redirect_to admin_offres_path and return
       end
     end
 
     # Helper methods
     def ceramiques_offer_assignment
       params["action"] == "create" ? current_offer = Offer.last : current_offer = Offer.find(params[:id])
-      ceramiques_ids_with_offer = params["offer"]["ceramique_ids"].select{|s| s != ""}.map {|s| s.to_i}
+      ceramiques_ids_with_offer = params["offer"]["ceramique_ids"].select{|s| s != ""}.map {|s| s.gsub("ID: ","").to_i}
       ceramiques_ids_with_offer.each do |id|
         Ceramique.find(id).update(offer: current_offer)
       end

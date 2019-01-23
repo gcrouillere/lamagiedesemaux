@@ -57,19 +57,36 @@
   }
 }
 
-.payment-form {
+h3.payment-choice {
+  margin: 30px 0 25px 0;
+}
+
+.payment-methods {
   display: flex;
-  flex-direction: column;
-  .input-label-take-away {
-    display: flex;
-    align-items: center;
-    label {
-      font-weight: 100;
-      font-size: 14px;
-      margin: 4px 10px 15px 0px;
+  justify-content: center;
+  align-items: center;
+  .payments-separator {
+    height: 115px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .paypal {
+    margin: 0px 20px 0 10px;
+    width: 266px;
+    height: 143px;
+    .paypal-logo {
+      width: 65px;
     }
-    input {
-      margin: 4px 10px 15px 0px;
+    .paypal-secure {
+      margin-top: -4px;
+    }
+  }
+}
+
+@media all and (max-width: 700px) {
+  .payment-methods {
+    display: block;
+    .paypal {
+      margin: 0 auto;
     }
   }
 }

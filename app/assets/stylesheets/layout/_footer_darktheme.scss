@@ -2,12 +2,16 @@
   background-color: #171717;
   border-top: 1px solid black;
   margin-top: 20px;
+  @media all and (max-width: 768px) {
+    margin-top: 0px !important;
+  }
   display: flex;
   .contact-default {
     width: 25%;
     padding: 10px 0;
     a {
       text-decoration: none;
+      color: white;
     }
     .icone-bloc {
       min-height: 38px;

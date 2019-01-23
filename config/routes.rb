@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   ActiveAdmin.routes(self)
   devise_for :users, :controllers => {:registrations => "app_specific_registration/registrations", omniauth_callbacks: 'users/omniauth_callbacks'}
   mount Attachinary::Engine => "/attachinary"
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :update, :create]
 
-  resources :articles, only: [:update, :create, :destroy]
+  resources :articles, only: [:new, :index, :show, :update, :create, :destroy]
 
   #Stages
   get '/stage_confirmation', to: 'lessons#stage_confirmation'
@@ -49,6 +50,8 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :shipping_categories, only: [:show]
+      resources :promos, only: [:show]
     end
   end
+
 end

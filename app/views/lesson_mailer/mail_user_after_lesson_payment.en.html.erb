@@ -1,0 +1,7 @@
+<p>Hello <%= @lesson.user.first_name %> <%= @lesson.user.last_name %>,</p>
+<p>Thanks for your deposit. Your lesson is validated.</p>
+<p>First day: <%= l @lesson.start, format: :short %>, for <%= "#{@lesson.duration}" %> days.</p>
+<p>Regards</p>
+<p><%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}" %></p>
+<p>email : <%= "#{ENV['EMAIL']}" %></p>
+<p>phone : <%= "#{ENV['TELEPHONE']}" %></p>

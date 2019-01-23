@@ -1,0 +1,22 @@
+<div class="comment-block hidden-xs" data-comment-id="<%= comment.id %>">
+  <% if user_signed_in? && current_user.admin? %>
+    <%= link_to comment, method: :delete, class: "comment-delete-link" do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
+  <% end %>
+  <div class="left-block-temoignage">
+    <h2><%= comment.user.first_name %> <%= comment.user.last_name %></h2>
+  </div>
+  <div class="right-block-temoignage">
+    <p><%= comment.content %></p>
+  </div>
+</div>
+
+<div class="comment-block-mobile hidden-sm hidden-md hidden-lg">
+  <div class="left-block-temoignage-mobile">
+    <h2><%= comment.user.first_name %> <%= comment.user.last_name %></h2>
+  </div>
+  <div class="right-block-temoignage-mobile">
+    <p><%= comment.content %></p>
+  </div>
+</div>

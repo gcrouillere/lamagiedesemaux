@@ -1,0 +1,59 @@
+<% content_for(:description) do %>
+  <%= t(:blog_index_description, name: "#{ENV['FIRSTNAME'].upcase} #{ENV['LASTNAME'].upcase}") %>
+<% end %>
+<% content_for(:title_tag) do %>
+  <%= t(:blog_main_title, name: "#{ENV['FIRSTNAME'].upcase} #{ENV['LASTNAME'].upcase}")%>.
+<% end %>
+
+<div class="container articles-index">
+  <div class="row">
+    <div class="col-xs-12">
+
+      <% if user_signed_in? && current_user.admin %>
+        <%= link_to  new_article_path, class: "btn btn-primary new-article-btn" do %>
+          <span><i class="fas fa-plus"></i> Ajouter un article</span>
+        <% end %>
+      <% else %>
+        <h1><%= t(:blog_main_title, name: "#{ENV['FIRSTNAME'].upcase} #{ENV['LASTNAME'].upcase}")%></h1>
+      <% end %>
+
+      <% @articles.each do |article| %>
+        <div class="article-card-and-link">
+          <%= link_to article_path(article) do %>
+            <div class="index-article-card">
+              <div class="left-block-article article-card<%=article.id%>">
+                <% if article.article_main_photo %>
+                  <style>
+                    .article-card<%=article.id%> {
+                      background-image: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.2) 50%), url(<%= cl_image_path article.article_main_photo.path, quality: "auto" %>);
+                      background-size: cover;
+                      background-position-y: center;
+                      background-position-x: center;
+                    }
+                  </style>
+                <% else %>
+                  <style>
+                  .article-card<%=article.id%> {
+                    background: #242424;
+                  }
+                  </style>
+                <% end %>
+                <h2><%= article.title %></h2>
+              </div>
+
+              <div class="right-block-article hidden-xs">
+                <p><%= sanitize(truncate(article.content.gsub("\r","").gsub("\n","").gsub("#",""), length: 200)) %></p>
+              </div>
+            </div>
+            <% end %>
+            <% if user_signed_in? && current_user.admin %>
+              <%= link_to article_path(article), :method => :delete, class: "delete-article" do %>
+                <i class="fa fa-trash"></i>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+
+    </div>
+  </div>
+</div>

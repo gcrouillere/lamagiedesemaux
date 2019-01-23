@@ -21,10 +21,10 @@ class UsersController < ApplicationController
           SubscribeMailer.subscribe(@user, @admin).deliver_now
         end
         session[:email] = params[:user][:email]
-        flash[:notice] = "Merci pour votre message"
+        flash[:notice] = t(:message_thank)
         redirect_to request.referrer
       else
-        flash[:alert] = "Les champs ne sont pas remplis correctement"
+        flash[:alert] = t(:incorrect_fields)
         redirect_to request.referrer
       end
     end

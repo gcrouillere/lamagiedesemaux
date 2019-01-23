@@ -1,0 +1,13 @@
+Bonjour <%= @lesson.user.first_name %> <%= @lesson.user.last_name %>,
+
+Merci pour le paiement des arrhes pour votre stage. Votre stage est validé.
+
+Premier jour de stage <%= l @lesson.start, format: :short %>, pour une durée de <%= "#{@lesson.duration}" %> jours.
+
+Cordialement
+
+<%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}" %>
+
+email : <%= "#{ENV['EMAIL']}" %>
+
+téléphone : <%= "#{ENV['TELEPHONE']}" %>

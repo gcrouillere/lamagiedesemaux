@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><%= yield(:title_tag).blank? ? meta_title : yield(:title_tag) %></title>
     <meta name="description" content="<%= (yield(:description) || meta_description).squish %>">
-
+    <%= meta_no_index %>
     <!-- Facebook Open Graph data -->
     <meta property="og:title" content="<%= meta_title %>" />
     <meta property="og:type" content="website" />
@@ -21,6 +21,8 @@
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= include_gon %>
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
     <meta name="google-site-verification" content="v6l89V9vrshQNOTxoFGZIg_cAdFHeUFHLdx-FAF2yB8" />
     <meta name="msvalidate.01" content="A2005042705811D0F9A1F93173061E82" />
   </head>

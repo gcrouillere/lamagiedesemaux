@@ -1,0 +1,33 @@
+Bonjour <%= @user.first_name %> <%= @user.last_name %>,
+
+Merci pour votre commande, elle va être expédiée. Voici le détail de cette commande :
+
+<% @order.basketlines.each do |basketline| %>
+  <%= basketline.ceramique.name.capitalize %> - Quantité: <%= basketline.quantity %>
+  <% basketline.ceramique.offer ? discount =  basketline.ceramique.offer.discount : discount = 0 %>
+  <% @order.promo ? promo_order = @order.promo.percentage : promo_order = 0 %>
+  Total pour cet article: <%= humanized_money(basketline.ceramique.price * (1 - discount) * basketline.quantity * (1 - promo_order)) %> €
+  <% if  %>
+    <% @order.basketlines.size > 1 %>
+  ---------------------------------
+  <% end %>
+<% end %>
+
+<% if @order.take_away %>
+Montant total: <%= humanized_money(@order.amount) %> €
+
+Appelez moi pour convenir du moment où vous viendrez retirer votre commande.
+<% else %>
+Frais de port: <%= humanized_money(@order.port) %> €
+Montant total: <%= humanized_money(@order.amount + @order.port) %> €
+
+Adresse de livraison : <%= @user.adress %> - <%= @user.zip_code %> - <%= @user.city %> - <%= @user.country %>
+<% end %>
+
+Cordialement
+
+<%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}" %>
+
+email : <%= "#{ENV['EMAIL']}" %>
+
+téléphone : <%= "#{ENV['TELEPHONE']}" %>

@@ -77,8 +77,14 @@
     text-align: right;
     font-weight: 300;
   }
-  h3 {
-    margin-bottom: 30px;
+  .total_amount {
+    margin-bottom: 40px;
+    margin-top: 4px;
+     margin-right: 21px;
+    @media all and (max-width: 700px) {
+      margin-right: 0px !important;
+      text-align: center;
+    }
   }
 }
 

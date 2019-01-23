@@ -1,0 +1,11 @@
+Hello <%= @lesson.user.first_name %> <%= @lesson.user.last_name %>,
+
+Your lesson request has been accepted. First day <%= l @lesson.start, format: :short %>, for <%= "#{@lesson.duration}" %> days.
+
+You have to pay a deposit so that it is definitely validated : https://<%=ENV['APPNAME']%>.herokuapp.com/lessons/<%= @lesson.id %>
+
+Regards
+
+<%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}" %>
+email : <%= "#{ENV['EMAIL']}" %>
+phone : <%= "#{ENV['TELEPHONE']}" %>

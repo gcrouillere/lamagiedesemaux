@@ -5,7 +5,7 @@ Tu as reçu une nouvelle demande de stage.
 Détail de la demande :
 
   - Client: <%= "#{@lesson.user.first_name.capitalize} #{@lesson.user.last_name.capitalize} - #{@lesson.user.email}"%>
-  - Démarrage souhaité le <%= "#{@lesson.start.day}/#{@lesson.start.month}/#{@lesson.start.year}" %>.
+  - Démarrage souhaité le <%= l @lesson.start, format: :short %>.
   - Durée de <%= "#{@lesson.duration}" %> jours.
   - <%= "#{@lesson.student}" %> personnes.
 

@@ -1,0 +1,56 @@
+<% content_for(:noindex) do %>
+<meta name="robots" content="noindex">
+<% end %>
+
+<div class="container">
+  <div class="col-xs-12">
+    <div class="row legal">
+      <h1>Personal data protection, as stated by the simplified norm NS-048, applicable to e-commerce websites.</h1>
+
+      <p>The final goal of personal data management by this site is the following : manage operations linked with customer management. Customer management involves : deliveries, billing, and customer account management.</p>
+
+      <h2>Personnal data concerned by this site : </h2>
+
+      <h3>Identity data : civility, last name, first name, address, email.</h3>
+
+      <p>These data are collected at account creation, before proceeding to order payment. These data are used to ship order to customer.</p>
+
+      <p>Should the customer interrupt payment process after his account is created, his data are kept. They could be used by <%="#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>, to contact the customer regarding the abandonned basket. If you whish not to be contacted again, you have to inform <%="#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>, as soon as your account is created, by using the contact information available on this site.</p>
+
+      <h3>Banking data : </h3>
+
+      <p>Credit cards data are store in encrypted form by Stripe, the payments subcontractor. they are stored to be able to refund all or part of the order, in case of litigation. This data cannot be used illegitimately. By paying on this site, you accept Stripe terms of service.</p>
+      <p>Stripe terms of service: <a href="https://stripe.com/docs/security/stripe#encryption">Encryption</a>, <a href=" https://stripe.com/fr/privacy">Data protection</a> and <a href="https://stripe.com/fr/legal#section_d">General conditions</a>.</p>
+
+      <h2>Data retention</h2>
+
+      <p>Your data are erased as soon as your account is deleted.</p>
+
+      <p>Accounts that have not been used for 3 years are considered inactive. This extension of time starts from the date of your last order. At the end of this period, <%="#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%> contact the customer to inform him about the imminent deletion of his account. Without any reaction from the customer within 5 days, the account and its data are deleted.</p>
+
+      <h2>Data collection</h2>
+
+      <p>The unique user of all data on this site is <%="#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>.</p>
+
+      <p>In order to ensure deliveries, we need these data : civility, last name, first name, address. Your email is required to send you an order summary after payment. Thus all data are required at account creation. If you don't want to communicate this data, you will not be able to proceed to payment, thus will not be able to finalize the order process.</p>
+
+      <p>Data recipient is <%="#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>.</p>
+
+      <p>To modify your data, you can use the form located here: <%= link_to "Update your data", edit_user_registration_path %> or contact <%="#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>.</p>
+
+      <p>If you want your data to be deleted, you have to inform <%="#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>, by using the contact information present on this site.</p>
+
+      <h2>Consent collection</h2>
+
+      <p>You consent to the usage of your data, as described in this page when you create an account.</p>
+
+      <p>Your data are not marketed to any third party. We will only contact you for commercial purpose if you have an abandonned basket. You can refuse it by informing <%="#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>.</p>
+
+      <p>You can recover your data stored by this site, by sending a request to <%="#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>.</p>
+
+      <h2>Data protection</h2>
+
+      <p>Data security is crucial. Therefore, it s ensured by safety specialists. Data storing is ensured by <a href="https://devcenter.heroku.com/articles/security-privacy-compliance">Heroku</a>. Password encryption is ensured by <a href="http://blog.plataformatec.com.br/tag/security-fix/">Devise</a>. Banking data are encrypted by <a href="https://stripe.com/docs/security/stripe#encryption">Stripe</a>.</p>
+    </div>
+  </div>
+</div>

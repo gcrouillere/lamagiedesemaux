@@ -36,9 +36,8 @@
       </div>
     </div>
   </div>
-  <% @front_offer.discount > 0  ? action = "VOIR CES PRODUITS" : action = "VOIR CETTE SELECTION DE PRODUITS" %>
   <form action="/<%=ENV['MODEL']%>" method='get' class="offer-filter">
     <input type="hidden" name="offer[]" value="offer">
-    <input type="submit" class="btn btn-primary recherche" value="<%=action%>">
+    <input type="submit" class="btn btn-primary recherche" value="<%=t(:see_products)%>">
   </form>
 </div>

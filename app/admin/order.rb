@@ -20,10 +20,10 @@ ActiveAdmin.register Order do
       "#{order.amount * ENV['TVA'].to_f} €"
     end
     column "Frais de port" do |order|
-      "#{order.port} €"
+      order.take_away ? "0 € (à retirer en magasin)" : "#{order.port} €"
     end
     column "Total TTC + port" do |order|
-      "#{order.amount + order.port} €"
+      order.take_away ? "#{order.amount} €" : "#{order.amount + order.port} €"
     end
     actions do |order|
       item "Facture PDF", admin_order_path(order, :format => 'pdf'), class: "member_link"
@@ -50,8 +50,14 @@ ActiveAdmin.register Order do
     def index
       super do |format|
         @orders = Order.where(state: "paid").order(updated_at: :desc).page(params[:page]).per(20)
-        @last_month_orders = Order.where("state LIKE ? AND updated_at >= ?", "paid", Time.now - 30 * 3600 * 24).count
-        @last_six_month_orders = Order.where("state LIKE ? AND updated_at >= ?", "paid", Time.now - 180 * 3600 * 24).count
+        @last_month_orders = Order.where("orders.state LIKE ? AND orders.updated_at >= ?", "paid", Time.now - 30 * 3600 * 24)
+          .joins(:basketlines)
+          .where("ceramique_id IS NOT NULL")
+          .count
+        @last_six_month_orders = Order.where("orders.state LIKE ? AND orders.updated_at >= ?", "paid", Time.now - 180 * 3600 * 24)
+          .joins(:basketlines)
+          .where("ceramique_id IS NOT NULL")
+          .count
         @categories_sales_data_six = categories_data(180)
         @categories_sales_data_one = categories_data(30)
       end

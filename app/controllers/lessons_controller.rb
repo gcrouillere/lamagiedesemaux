@@ -19,17 +19,17 @@ class LessonsController < ApplicationController
 
   def create
     unless /^(?:(?:31(\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/.match("#{params[:lesson][:start]}")
-      flash[:alert] = "Format de date invalide. Format attendu : JJ.MM.AAAA. Cliquez sur l'icône calendrier du formulaire"
+      flash[:alert] = t(:date_format_error)
       redirect_to new_lesson_path and return
     end
 
     if params[:lesson][:start].blank?
-      flash[:alert] = "Veuillez sélectionner le 1er jour du stage"
+      flash[:alert] = t(:blank_start)
       redirect_to new_lesson_path and return
     end
 
     if current_user.lessons.where(confirmed: false).present?
-      flash[:alert] = "Vous avez déjà une demande de stage en cours"
+      flash[:alert] = t(:existing_lesson)
       redirect_to new_lesson_path and return
     end
 
@@ -38,7 +38,7 @@ class LessonsController < ApplicationController
 
     if @lesson.start < Time.now
       @lesson.destroy
-      flash[:alert] = "Veuillez sélectionner une date dans le futur"
+      flash[:alert] = t(:date_in_futur)
       redirect_to new_lesson_path and return
     end
 
@@ -49,13 +49,13 @@ class LessonsController < ApplicationController
         if booking.course != i + 1
           closest_start_answer = Findcloseststart.new(@lesson).closest_start(@lesson) # See service
           @lesson.destroy
-          flash[:alert] = "Impossible de réserver. Jour(s) possible(s) pour début du stage : #{closest_start_answer}"
+          flash[:alert] = t(:closest_start, date: "#{closest_start_answer}")
           redirect_to new_lesson_path and return
         end
         if @lesson.student > booking.capacity
           answer_min_capacity = min_capacity(@lesson)
           @lesson.destroy
-          flash[:alert] = "Impossible de réserver. Plus que #{answer_min_capacity} places disponible sur la période demandée"
+          flash[:alert] = t(:over_capacity, capacity: "#{answer_min_capacity}")
           redirect_to new_lesson_path and return
         end
       end

@@ -1,73 +1,78 @@
 <% content_for(:title_tag) do %>
-  Paiement
+  <%= t(:payment)%>
 <% end %>
 
-<h1 class="<%=@payment_theme%>-payment-h1">Paiement</h1>
+<h1 class="<%=@payment_theme%>-payment-h1"><%= t(:payment)%></h1>
 
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-offset-2 col-sm-8">
 
       <div class="pay-form-<%=@payment_theme%>">
-          <% unless @order.lesson.present? %>
-            <div class="adress text-center">
-              <% unless  @order.take_away %>
+        <% unless @order.lesson.present? %>
+          <div class="adress text-center">
+            <% unless  @order.take_away %>
 
-                <h3>Livraison du colis</h3>
-                <h4>Livraison via colissimo, sous <%= @admin.tracking%>, à l'adresse suivante:</h5>
-                <h4><%= current_user.first_name%> <%= current_user.last_name%></h4>
-                <h4><%= current_user.adress%></h4>
-                <h4><%= current_user.zip_code%> - <%= current_user.city%></h4>
-                <% full_country = ISO3166::Country[current_user.country] %>
-                <h4><%= full_country.translations[I18n.locale.to_s] || full_country.name%></h4>
-                <% unless @order.lesson.present? %>
-                  <%= link_to edit_user_registration_path do %>
-                    <div class="hidden-xs laptop-link-coord">
-                      METTRE A JOUR VOS COORDONNEES
-                    </div>
-                    <div class="hidden-sm hidden-md hidden-lg mobile-link-coord">
-                      CHANGER VOS COORDONNEES
-                    </div>
-                  <% end %>
+              <h3><%=t(:delivery)%></h3>
+              <h4><%=t(:delivery_lead_time, lead_time: @admin.tracking)%></h4>
+              <h4><%= current_user.first_name%> <%= current_user.last_name%></h4>
+              <h4><%= current_user.adress%></h4>
+              <h4><%= current_user.zip_code%> - <%= current_user.city%></h4>
+              <% full_country = ISO3166::Country[current_user.country] %>
+              <h4><%= full_country.translations[I18n.locale.to_s] || full_country.name%></h4>
+              <% unless @order.lesson.present? %>
+                <%= link_to edit_user_registration_path do %>
+                  <div class="hidden-xs laptop-link-coord">
+                    <%= t(:contact_update)%>
+                  </div>
+                  <div class="hidden-sm hidden-md hidden-lg mobile-link-coord">
+                    <%= t(:contact_update_mobile)%>
+                  </div>
                 <% end %>
-              <% else %>
-                <h3>Retrait de votre commande en magasin</h3>
-                <h4>Une fois votre commande payée, prenez contact avec <%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%> pour récupérer votre commande.</h5>
               <% end %>
-            </div>
-          <% end %>
-          <div class="product-amount lesson-amount text-center">
-            <% if @order.lesson.present?  %>
-              <h3>Montant des arrhes: <%= humanized_money(@order.amount) %> <%= currency_symbol %></h3>
-              <h4>Stage de poterie pour <%= @order.lesson.duration%> jours, <%= @order.lesson.student%> personnes.</h4>
-              <h4>Début du stage le <%= @order.lesson.start.day%>/<%= @order.lesson.start.month%>/<%= @order.lesson.start.year%></h4>
             <% else %>
-              <h3>Total à payer: <%= @order.take_away ? humanized_money(@order.amount) : humanized_money(@order.amount + @order.port) %> <%= currency_symbol %></h3>
-              <h4>Total article(s) : <%= humanized_money(@order.amount) %> €</h4>
-              <% unless @order.take_away %>
-                <h4>Frais de port : <%= humanized_money(@order.port) %> €</h4>
-              <% end %>
+              <h3><%=t(:order_recover)%></h3>
+              <h4><%=t(:order_recover_appointment, name: "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}")%></h5>
             <% end %>
-            <%= form_tag order_payments_path(@order) do %>
-            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-              data-name="<%=ENV['MODEL'].capitalize%>"
-              data-email="<%= current_user.email %>"
-
-              data-description="<%=ENV['FIRSTNAME'].capitalize%> <%=ENV['LASTNAME'].capitalize%>"
-              data-amount="<%= @order.take_away ? @order.amount_cents : @order.amount_cents + @order.port_cents %>"
-              data-currency="<%= @order.amount.currency %>">
-            </script>
-            <div class="secure">
-              <% @payment_theme == "darktheme" ? logo = "stripe.svg" : logo = "stripe-black.svg" %>
-              <div class="stripe"><span>Paiement sécurisé par</span> <%= image_tag logo, class: "stripe-logo"%></div>
-              <p>Cartes acceptées</p>
-              <div class="cards">
-                 <%= image_tag "mastercard.svg", class: "mastercard"%> <%= image_tag "visa.svg", class: "visa"%> <%= image_tag "american-express.svg", class: "american-express"%>
-              </div>
-            </div>
           </div>
         <% end %>
+        <div class="product-amount lesson-amount text-center">
+          <% if @order.lesson.present?  %>
+            <h3><%=t(:deposit)%> <%= humanized_money(@order.amount) %> <%= currency_symbol %></h3>
+            <h4><%=t(:course)%> <%= @order.lesson.duration%> jours, <%= @order.lesson.student%> <%=t(:person, count: @order.lesson.student)%>.</h4>
+            <h4><%=t(:lesson_start)%> <%= @order.lesson.start.day%>/<%= @order.lesson.start.month%>/<%= @order.lesson.start.year%></h4>
+          <% else %>
+            <% @order.promo ? discount = @order.promo.percentage : discount = 0 %>
+            <h3><%=t(:total_amount)%> : <%= @order.take_away ? humanized_money(@order.amount) : humanized_money((@order.amount + @order.port)) %> <%= currency_symbol %></h3>
+            <h4><%=t(:total_articles)%> : <%= humanized_money(@order.amount) %> €</h4>
+            <% unless @order.take_away %>
+              <h4><%=t(:total_port)%> : <%= humanized_money(@order.port) %> €</h4>
+            <% end %>
+          <% end %>
+          <h3 class="payment-choice"><%=t(:stripe_paypal)%></h3>
+          <div class="payment-methods">
+            <%= form_tag order_payments_path(@order) do %>
+              <%= hidden_field_tag "method", "stripe" %>
+              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-name="<%=ENV['MODEL'].capitalize%>"
+                data-email="<%= current_user.email %>"
+                data-description="<%=ENV['FIRSTNAME'].capitalize%> <%=ENV['LASTNAME'].capitalize%>"
+                data-amount="<%= @order.take_away ? @order.amount_cents : @order.amount_cents + @order.port_cents %>"
+                data-currency="<%= @order.amount.currency %>"
+                data-locale="auto">
+              </script>
+              <div class="secure">
+                <% @payment_theme == "darktheme" ? logo = "stripe.svg" : logo = "stripe-black.svg" %>
+                <div class="stripe"><span><%=t(:secured_payment)%></span> <%= image_tag logo, class: "stripe-logo"%></div>
+                <p><%=t(:cards)%></p>
+                <div class="cards">
+                   <%= image_tag "mastercard.svg", class: "mastercard"%> <%= image_tag "visa.svg", class: "visa"%> <%= image_tag "american-express.svg", class: "american-express"%>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
 
     </div>

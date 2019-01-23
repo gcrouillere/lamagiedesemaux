@@ -149,7 +149,7 @@ ActiveAdmin.setup do |config|
   # You can add before, after and around filters to all of your
   # Active Admin resources and pages from here.
   #
-  # config.before_action :do_something_awesome
+  # config.before_action :set_locale
 
   # == Localize Date/Time Format
   #
@@ -203,7 +203,9 @@ ActiveAdmin.setup do |config|
   #   config.register_stylesheet 'my_print_stylesheet.css', media: :print
   #
   # To load a javascript file:
-  config.register_javascript 'activeadminecustomization.js'
+    config.register_javascript 'activeadminecustomization.js'
+    config.register_javascript '/assets/cloudinary/jquery.cloudinary.self-8bbd0532abf9cf5b6a1fc7a1a213f6b5d2cf436e9a4f6d95578e1c2d5c1fe3b5.js'
+    config.register_javascript '/assets/attachinary.self-b16c37048ec9823f15ffca8f48f7c09ac5d1c33afdec60d9138e0e51e9f6f5ec.js'
 
   # == CSV options
   #
@@ -218,7 +220,6 @@ ActiveAdmin.setup do |config|
   # You can add a navigation menu to be used in your application, or configure a provided menu
   #
   # To change the default utility navigation to show a link to your website & a logout btn
-  #
   #   config.namespace :admin do |admin|
   #     admin.build_menu :utility_navigation do |menu|
   #       menu.add label: "My Great Website", url: "http://www.mygreatwebsite.com", html_options: { target: :blank }

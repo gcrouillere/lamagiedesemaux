@@ -20,16 +20,16 @@
 }
 
 .ceramiquecard {
-  margin: 20px 10px 10px 10px;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin: 0px 10px 30px 10px;
   padding: $padding-small;
   background: $card-background;
   border-radius: $project-border-radius;
   border: $card-border;
   text-decoration: none;
-  min-height: 485px;
   position: relative;
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
 
   .ribbon {
     z-index: 1;
@@ -86,7 +86,7 @@
     }
     .previous-price {
       font-size: 13px;
-      font-weight: 100;
+      font-weight: 400;
       position: absolute;
       bottom: -76px;
       right: -9px;
@@ -95,17 +95,11 @@
     }
   }
 
-  h2 {
-    margin-top: 30px;
-    font-size: $font-size-h4;
-    color: $h2card;
-  }
-
-  h2, h3 {
+  h3 {
     margin-left: 30px;
     margin-right: 30px;
     text-decoration: none;
-    h2:hover, h2:hover {
+    &:hover {
       text-decoration: none;
     }
   }
@@ -149,40 +143,76 @@
     width: 109px;
     height: 44px;
     background: $card-background;
-    border: 1px solid lighten($primary, 10%);
+    border: 1px solid grey;
     text-align: center;
     border-radius: 27px;
     margin: 0;
-    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 0px $primary, 2px 2px 5px rgba(0, 0, 0, 0.2);
     .prix-index-mobile {
+      color: black;
       font-size: $font-size-h4;
       margin: 0;
-      margin-top: 3px;
     }
     .previous-price-mobile {
       font-size: 13px;
-      font-weight: 100;
+      font-weight: 400;
       text-decoration: line-through;
       color: black;
       margin: 0;
     }
   }
   .allpricesmobile-wo, .allpricesmobile-w-zero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     bottom: 11px;
     right: 16px;
     width: 109px;
-    height: 31px;
+    min-height: 46px;
     background: $card-background;
-    border: 1px solid lighten($primary, 10%);
+    border: 1px solid grey;
     text-align: center;
     border-radius: 27px;
     margin: 0;
-    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 0px $primary, 2px 2px 5px rgba(0, 0, 0, 0.2);
     .prix-index-mobile {
+      position: relative;
+      top: -2px;
       font-size: $font-size-h4;
       margin: 0;
-      margin-top: 3px;
+      color: black;
+    }
+  }
+  .card-title {
+    margin: auto;
+    h2 {
+      text-align: center;
+      font-size: 25px;
+      color: black;
+      font-weight: 400;
+      margin: 0;
+      text-decoration: none;
+    }
+    .laptop-h2 {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      line-height: 24px;     /* fallback */
+      max-height: 72px;      /* fallback */
+      -webkit-line-clamp: 3; /* number of lines to show */
+      -webkit-box-orient: vertical;
+    }
+    .card-mobile-h2 {
+      text-align: center;
+      margin: 10px 10px 15px 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      line-height: 24px;     /* fallback */
+      max-height: 72px;      /* fallback */
+      -webkit-line-clamp: 3; /* number of lines to show */
+      -webkit-box-orient: vertical;
     }
   }
 }
@@ -199,12 +229,6 @@
       font-weight: $font-weight-h5;
       font-size: $font-size-h5;
     }
-    .card-mobile-h2 {
-      text-align: center;
-      margin: 20px 0;
-      text-shadow: 1px 1px #f1f1f1;
-      color: #555;
-    }
   }
 }
 
@@ -213,13 +237,17 @@
 }
 
 .ceramique-list {
-  margin-bottom: 60px;
+  margin: 20px 0 60px 0;
 }
 
 .no-ceramique-list {
-  margin: 50px auto;
+  min-height: calc(100vh - 300px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   .no-ceramique {
     text-align: center;
+    margin: auto
   }
 }
 
@@ -233,8 +261,14 @@
   }
 }
 
-@media all and (max-width: 800px) {
+@media all and (max-width: 990px) {
   .no-ceramique-list {
     margin-top: 50px;
+  }
+}
+
+@media all and (max-width: 990px) and (min-width: 600px){
+  .home-page-ceramique-container .ceramique-2 {
+    display: none;
   }
 }

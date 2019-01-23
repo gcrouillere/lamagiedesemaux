@@ -47,10 +47,6 @@
         <div class="img-city-mobile"><%= @citypictag%></div>
         <div id="map-mobile"></div>
       </div>
-
-      <%= link_to ceramiques_path, class: "back-in-home-mobile" do %>
-        <span><i class="fa fa-arrow-right"></i> Liste des <%= ENV['MODEL']%></span>
-      <% end %>
     </div>
 
   </div>
@@ -86,19 +82,5 @@
         handler.getMap().setZoom(6);
       });
     });
-  </script>
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "ArtGallery",
-      "name": "Les bijoux en céramique de Fabienne Jacob",
-      "description": "Online craft store",
-      "openingHours": "Mo-Fr 09:00-18:00",
-      "telephone": "<%= ENV['TELEPHONE']%>",
-      "url": "<%=request.original_url%>",
-      "image":"<%=request.original_url%><%= image_path ENV['HOMEPIC']%>"
-      "address":"<%= ENV['ADDRESS'].gsub(/[+]/, ' ') %>",
-      "priceRange":"20€ à 800€"
-    }
   </script>
 <% end %>

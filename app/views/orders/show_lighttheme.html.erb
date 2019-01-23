@@ -1,9 +1,9 @@
 <% content_for(:title_tag) do %>
-  Panier
+  <%= t(:basket)%>
 <% end %>
 
 <div class="page-top-lighttheme">
-  <h1>Panier</h1>
+  <h1><%= t(:basket)%></h1>
 </div>
 
   <div class="container lightthemecart">
@@ -16,8 +16,8 @@
               <tr>
                 <th>ITEM</th>
                 <th></th>
-                <th>QUANTITE</th>
-                <th>PRIX</th>
+                <th><%=t(:quantity).upcase%></th>
+                <th><%=t(:price).upcase%></th>
               </tr>
               <% @order.basketlines.each do |basketline| %>
               <tr>
@@ -31,7 +31,8 @@
                 <td>
                   <div class="cart-item">
                     <%= cl_image_tag basketline.ceramique.photos[0].path, class: "basket-article-img" %>
-                    <h4><%= basketline.ceramique.name.capitalize %></h4>
+                    <% basketline.ceramique.name.size > 38 ? etc = " ..." : etc = "" %>
+                    <h4><%= basketline.ceramique.name[0..37].capitalize + etc %></h4>
                   </div>
                 </td>
                 <td><div class="basket-delete"><h5><%= basketline.quantity %></h5></div></td>
@@ -44,27 +45,47 @@
             <div class="total-lighttheme">
               <div class="cost-details">
                 <%= render 'shared/shipping_cost_bloc' %>
-                <h3 class="total_amount">Montant total: <%= humanized_money(@amount + @port) %> <%= currency_symbol %></h3>
+                <h3 class="total_amount"><%= t(:total_amount)%>: <%= humanized_money(@amount + @port) %> <%= currency_symbol %></h3>
               </div>
               <form action="/orders/<%= @order.id%>/payments/new" method="get" class="hidden-xs payment-form pay-form-lighttheme">
                 <input type="hidden" name="order_id" value="<%= @order.id%>">
+                <% if  Promo.any? %>
+                  <div class="promo-with-percentage">
+                     <div class="promo-bloc">
+                      <label for="order_promo"><%=t(:promo)%></label>
+                      <input id="order_promo" type="text" name="order[promo]">
+                    </div>
+                    <div class="promo-detail"></div>
+                  </div>
+                <% end %>
                 <div class="input-label-take-away">
                   <input id="take_away-checkbox" type="checkbox" name="take_away">
-                  <label for="take_away-checkbox">Récupérer votre commande en magasin</label>
+                  <label for="take_away-checkbox"><%=t(:order_take_away)%></label>
                 </div>
+                <input type="hidden" name="locale" value="<%= I18n.locale%>">
                 <button type="submit" class="btn btn-primary lighttheme">
-                  FINALISER MA COMMANDE
+                  <%= t(:proceed_to_payment).upcase%>
                 </button>
               </form>
             </div>
               <form action="/orders/<%= @order.id%>/payments/new" method="get" class="hidden-sm hidden-md hidden-lg text-center payment-form pay-form-lighttheme-mobil">
                 <input type="hidden" name="order_id" value="<%= @order.id%>">
+                <% if Promo.any? %>
+                  <div class="promo-with-percentage">
+                     <div class="promo-bloc">
+                      <label for="order_promo_mobile"><%=t(:promo)%></label>
+                      <input id="order_promo_mobile" type="text" name="order[promo]">
+                    </div>
+                    <div class="promo-detail"></div>
+                  </div>
+                <% end %>
                 <div class="input-label-take-away">
                   <input id="take_away-checkbox-mobile" type="checkbox" name="take_away">
-                  <label for="take_away-checkbox-mobile">Retirer la commande en magasin</label>
+                  <label for="take_away-checkbox-mobile"><%=t(:order_take_away)%></label>
                 </div>
+                <input type="hidden" name="locale" value="<%= I18n.locale%>">
                 <button type="submit" class="btn btn-primary lighttheme">
-                  FINALISER MA COMMANDE
+                  <%= t(:proceed_to_payment).upcase%>
                 </button>
               </form>
           </div>

@@ -1,0 +1,18 @@
+Hello <%= @lesson.user.first_name %> <%= @lesson.user.last_name %>,
+
+<% if @lesson.confirmed %>
+<%= "Your lesson is canceled due to capacity issue. We apologize fo the inconvenience."%>
+
+<%= "Should you have already paid a deposit, it will be refunded."%>
+<% else %>
+<%= "Sorry, we cannot accept your lesson request due to a capacity issue."%>
+
+<%= "You could start your lesson at this date : #{@closest_start}. Please make a new request on-line : https://#{ENV['APPNAME']}.herokuapp.com/lessons/new"%>
+
+<% end %>
+
+Regards
+
+<%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}" %>
+email : <%= "#{ENV['EMAIL']}" %>
+phone : <%= "#{ENV['TELEPHONE']}" %>
