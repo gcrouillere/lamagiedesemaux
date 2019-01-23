@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 ruby '2.4.4'
 
+gem 'bootsnap'
 gem 'devise'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
@@ -8,56 +11,56 @@ gem 'pg', '~> 0.21'
 gem 'puma'
 gem 'rails', '~> 5.1', '>= 5.1.4'
 gem 'redis'
-gem 'bootsnap'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
+gem 'country_select'
 gem 'font-awesome-sass'
 gem 'jquery-rails'
 gem 'sass-rails'
 gem 'simple_form'
-gem 'country_select'
 gem 'uglifier'
 
 # pictures
+gem 'attachinary'
 gem 'cloudinary', '1.1.7'
-gem "attachinary"
-gem "jquery-fileupload-rails"
-gem "coffee-rails"
+gem 'coffee-rails'
+gem 'jquery-fileupload-rails'
 
 # seed
 gem 'faker'
 
-#payment
+# payment
 gem 'money-rails', '~>1'
 gem 'stripe'
 
-#map
-gem "gmaps4rails"
+# map
+gem 'gmaps4rails'
 source 'https://rails-assets.org' do
   # https://rails-assets.org
-  gem "rails-assets-underscore"
+  gem 'rails-assets-underscore'
 end
 
-#image-zoom
+# image-zoom
 gem 'elevatezoom-rails'
 
-#mail
-gem "letter_opener", group: :development
+# mail
+gem 'letter_opener', group: :development
 
-#admin
-gem 'activeadmin', '~> 1.3'
-gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+# admin
+gem 'activeadmin', '~> 1.3.1'
 gem 'activeadmin-index_as_calendar', github: 'bys-control/activeadmin-index_as_calendar'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 
-#keepawake on heroku
+
+# keepawake on heroku
 gem 'dynopoker'
 
-#date bootstrap
-gem 'momentjs-rails', '>= 2.9.0'
+# date bootstrap
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
+gem 'momentjs-rails', '>= 2.9.0'
 
-#friendlyid
+# friendlyid
 gem 'friendly_id', '~> 5.1.0'
 
 # JSON request in controller
@@ -70,11 +73,17 @@ gem 'omniauth-facebook'
 gem 'redcarpet'
 
 # Search
-gem "algoliasearch-rails"
+gem 'algoliasearch-rails'
 
 # PDF
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+
+# Rails variables in JS
+gem 'gon'
+
+# Models internationalization
+gem 'mobility', '~> 0.7.5'
 
 group :development, :test do
   gem 'better_errors'

@@ -6,32 +6,42 @@ class PaymentsController < ApplicationController
     @payment_theme = @active_theme.name
     final_order_amount
     if @order.state == "lost"
-      flash[:notice] = "Votre panier a expiré"
+      flash[:notice] = t(:expired_basket)
       redirect_to ceramiques_path and return
     end
+    @order.take_away ? @order_in_js = @order.amount_cents : @order_in_js = @order.amount_cents + @order.port_cents
+    gon.order_in_js = @order_in_js.to_f / 100
   end
 
   def create
     # STRIPE
     if @order.state == "lost"
-      flash[:error] = "Votre panier a expiré, la commande est annulée. Votre CB n'a pas été débitée."
+      flash[:error] = t(:expired_no_payment)
       redirect_to ceramiques_path and return
     end
-    customer = Stripe::Customer.create(
-      source: params[:stripeToken],
-      email:  params[:stripeEmail]
-    )
 
     @order.take_away ? @final_amount = @order.amount_cents : @final_amount = @order.amount_cents + @order.port_cents
 
-    charge = Stripe::Charge.create(
-      customer:     customer.id,   # You should store this customer id and re-use it.
-      amount:       @final_amount, # or amount_pennies
-      description:  "Payment for #{@order.ceramique || "lesson"}, for order #{@order.id}",
-      currency:     @order.amount.currency
-    )
+    if params[:method] == "stripe"
+      customer = Stripe::Customer.create(
+        source: params[:stripeToken],
+        email:  params[:stripeEmail]
+      )
+      charge = Stripe::Charge.create(
+        customer:     customer.id,   # You should store this customer id and re-use it.
+        amount:       @final_amount, # or amount_pennies
+        description:  "Payment for #{@order.ceramique || "lesson"}, for order #{@order.id}",
+        currency:     @order.amount.currency
+      )
+      @order.update(payment: charge.to_json, state: 'paid', method: "stripe")
+      document_order_basketlines
+    elsif params[:method] == "paypal"
+      if params[:status] == "success"
+        @order.update(state: 'paid', method: "paypal")
+        document_order_basketlines
+      end
+    end
 
-    @order.update(payment: charge.to_json, state: 'paid')
     @lesson =  @order.lesson
     unless @lesson.present?
       # SEND EMAILS
@@ -68,8 +78,30 @@ class PaymentsController < ApplicationController
   end
 
   def final_order_amount
-    costs = Amountcalculation.new(@order).calculate_amount(@order, current_user)
-    @order.update(amount: costs[:total], port: costs[:port], weight: costs[:weight])
+    unless @order.lesson.present?
+      costs = Amountcalculation.new(@order).calculate_amount(@order, current_user)
+      @order.update(amount: costs[:total], port: costs[:port], weight: costs[:weight])
+      params[:order] ? @promo = Promo.where(code: params[:order][:promo]).first : @promo = nil
+      if @promo
+        @order.update(amount: @order.amount * (1 - @promo.percentage), port: @order.port * (1 - @promo.percentage), promo: @promo)
+      end
+    end
+  end
+
+  def document_order_basketlines
+    @order.basketlines.each do |basketline|
+      @order.promo.present? ? order_discount = @order.promo.percentage : order_discount = 0
+      if basketline.ceramique
+        basketline.ceramique.offer ? ceramique_discount = basketline.ceramique.offer.discount : ceramique_discount = 0
+
+        basketline.update(
+          ceramique_name: basketline.ceramique.name,
+          ceramique_qty: basketline.quantity,
+          ceramique_id_on_order: basketline.ceramique.id,
+          basketline_price: ((basketline.ceramique.price * (1 - ceramique_discount)) * basketline.quantity * (1 - order_discount))
+          )
+      end
+    end
   end
 
 end

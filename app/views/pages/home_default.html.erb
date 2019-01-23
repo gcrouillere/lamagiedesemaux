@@ -21,9 +21,9 @@
   <div class="hidden-xs">
     <div class="banner">
       <div class="banner-content">
-        <h1><%= ENV['MODEL'].capitalize%></h1>
-        <p><%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}" %></p>
-        <%= link_to "Voir les #{ENV['MODEL']}", ceramiques_path, class: "btn btn-primary btn-lg btn-home" %>
+        <h1><%= t(:home_h1)%></h1>
+        <p><%= t(:home_teaser)%></p>
+        <%= link_to t(:home_button), ceramiques_path, class: "btn btn-primary btn-lg btn-home" %>
       </div>
         <%= photo_update('productphoto', 30, '', '', 30, '.homepic', "Mise à jour photo d'accueil")%>
         <%= photo_update('productphotomobile', 30, '', '', 412, '.homepicmobile', "Mise à jour photo d'accueil pour mobiles")%>
@@ -35,9 +35,9 @@
   <div class="hidden-sm hidden-md hidden-lg">
     <div class="banner-xs">
       <div class="banner-content-xs">
-        <h1><%= ENV['MODEL'].capitalize%></h1>
-        <p><%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}" %></p>
-        <%= link_to "Voir les #{ENV['MODEL']}", ceramiques_path, class: "btn btn-primary btn-home" %>
+        <h1><%= t(:home_h1)%></h1>
+        <p><%= t(:home_teaser)%></p>
+        <%= link_to t(:home_button), ceramiques_path, class: "btn btn-primary btn-home" %>
       </div>
     </div>
   </div>
@@ -77,19 +77,4 @@
     </div>
 </div>
 
-<% content_for(:after_js) do %>
-  <script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "ArtGallery",
-    "name": "Les bijoux en céramique de Fabienne Jacob",
-    "description": "Online craft store",
-    "openingHours": "Mo-Fr 09:00-18:00",
-    "telephone": "<%= ENV['TELEPHONE']%>",
-    "url": "<%=request.original_url%>",
-    "image": "<%=request.original_url%><%= image_path ENV['HOMEPIC']%>",
-    "address":"<%= ENV['ADDRESS'].gsub(/[+]/, ' ')%>",
-    "priceRange":"20€ à 800€"
-  }
-  </script>
-<% end %>
+<%= render 'shared/schema_org_jsons/home_page_json' %>

@@ -1,5 +1,12 @@
 <!-- Right Navigation LAPTOP -->
-<div class="navbar-laptop-lighttheme hidden-xs hidden-sm opacity-on-laptop">
+<% opacity_addition = "" %>
+<% nav_bar_mobility = "nav-mobile" %>
+<% if  params[:controller] == "lessons" %>
+  <% opacity_addition = "opacity-on-laptop" %>
+  <% nav_bar_mobility = "nav-fixe" %>
+<% end %>
+<!-- Right Navigation LAPTOP -->
+<div class="navbar-laptop-lighttheme hidden-xs hidden-sm <%= opacity_addition %> nav-mobile">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-brand", title: "Retour à l'accueil de la boutique de Fabienne Jacob" do %>
     <%= render 'shared/logo_pic' %>
@@ -13,13 +20,13 @@
     <div class="navbar-item">
       <div class="nav-bar-list">
         <%= link_to root_path do %>
-          <span>Accueil</span>
+          <span><%=t(:home_page)%></span>
         <% end %>
         <%= link_to ceramiques_path do %>
-          <span>Boutique</span>
+          <span><%=t(:shop_link)%></span>
         <% end %>
         <%= link_to info_path do %>
-          <span>Infos</span>
+          <span><%=t(:info_link)%></span>
         <% end %>
         <a href="#" id="lighttheme-filter-search"><%= image_tag "search.svg", class: "searchimg"%></a>
         <% if session[:order].present? %>
@@ -31,6 +38,7 @@
             <% end %>
           <% end %>
         <% end %>
+
       </div>
     </div>
 
@@ -38,13 +46,13 @@
     <div class="navbar-item">
       <div class="nav-bar-list">
         <%= link_to root_path do %>
-          <span>Accueil</span>
+          <span><%=t(:home_page)%></span>
         <% end %>
         <%= link_to ceramiques_path do %>
-          <span>Boutique</span>
+          <span><%=t(:shop_link)%></span>
         <% end %>
         <%= link_to info_path do %>
-          <span>Infos</span>
+          <span><%=t(:info_link)%></span>
         <% end %>
         <a href="#" id="lighttheme-filter-search"><%= image_tag "search.svg", class: "searchimg"%></a>
         <% if session[:order].present? %>
@@ -56,6 +64,7 @@
             <% end %>
           <% end %>
         <% end %>
+
       </div>
     </div>
   <% end %>
@@ -72,7 +81,7 @@
   <div class="navbar-item">
     <div class="list-mobile">
       <%= link_to ceramiques_path do %>
-        <span>Shop</span>
+        <span><%=t(:shop_link_mobile)%></span>
       <% end %>
       <%= link_to info_path do %>
         <%= image_tag "info.svg", class: "infoimg"%>
@@ -87,6 +96,24 @@
           <% end %>
         <% end %>
       <% end %>
+
+        <div class="dropdown dropdown-mobile-navbar">
+          <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+              <%= image_tag "#{I18n.locale.upcase}.svg", class: "flag"%>
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-langages">
+            <li><%= link_to params.merge(locale: "en", change: true).permit(:locale, :change) do %>
+                  <%= image_tag "EN.svg", class: "flag"%>
+                <% end %>
+            </li>
+            <li><%= link_to params.merge(locale: "fr", change: true).permit(:locale, :change) do %>
+                  <%= image_tag "FR.svg", class: "flag"%>
+                <% end %>
+            </li>
+          </ul>
+        </div>
+
     </div>
   </div>
 

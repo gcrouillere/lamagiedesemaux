@@ -1,0 +1,25 @@
+.body-darktheme {
+  .new-article {
+    h1 {
+      margin-left: 0px;
+    }
+    label {
+      color: white;
+    }
+    textarea {
+      height: 250px;
+    }
+    #article_article_main_photo {
+      color: white;
+    }
+    .attachinary_container {
+      ul {
+        list-style: none;
+        margin-top: 11px;
+        a {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,8 @@
-<h2>Changez votre mot de passe</h2>
+<% content_for(:noindex) do %>
+<meta name="robots" content="noindex">
+<% end %>
+
+<h2><%= t(:password_change)%></h2>
 
 <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
@@ -7,12 +11,12 @@
   <%= f.full_error :reset_password_token %>
 
   <div class="form-inputs">
-    <%= f.input :password, label: "Nouveau mot de passe", required: true, autofocus: true, hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, label: "Confirmer votre nouveau mot de passe", required: true %>
+    <%= f.input :password, required: true, autofocus: true, hint: ("#{@minimum_password_length} #{t(:min_char)}" if @minimum_password_length) %>
+    <%= f.input :password_confirmation, required: true %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Changer mon mot de passe", class: "btn btn-primary" %>
+    <%= f.button :submit, t(:password_change), class: "btn btn-primary" %>
   </div>
 <% end %>
 

@@ -1,0 +1,139 @@
+.body-darktheme, .body-default, .body-lighttheme {
+ .article-edit {
+    padding: 0px 20px 0px 20px;
+    line-height: 1.58;
+    -webkit-font-smoothing: antialiased;
+    h2 {
+      margin-top: 50px;
+    }
+    p {
+      text-align: justify;
+      font-size: 21px;
+    }
+    p:last-child {
+      margin-bottom: 50px;
+    }
+    h1 {
+      font-size: 50px;
+      margin-left: 0px;
+    }
+  }
+  textarea {
+    height: 250px;
+  }
+  .attachinary_container {
+    ul {
+      list-style: none;
+      margin-top: 11px;
+      a {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+.body-darktheme {
+  #article_article_main_photo {
+    color: white;
+  }
+  .article-edit {
+    label {
+      color: white;
+    }
+  }
+}
+
+#article-show {
+  .article-top-bloc {
+    height: 200px;
+    display: flex;
+    align-items: flex-end;
+    display: flex;
+    padding: 10px 20px;
+    position: relative;
+    .social-buttons {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      .fa-facebook-square {
+        color: #3b5998;
+      }
+      .fa-pinterest-square {
+        color: #bd081c;
+        cursor: pointer;
+      }
+      .fa-twitter-square{
+        color: #1da1f2;
+      }
+    }
+  }
+  h1 {
+    font-size: 50px;
+    margin-left: 0px;
+    text-shadow: 1px 1px black;
+    color: white;
+  }
+  .article-content {
+    padding: 0px 20px 0px 20px;
+    line-height: 1.58;
+    -webkit-font-smoothing: antialiased;
+    h2 {
+      margin-top: 50px;
+    }
+    p:first-child {
+      margin-top: 50px;
+    }
+    p {
+      text-align: justify;
+      font-size: 21px;
+      img {
+        display: block;
+        margin: 0 auto;
+        max-width: 95%;
+      }
+    }
+    p:last-child {
+      margin-bottom: 50px;
+    }
+  }
+}
+
+.body-lighttheme {
+  .connection-temoignage {
+    color: black;
+  }
+}
+
+.article-comments-list {
+  margin-top: 30px;
+}
+
+@media all and (max-width: 700px) {
+  .commentsbloc {
+    padding: 0 10px;
+  }
+}
+
+.body-lighttheme {
+  .comment-delete-link {
+    color: black;
+  }
+}
+
+.body-darktheme, .body-default, .body-lighttheme{
+  .article-comments {
+    margin: 20px 0;
+    textarea {
+      height: 150px;
+    }
+  }
+}
+
+.body-darktheme {
+  .article-comments {
+    label {
+      color: white;
+    }
+  }
+}

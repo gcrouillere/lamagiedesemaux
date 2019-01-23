@@ -1,0 +1,47 @@
+<%= link_to ceramique_path(ceramique), title: "#{ceramique.name}", class: "cardlink" do %>
+  <% ceramique == @ceramiques.last ? additionnal_class = "last-ceramique" : additionnal_class = "" %>
+    <div class="ceramiquecard <%=additionnal_class%> ceramique-<%= index %>">
+      <% if ceramique.offer%>
+        <% if ceramique.offer.discount > 0 %>
+          <p class="discount-offer">-<%= (ceramique.offer.discount * 100).to_i %>%</p>
+          <div class="ribbon"></div>
+        <% end %>
+      <% end %>
+      <div class="img-container img-container<%=ceramique.id%>">
+        <style>
+          .img-container<%=ceramique.id%> {
+            background-image: url(<%= cl_image_path(ceramique.photos[0].path, :quality => "auto")%>);
+            background-size: cover;
+            background-position-y: center;
+            background-position-x: center;
+          }
+        </style>
+        <% if  ceramique.stock == 0%>
+          <div class="ceramiques-card-circle soldout default-circle"><p>Epuisé</p></div>
+        <% end %>
+        <% ceramique.offer ? discount =  ceramique.offer.discount : discount = 0 %>
+        <% if ceramique.offer %>
+          <% if ceramique.offer.discount > 0 %>
+            <div class="allpricesmobile-w">
+              <h2 class="prix-index-mobile"><%= humanized_money(ceramique.price * (1 - discount))%> <%= currency_symbol %></h2>
+              <h3 class="previous-price-mobile"><%= humanized_money(ceramique.price)%> <%= currency_symbol %></h3>
+            </div>
+          <% else %>
+            <div class="allpricesmobile-w-zero">
+              <h2 class="prix-index-mobile"><%= humanized_money(ceramique.price * (1 - discount))%> <%= currency_symbol %></h2>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="allpricesmobile-wo">
+            <h2 class="prix-index-mobile"><%= humanized_money(ceramique.price * (1 - discount))%> <%= currency_symbol %></h2>
+          </div>
+      <% end %>
+      </div>
+      <div class="card-title">
+        <h2 class="laptop-h2 hidden-xs hidden-sm"> <%= ceramique.name%> </h2>
+        <h2 class="card-mobile-h2 hidden-md hidden-lg"> <%= ceramique.name%> </h2>
+        <% ratio = ceramique.photos[0].width.to_f / ceramique.photos[0].height  %>
+        <% ratio < 1 ? ratio = "small" : ratio = "small" %>
+      </div>
+    </div>
+  <% end %>

@@ -1,37 +1,35 @@
-<h4 class="new-session-h4">Créez un compte pour finaliser votre commande </h4>
+<h4 class="new-session-h4"><%=t(:account_creation)%></h4>
 
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
     <div class="facebook-block">
-      <%= link_to "Créer un compte avec #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: "facebook-button hidden-xs" %>
-      <%= link_to "Connexion avec #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: "facebook-button hidden-sm hidden-md hidden-lg" %>
+      <%= link_to "#{t(:facebook_connect)} #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: "facebook-button hidden-xs" %>
+      <%= link_to "#{t(:facebook_connect_mobile)} #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: "facebook-button hidden-sm hidden-md hidden-lg" %>
     </div>
   <% end -%>
 <% end -%>
 
 <hr>
-<h4 class="facebook-separator">Ou créer un compte :</h4>
+<h4 class="facebook-separator"><%=t(:alternate_account_creation)%></h4>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :first_name, :label => 'Prénom', required: true, hint: ("Cette information sera utilisée pour l'expédition de vos commandes") %>
-    <%= f.input :last_name, :label => 'Nom', required: true, hint: ("Cette information sera utilisée pour l'expédition de vos commandes") %>
-    <%= f.input :adress, :label => 'Adresse', required: true, hint: ("Cette information sera utilisée pour l'expédition de vos commandes")%>
-    <%= f.input :zip_code, :label => 'Code Postal', required: true, hint: ("Cette information sera utilisée pour l'expédition de vos commandes"), :input_html => { :id => "postal_code" } %>
-    <%= f.input :city, :label => 'Ville', required: true, hint: ("Cette information sera utilisée pour l'expédition de vos commandes"), :input_html => { :id => "locality" } %>
-
-    <%= f.input :country, :label => 'Pays', required: true, hint: ("Cette information sera utilisée pour l'expédition de vos commandes"), :input_html => { :id => "country" } %>
-
+    <%= f.input :first_name, required: true, hint: (t(:shipping_info_hint)) %>
+    <%= f.input :last_name, required: true, hint: (t(:shipping_info_hint)) %>
+    <%= f.input :adress, required: true, hint: (t(:shipping_info_hint))%>
+    <%= f.input :zip_code, required: true, hint: (t(:shipping_info_hint)), :input_html => { :id => "postal_code" } %>
+    <%= f.input :city, required: true, hint: (t(:shipping_info_hint)), :input_html => { :id => "locality" } %>
+    <%= f.input :country, required: true, hint: (t(:shipping_info_hint)), :input_html => { :id => "country" } %>
     <%= f.input :email, required: true %>
-    <%= f.input :password, :label => 'Mot de passe', required: true, hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, :label => 'Confirmation du mot de passe', required: true %>
-    <%= f.input :consented, as: :boolean, label: "J'accepte les #{link_to 'conditions d\'utilisation', legal_path}".html_safe, required: true%>
+    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} #{t(:min_char)}" if @minimum_password_length) %>
+    <%= f.input :password_confirmation, required: true %>
+    <%= f.input :consented, as: :boolean, label: t(:consented, link: "#{link_to t(:term_of_service), legal_path}").html_safe, required: true%>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Créer", class: "btn btn-primary" %>
+    <%= f.button :submit, t(:create), class: "btn btn-primary" %>
   </div>
 <% end %>
 

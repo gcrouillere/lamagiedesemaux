@@ -1,5 +1,5 @@
 <div class="shipping-cost">
-  <h5 class="port">Frais de port</h5>
+  <h5 class="port"><%=t(:total_port)%></h5>
   <%= simple_form_for (@order.user || User.new) do |f| %>
     <% if @order.user %>
       <%= f.input :country, label: false, selected: @order.user.country, :input_html => { :id => "user_country_mobile" } %>

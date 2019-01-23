@@ -1,0 +1,12 @@
+<p>Hello <%= @lesson.user.first_name %> <%= @lesson.user.last_name %>,</p>
+<% if @lesson.confirmed %>
+  <p>Your lesson is canceled due to a capacity issue. We apologize for the inconvenience.</p>
+  <p>Should you have already paid a deposit, it will be refunded.</p>
+<% else %>
+  <p>Sorry, we cannot accept your lesson request due to a capacity issue.</p>
+  <p>You could start your lesson at this date : <%="#{@closest_start}"%>. Please make a new request <%= link_to 'on-line', new_lesson_url %>.</p>
+<% end %>
+<p>Regards</p>
+<p><%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}" %></p>
+<p>email : <%= "#{ENV['EMAIL']}" %></p>
+<p>phone : <%= "#{ENV['TELEPHONE']}" %></p>

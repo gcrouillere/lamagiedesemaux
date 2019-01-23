@@ -1,0 +1,50 @@
+$(document).ready(function() {
+  if ($('#paypal-button').length > 0) {
+    paypal.Button.render({
+      env: 'sandbox', // Or 'production',
+      commit: true, // Show a 'Pay Now' button
+      style: {
+        color: 'gold',
+        size: 'small',
+      },
+      client: {
+          sandbox: 'AakDxTRwWNs6hgYspTUuVfXAnlmtyf1-Ps5BIlEzbto0zUEl0pYHSx1o4C-zgIh40NkB9IZ3sCk7HqMH',
+          production: 'AcWqebZe2tAD4EzrTGPh3M_k4_MtFnuFq084tAYJUXBNUNwtZ7L7uG8mHaYrgH8ugwqXwEZzx7X9hLc0'
+      },
+
+      payment: function(data, actions) {
+        return actions.payment.create({
+          payment: {
+            transactions: [
+              {
+                amount: {
+                  total: gon.order_in_js,
+                  currency: 'EUR' }
+              }
+            ]
+          }
+        });
+      },
+
+      onAuthorize: function(data, actions) {
+        return actions.payment.execute().then(function(payment) {
+          var input = $("<input>").attr("type", "hidden").attr("name", "status").val("success");
+          $('#paypal-form').append($(input));
+          $('#paypal-form').submit();
+        });
+      },
+
+      onCancel: function(data, actions) {
+        /*
+         * Buyer cancelled the payment
+         */
+      },
+
+      onError: function(err) {
+        /*
+         * An error occurred during the transaction
+         */
+      }
+    }, '#paypal-button');
+  }
+});

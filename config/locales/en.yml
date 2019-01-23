@@ -1,33 +1,412 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  date_format_error: "Date format is invalid. Expected format: DD.MM.YYYY. Click on form calendar icon."
+  blank_start: "Select the course's first day"
+  existing_lesson: "You already have an on-going course request"
+  date_in_futur: "Select a date in the future"
+  closest_start: "Booking impossible. Possible start day for course : %{date}"
+  over_capacity: "Impossible de réserver. Plus que %{capacity} places disponible sur la période demandée"
+  basket_duration: "Your basket will be kept during %{duration} min"
+  stock_limit: "Sorry, only %{stock} remmain in stock"
+  expired_basket: "Your basket has expired"
+  expired_no_payment: "Your basket has expired, your order is canceled. No debit was processed."
+  message_thank: "Thanks for your message"
+  incorrect_fields: "Some fields are incorrect"
+  navbar_home_link: "Back to homepage"
+  shop_link: "Shop"
+  shop_link_mobile: "Shop"
+  info_link: "Infos"
+  blog_link: "Blog"
+  lesson_link: "Book a course"
+  lesson_link_mobile: "Course"
+  account_update: "Account update: "
+  account_creation: "Create an account to finalize your order"
+  alternate_account_creation: "Or create an account:"
+  shipping_info_hint: "This info will be used to ship your orders"
+  min_char: "characters minimum"
+  term_of_service: "terms of service"
+  facebook_connect: "Create an account with"
+  facebook_connect_mobile: "Connect with"
+  alternate_connection: "Or connect with your email:"
+  connect: "Sign-in"
+  unconnect: "Sign-out"
+  creat_account: "Create an account"
+  remember_me: "Remember me"
+  consented: "I agree with the %{link} "
+  update: "Update"
+  create: "Create"
+  save: "Save"
+  new_lesson_description: "Blala to update."
+  contact_description: "Blabal to update."
+  blog_main_title: "%{name}'S BLOG"
+  blog_index_description: "Retrouvez les articles de %{name}"
+  new_lesson_title: "Book a course"
+  home_description: "Blala to update"
+  home_title: "Vente de produits en ligne"
+  home_page: "Homepage"
+  info_description: "Blala to update."
+  info_title: "Some infos"
+  index_description: "Blala to update."
+  index_title: "Product available"
+  main_index_h1: "Ceramics: unique products available on-line"
+  home_h1: "The products"
+  home_teaser: "Mrs Toutlemonde"
+  home_button: "Go to products"
+  offer_products: ": the products"
+  unique_creation: "Unique creations"
+  filter: "Filter"
+  max_price: "Price €"
+  price: "Price"
+  delivery: "Delivery within"
+  quantity: "Quantity"
+  qte: "Qty"
+  hello: "Hello"
+  add_to_basket: "Add to basket"
+  out_of_stock: "Out of stock"
+  no_product: "Sorry, no product matches your search"
+  all_products: "DISPLAY ALL PRODUCTS"
+  display: "DISPLAY"
+  display_mobile: "DISPLAY THE PRODUCTS"
+  display_all: "Display all"
+  search_place_holder: "Looking for something ?"
+  les_produits_de_machin: "%{name}'s %{product}"
+  same_category_products: "Discover other products in the same category:"
+  name: "%{name}"
+  first_day: "Your course's first day"
+  clic_on_calendar: "Clic on calendar icon to select a date"
+  clic_on_calendar_mobile: "Clic on calendar"
+  course_request: "request a reservation"
+  json_course_name: "Product course"
+  json_course_description: "Build your product during a course"
+  deposit: "Deposit : "
+  course: "Course for"
+  lesson_start: "Course start"
+  proceed_to_payment: "Proceed to payment"
+  stage_confirmation: "Your request has been sent, you will receive a confirmation email as soons as it has been processed."
+  thanks_lesson: "Thanks for your payment. Your course is validated."
+  mail_sent: "A confirmation email has been sent. Check your spam emails."
+  basket: "Basket"
+  total_amount: "Total amount"
+  total_articles: "Product(s) total"
+  total_port: "Shipping costs"
+  stripe_paypal: "Pay by card:"
+  secured_payment: "Payment secured by"
+  cards: "Accepted cards"
+  promo: "Promo code"
+  order_take_away: "Pick up your order in shop"
+  cgv: "Terms of sale"
+  cgv_short: "Terms of sale"
+  data: "Data"
+  thanks_product_order: "Thanks for your order, it will ship soon."
+  comment:
+    one: "Comment"
+    other: "Comments"
+  day:
+    one: "Day"
+    other: "Days"
+  person:
+    one: "person"
+    other: "persons"
+  comment_article: "Write a comment on this article: "
+  connect_to_comment: "Sign-in to leave a comment"
+  password_change_info: "Someone has requested a link to change your password. You can achieve this change with the link below."
+  password_change: "Changer mon mot de passe"
+  password_unchanged: "If you haven't made the request, please ignore this email. Your password won't change until you click on the link above."
+  forgotten_password_send: "Send password reset"
+  password_reset: "Reset password"
+  forgotten_password: "Password forgotten?"
+  404_sorry: "Sorry this page doesn't exist anymore"
+  back_to_shop_404: "Back to shop"
+  payment: "Payment"
+  delivery: "Package delivery"
+  delivery_lead_time: "Delivery by Colissimo within %{lead_time}, to following address:"
+  contact_update: "UPDATE YOUR CONTACT INFORMATION"
+  contact_update_mobile: "UPDATE YOUR CONTACT INFO"
+  order_recover: "Pick up you order in shop"
+  order_recover_appointment: "Once your order is paid, contact %{name} to pick up your order."
+  stay_caught_up: "Stay caught up"
+  news_letter_subscribe: "Subscribe to newsletter below"
+  subscribe: "SUBSCRIBE"
+  information: "Information"
+  see_products: "DISCOVER THESE PRODUCTS"
+  zoom: "Adjust zoom level with mousewheel or touchpad"
+  contact: "Contact"
+  email_adress: "Email address"
+  first_last_name: "First name Last name"
+  send_your_message: "Type your message here"
+  send: "SEND"
+  activerecord:
+    errors:
+      messages:
+        record_invalid: "Validation failed: %{errors}"
+        restrict_dependent_destroy:
+          has_one: "Cannot delete record because a dependent %{record} exists"
+          has_many: "Cannot delete record because dependent %{record} exist"
+    models:
+      user:
+        one: "Customer"
+        other: "Customers"
+      ceramique:
+        one: "Product"
+        other: "Products"
+      category:
+        one: "Category"
+        other: "Categories"
+      calendarupdate: "Calendar update"
+      lesson:
+        one: "Lesson"
+        other: "Lessons"
+      offer:
+        one: "Offer"
+        other: "Offers"
+      order:
+        one: "Order"
+        other: "Orders"
+    attributes:
+      user:
+        first_name: "First name"
+        last_name: "Last name"
+        tracking: "N° de suivi colis"
+        adress: "Address"
+        zip_code: "Zip code"
+        country: "Country"
+        city: "City"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        current_password: "Current password"
+      ceramique:
+        name: "Name"
+        description: "Description"
+        category: "Catégory"
+        price_cents: "Price in € cents"
+        weight: "Weight"
+      category:
+        name: "Name"
+      lesson:
+        start: "Lesson start"
+        duration: "Duration in days"
+        user: "Customer"
+        confirmed: "Confirmed ?"
+        student: "Number of participants"
+      calendarupdate:
+        period_start: "Period start"
+        period_end: "Period end"
+        capacity: "Left places "
+        available: "Available ?"
+        price_cents: "Prix in € cts"
+      offer:
+        title: "Title"
+        description: "Description"
+        showcased: "On first page ?"
+      order:
+        state: "Status"
+        ceramique: "Products"
+        amount_cents: "Amount in € cents"
+        port_cents: "Port cost in € cents"
+      article:
+        title: "Title"
+        content: "Content"
+        article_main_photo: "Article photo"
+  date:
+    abbr_day_names:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    - Fri
+    - Sat
+    abbr_month_names:
+    -
+    - Jan
+    - Feb
+    - Mar
+    - Apr
+    - May
+    - Jun
+    - Jul
+    - Aug
+    - Sep
+    - Oct
+    - Nov
+    - Dec
+    day_names:
+    - Sunday
+    - Monday
+    - Tuesday
+    - Wednesday
+    - Thursday
+    - Friday
+    - Saturday
+    formats:
+      default: "%Y-%m-%d"
+      long: "%B %d, %Y"
+      short: "%b %d"
+    month_names:
+    -
+    - January
+    - February
+    - March
+    - April
+    - May
+    - June
+    - July
+    - August
+    - September
+    - October
+    - November
+    - December
+    order:
+    - :year
+    - :month
+    - :day
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: about 1 hour
+        other: about %{count} hours
+      about_x_months:
+        one: about 1 month
+        other: about %{count} months
+      about_x_years:
+        one: about 1 year
+        other: about %{count} years
+      almost_x_years:
+        one: almost 1 year
+        other: almost %{count} years
+      half_a_minute: half a minute
+      less_than_x_minutes:
+        one: less than a minute
+        other: less than %{count} minutes
+      less_than_x_seconds:
+        one: less than 1 second
+        other: less than %{count} seconds
+      over_x_years:
+        one: over 1 year
+        other: over %{count} years
+      x_days:
+        one: 1 day
+        other: "%{count} days"
+      x_minutes:
+        one: 1 minute
+        other: "%{count} minutes"
+      x_months:
+        one: 1 month
+        other: "%{count} months"
+      x_years:
+        one: 1 year
+        other: "%{count} years"
+      x_seconds:
+        one: 1 second
+        other: "%{count} seconds"
+    prompts:
+      day: Day
+      hour: Hour
+      minute: Minute
+      month: Month
+      second: Seconds
+      year: Year
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: must be accepted
+      blank: can't be blank
+      present: must be blank
+      confirmation: doesn't match %{attribute}
+      empty: can't be empty
+      equal_to: must be equal to %{count}
+      even: must be even
+      exclusion: is reserved
+      greater_than: must be greater than %{count}
+      greater_than_or_equal_to: must be greater than or equal to %{count}
+      inclusion: is not included in the list
+      invalid: is invalid
+      less_than: must be less than %{count}
+      less_than_or_equal_to: must be less than or equal to %{count}
+      model_invalid: "Validation failed: %{errors}"
+      not_a_number: is not a number
+      not_an_integer: must be an integer
+      odd: must be odd
+      required: must exist
+      taken: has already been taken
+      too_long:
+        one: is too long (maximum is 1 character)
+        other: is too long (maximum is %{count} characters)
+      too_short:
+        one: is too short (minimum is 1 character)
+        other: is too short (minimum is %{count} characters)
+      wrong_length:
+        one: is the wrong length (should be 1 character)
+        other: is the wrong length (should be %{count} characters)
+      other_than: must be other than %{count}
+    template:
+      body: 'There were problems with the following fields:'
+      header:
+        one: 1 error prohibited this %{model} from being saved
+        other: "%{count} errors prohibited this %{model} from being saved"
+  helpers:
+    select:
+      prompt: Please select
+    submit:
+      create: Create %{model}
+      submit: Save %{model}
+      update: Update %{model}
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%u%n"
+        precision: 2
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "$"
+    format:
+      delimiter: ","
+      precision: 3
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: Billion
+          million: Million
+          quadrillion: Quadrillion
+          thousand: Thousand
+          trillion: Trillion
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: ", and "
+      two_words_connector: " and "
+      words_connector: ", "
+  time:
+    am: am
+    formats:
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      long: "%B %d, %Y %H:%M"
+      short: "%d %b %Y"
+    pm: pm

@@ -63,6 +63,15 @@
     color: white;
     box-shadow: 5px 5px 0px $primary;
   }
+  span {
+    color: white;
+  }
+  .payments-separator {
+    border-left: 1px solid $primary-opacified;
+  }
+  hr {
+    border-top: 1px solid $primary-opacified;
+  }
 }
 
 // MOBILE

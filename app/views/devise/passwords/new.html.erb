@@ -1,4 +1,8 @@
-<h2>Mot de passe oublié?</h2>
+<% content_for(:noindex) do %>
+<meta name="robots" content="noindex">
+<% end %>
+
+<h2><%= t(:forgotten_password)%></h2>
 
 <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= f.error_notification %>
@@ -9,13 +13,13 @@
 
   <div class="hidden-xs">
     <div class="form-actions">
-      <%= f.button :submit, "Envoyer la réinitialisation du mot de passe", class: "btn btn-primary" %>
+      <%= f.button :submit, t(:forgotten_password_send), class: "btn btn-primary" %>
     </div>
   </div>
 
   <div class="hidden-sm hidden-md hidden-lg">
     <div class="form-actions">
-      <%= f.button :submit, "Réinitialiser le mot de passe", class: "btn btn-primary" %>
+      <%= f.button :submit, t(:password_reset), class: "btn btn-primary" %>
     </div>
   </div>
 <% end %>

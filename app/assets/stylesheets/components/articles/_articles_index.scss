@@ -1,0 +1,121 @@
+.new-article-btn {
+  margin-bottom: 20px;
+}
+
+.articles-index {
+  h1 {
+    font-weight: 900;
+    margin-left: 0px;
+    margin-bottom: 50px;
+    font-size: 60px;
+    text-align: center;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+  }
+  @media all and (max-width: 700px) {
+    h1 {
+      font-size: 37px;
+      margin: 22px 5px 50px 5px;
+    }
+  }
+}
+
+.body-darktheme {
+  .articles-index {
+    h1 {
+      -webkit-text-stroke-color: #fff;
+    }
+  }
+}
+
+.article-card-and-link {
+  position: relative;
+  .delete-article {
+    z-index: 2;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+}
+
+.body-lighttheme {
+  .article-card-and-link {
+    .delete-article {
+      color: black;
+    }
+  }
+}
+
+.index-article-card {
+  width: 100%;
+  min-height: 200px;
+  border-radius: 0px;
+  margin-bottom: 40px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+  display: flex;
+  position: relative;
+  .left-block-article {
+    display: flex;
+    min-width: 40%;
+    justify-content: center;
+    align-items: center;
+    h2 {
+      padding: 20px;
+      text-align: center;
+      text-shadow: 1px 1px black;
+      margin: 0;
+    }
+  }
+  .right-block-article {
+    overflow: hidden;
+    width: 50%;
+    margin: 0 30px 0 30px;
+    text-align: center;
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    p {
+      margin: 0;
+    }
+  }
+}
+
+@media all and (max-width: 700px) {
+  .index-article-card {
+    width: 90%;
+    margin: 40px auto 0px auto;
+    .left-block-article {
+      min-width: 100%;
+    }
+  }
+}
+
+.body-default, .body-lighttheme {
+  .left-block-article {
+    h2 {
+      color: white;
+    }
+  }
+  .right-block-article {
+    p {
+      color: black;
+    }
+  }
+  .index-article-card {
+   background: white;
+    border: 5px solid white;
+  }
+}
+
+.body-darktheme {
+  .index-article-card {
+    border: 1px solid white;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  .left-block-article {
+    box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.4);
+  }
+}

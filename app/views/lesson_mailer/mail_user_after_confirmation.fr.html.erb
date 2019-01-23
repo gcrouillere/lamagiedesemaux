@@ -1,0 +1,10 @@
+<p>Bonjour <%= @lesson.user.first_name %> <%= @lesson.user.last_name %>,</p>
+<p> Votre demande de stage est confirmée. Premier jour de stage <%= l @lesson.start, format: :short %>, pour une durée de <%= "#{@lesson.duration}" %> jours.</p>
+<p>Vous devez maintenant payer les arrhes pour qu'elle soit définitivement validée : <%= link_to 'payer sur le site.', lesson_url(@lesson) %></p>
+<p>Cordialement</p>
+<p><%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}" %></p>
+<p>email : <%= "#{ENV['EMAIL']}" %></p>
+<p>téléphone : <%= "#{ENV['TELEPHONE']}" %></p>
+
+
+

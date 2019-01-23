@@ -20,8 +20,14 @@
             <% end %>
           <% end %>
         </ul>
-        <h3>Prix max €</h3>
-        <input type="number" name="prix_max" min="0" class="prix">
+        <h3>Prix €</h3>
+        <section class="range-slider">
+          <span class="rangeValues"></span>
+          <% max = (Ceramique.maximum(:price_cents) || 0)/ 100 %>
+          <% min = (Ceramique.minimum(:price_cents) || 0)/ 100 %>
+          <input name="prix_min" value="<%= min %>" min="<%= min %>" max="<%= max %>" step="1" type="range">
+          <input name="prix_max" value="<%= max %>" min="<%= min %>" max="<%= max %>" step="1" type="range">
+        </section>
       </div>
       <% if  params[:categories].present? || params[:prix_max].present? || params[:offer].present? || params[:search].present?%>
         <label class="label-search all"><input type="checkbox" name="all[]" value="all">Tout afficher</label>

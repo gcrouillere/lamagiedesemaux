@@ -1,0 +1,51 @@
+<% content_for(:after_js) do %>
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org/",
+    "@type": "Product",
+    "name": "<%=@ceramique.name.capitalize%>",
+    "image": "<%=cl_image_path @ceramique.photos[0].path%>",
+    "description": "<%=@ceramique.description%>",
+    "sku": "<%=@ceramique.id%>",
+    "brand": {
+      "@type": "Store",
+      "name": "<%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>",
+      "image": ["<%=request.original_url%><%= image_path ENV['HOMEPIC']%>"],
+      "telephone": "<%= ENV['TELEPHONE']%>",
+      "priceRange": "€€",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "45 rue Alphonse de Lamartine",
+        "addressLocality": "Sautron",
+        "addressRegion": "Pays de la Loire",
+        "postalCode": "44880",
+        "addressCountry": "FR"
+      }
+    },
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "EUR",
+      "price": "<%= humanized_money(@ceramique.price).to_s.gsub(",",".")%>",
+      "priceValidUntil": "2020-12-12",
+      "itemCondition": "http://schema.org/UsedCondition",
+      "availability": "http://schema.org/InStock",
+      "url": "<%=request.original_url%>",
+      "seller": {
+        "@type": "Store",
+        "name": "<%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>",
+        "image": ["<%=request.original_url%><%= image_path ENV['HOMEPIC']%>"],
+        "telephone": "<%= ENV['TELEPHONE']%>",
+        "priceRange": "€€",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "45 rue Alphonse de Lamartine",
+          "addressLocality": "Sautron",
+          "addressRegion": "Pays de la Loire",
+          "postalCode": "44880",
+          "addressCountry": "FR"
+        }
+      }
+    }
+  }
+  </script>
+  <% end %>

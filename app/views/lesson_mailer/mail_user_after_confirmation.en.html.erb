@@ -1,0 +1,10 @@
+<p>Hello <%= @lesson.user.first_name %> <%= @lesson.user.last_name %>,</p>
+<p> Your lesson request has been accepted. First day <%= l @lesson.start, format: :short %>, for <%= "#{@lesson.duration}" %> days.</p>
+<p>You have to pay a deposit so that it is definitely validated : <%= link_to 'pay online', lesson_url(@lesson) %></p>
+<p>Regards</p>
+<p><%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}" %></p>
+<p>email : <%= "#{ENV['EMAIL']}" %></p>
+<p>Phone : <%= "#{ENV['TELEPHONE']}" %></p>
+
+
+

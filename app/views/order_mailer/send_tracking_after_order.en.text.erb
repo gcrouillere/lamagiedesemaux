@@ -1,0 +1,13 @@
+Hello <%= @user.first_name %> <%= @user.last_name %>,
+
+Your order has been delivered to the carrier. Here is your tracking number to be used on Colissimo's site : <%= @user.tracking %>
+
+You can follow your order on-line with this reference. Check out Colissimo's web site.
+
+regards
+
+<%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}" %>
+
+email : <%= "#{ENV['EMAIL']}" %>
+
+phone : <%= "#{ENV['TELEPHONE']}" %>

@@ -1,13 +1,13 @@
 <% unless session[:email]%>
   <div class="subscribe-text">
-    <h2>Contact</h2>
+    <h2><%=t(:contact)%></h2>
   </div>
   <form action="/user-subscribe" method="post" authenticity_token="true" class="subscribe-form">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <input type="text" name="user[email]" id="email" placeholder="Adresse Email" class="subscribe-input">
-    <input type="text" name="user[first_name]" id="first_name" placeholder="Prénom Nom" class="subscribe-input">
-    <textarea name="user[tracking]" id="tracking" placeholder="Entrez votre message" class="subscribe-input textarea"></textarea>
-    <input type="submit" class="btn btn-primary" value="ENVOYER">
+    <input type="text" name="user[email]" id="email" placeholder="<%=t(:email_adress)%>" class="subscribe-input">
+    <input type="text" name="user[first_name]" id="first_name" placeholder="<%=t(:first_last_name)%>" class="subscribe-input">
+    <textarea name="user[tracking]" id="tracking" placeholder="<%=t(:send_your_message)%>" class="subscribe-input textarea"></textarea>
+    <input type="submit" class="btn btn-primary" value="<%=t(:send)%>">
   </form>
 <% end %>
 

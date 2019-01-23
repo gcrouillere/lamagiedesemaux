@@ -18,10 +18,10 @@ class OrdersController < ApplicationController
       @ceramique.update(stock: @ceramique.stock - @basketline.quantity)
       costs = Amountcalculation.new(@order).calculate_amount(@order, current_user)
       @order.update(amount: costs[:total], port: costs[:port], ceramique: collect_ceramiques_for_stats, weight: costs[:weight])
-      flash[:notice] = "Votre panier sera conservé #{(ENV['BASKETDURATION'].to_f * 60).to_i } min"
+      flash[:notice] = t(:basket_duration, duration: "#{(ENV['BASKETDURATION'].to_f * 60).to_i }")
       redirect_to order_path(@order)
     else
-      flash[:alert] = "Désolé, il n'y a que #{@ceramique.stock} en stock"
+      flash[:alert] = t(:stock_limit, stock: "#{@ceramique.stock}")
       redirect_to ceramique_path(@ceramique)
     end
   end
@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
     if Order.find(params[:id])
       @order = Order.find(params[:id])
       if @order.state == "pending" || @order.state == "payment page"
-        if current_user || @order.user.present?
+        if (current_user || @order.user.present?) && !@order.lesson.present?
           known_user = current_user || @order.user
           costs = Amountcalculation.new(@order).calculate_amount(@order, known_user)
           @order.update(amount: costs[:total], port: costs[:port], weight: costs[:weight], user: known_user)
@@ -40,11 +40,11 @@ class OrdersController < ApplicationController
         @weight = @order.weight
         render "show_#{@active_theme.name}"
       else
-        flash[:notice] = "Votre panier a expiré"
+        flash[:notice] = t(:expired_basket)
         redirect_to ceramiques_path
       end
     else
-      flash[:notice] = "Votre panier a expiré"
+      flash[:notice] = t(:expired_basket)
       redirect_to ceramiques_path
     end
   end

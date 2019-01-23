@@ -1,5 +1,6 @@
 class Offer < ApplicationRecord
   has_many :ceramiques
+  accepts_nested_attributes_for :ceramiques
 
   validates :title, presence: true
   validates :description, presence: true

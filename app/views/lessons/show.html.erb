@@ -7,13 +7,14 @@
 
     <div class="hidden-xs col-sm-offset-2 col-sm-8">
       <div class="text-center-stage stage-payment">
-        <h3>Montant des arrhes: <%= humanized_money(@order.amount) %> <%= currency_symbol %></h3>
-        <p>Stage de poterie pour <%= @order.lesson.duration%> jours, <%= @order.lesson.student%> personnes.</p>
-        <p>Début du stage le <%= @order.lesson.start.day%>/<%= @order.lesson.start.month%>/<%= @order.lesson.start.year%>.</p>
+        <h3><%=t(:deposit)%> <%= humanized_money(@order.amount) %> <%= currency_symbol %></h3>
+        <p><%= t(:course)%> <%= @order.lesson.duration%> <%= t(:day, count: @order.lesson.duration)%>, <%= @order.lesson.student%> <%= t(:people, count: @order.lesson.student)%>.</p>
+        <p><%=t(:lesson_start)%> : <%= l @order.lesson.start, format: :short %>.</p>
         <form action="/orders/<%= @order.id%>/payments/new" method="get">
           <input type="hidden" name="order_id" value="<%= @order.id%>">
+          <input type="hidden" name="locale" value="<%= I18n.locale%>">
           <button type="submit" class="btn btn-primary order-stage">
-            VALIDER MA COMMANDE
+            <%= t(:proceed_to_payment).upcase %>
           </button>
         </form>
       </div>
@@ -21,13 +22,14 @@
 
     <div class="hidden-sm hidden-md hidden-lg col-xs-12">
       <div class="text-center-stage-mobile stage-payment-mobile">
-        <h4>Montant des arrhes: <%= humanized_money(@order.amount) %> <%= currency_symbol %></h4>
-        <p>Stage de poterie pour <%= @order.lesson.duration%> jours, <%= @order.lesson.student%> personnes.</p>
-        <p>Début du stage le <%= @order.lesson.start.day%>/<%= @order.lesson.start.month%>/<%= @order.lesson.start.year%>.</p>
+        <h4><%=t(:deposit)%>  <%= humanized_money(@order.amount) %> <%= currency_symbol %></h4>
+        <p><%= t(:course)%> <%= @order.lesson.duration%> <%= t(:day, count: @order.lesson.duration)%>, <%= @order.lesson.student%> <%= t(:people, count: @order.lesson.student)%>.</p>
+        <p><%=t(:lesson_start)%> : <%= l @order.lesson.start, format: :short %>.</p>
         <form action="/orders/<%= @order.id%>/payments/new" method="get">
           <input type="hidden" name="order_id" value="<%= @order.id%>">
+          <input type="hidden" name="locale" value="<%= I18n.locale%>">
           <button type="submit" class="btn btn-primary order-stage">
-            Valider ma commande
+            <%= t(:proceed_to_payment)%>
           </button>
         </form>
       </div>

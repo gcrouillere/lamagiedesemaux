@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_18_101527) do
+ActiveRecord::Schema.define(version: 2018_11_30_205624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2018_06_18_101527) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "page"
+    t.string "title"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
@@ -60,6 +61,10 @@ ActiveRecord::Schema.define(version: 2018_06_18_101527) do
     t.integer "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ceramique_name"
+    t.integer "ceramique_qty"
+    t.integer "basketline_price_cents", default: 0, null: false
+    t.integer "ceramique_id_on_order"
     t.index ["ceramique_id"], name: "index_basketlines_on_ceramique_id"
     t.index ["order_id"], name: "index_basketlines_on_order_id"
   end
@@ -151,8 +156,18 @@ ActiveRecord::Schema.define(version: 2018_06_18_101527) do
     t.integer "port_cents", default: 0, null: false
     t.boolean "take_away"
     t.integer "weight"
+    t.bigint "promo_id"
+    t.string "method"
     t.index ["lesson_id"], name: "index_orders_on_lesson_id"
+    t.index ["promo_id"], name: "index_orders_on_promo_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "promos", force: :cascade do |t|
+    t.string "code"
+    t.float "percentage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "shipping_categories", force: :cascade do |t|
@@ -217,6 +232,7 @@ ActiveRecord::Schema.define(version: 2018_06_18_101527) do
   add_foreign_key "ceramiques", "offers"
   add_foreign_key "lessons", "users"
   add_foreign_key "orders", "lessons"
+  add_foreign_key "orders", "promos"
   add_foreign_key "orders", "users"
   add_foreign_key "subcategories", "categories"
 end

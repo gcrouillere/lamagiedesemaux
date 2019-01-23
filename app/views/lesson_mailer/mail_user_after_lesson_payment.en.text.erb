@@ -1,0 +1,11 @@
+Hello <%= @lesson.user.first_name %> <%= @lesson.user.last_name %>,
+
+Thanks for your deposit. Your lesson is validated.
+
+First day <%= l @lesson.start, format: :short %>, for <%= "#{@lesson.duration}" %> days.
+
+Regards
+
+<%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}" %>
+email : <%= "#{ENV['EMAIL']}" %>
+phone : <%= "#{ENV['TELEPHONE']}" %>

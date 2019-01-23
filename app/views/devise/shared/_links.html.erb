@@ -1,13 +1,13 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Se connecter", new_session_path(resource_name), class: "devise-bottom-link" %><br />
+  <%= link_to t(:connect), new_session_path(resource_name), class: "devise-bottom-link" %><br />
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Créer un compte", new_registration_path(resource_name), class: "devise-bottom-link" %><br />
+  <%= link_to t(:creat_account), new_registration_path(resource_name), class: "devise-bottom-link" %><br />
 <% end -%>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "Mot de passe oublié?", new_password_path(resource_name), class: "devise-bottom-link" %><br />
+  <%= link_to t(:forgotten_password), new_password_path(resource_name), class: "devise-bottom-link" %><br />
 <% end -%>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>

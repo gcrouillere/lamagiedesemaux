@@ -9,8 +9,12 @@
     <%= cl_image_path @front_offer.ceramiques.first.photos[0].path %>
   <% end %>
   <% content_for(:description) do %>
-    <% @front_offer.discount > 0 ? discount = " - Réduction de #{(@front_offer.discount * 100).to_i} % " : discount = "" %>
-    <%= "#{@front_offer.title} #{discount} - #{@front_offer.description}".squish %>
+    <% @front_offer.discount > 0 ? discount = t(:discount_percentage, amount: "#{(@front_offer.discount * 100).to_i}") : discount = "" %>
+    <%= "#{@front_offer.title} - #{discount} - #{@front_offer.description}".squish %>
+  <% end %>
+<% else %>
+  <% content_for(:description) do %>
+    <%= t(:index_description)%>
   <% end %>
 <% end %>
 
@@ -62,8 +66,8 @@
       <% else %>
         <div class="col-xs-12 no-ceramique-list">
           <div class="no-ceramique">
-            <p>Nous sommes désolés, aucun produit ne correspond à cette recherche</p>
-            <%= link_to "AFFICHER TOUS LES PRODUITS", ceramiques_path, class: "btn btn-primary lighttheme" %>
+            <p><%=t(:no_product)%></p>
+            <%= link_to t(:all_products), ceramiques_path, class: "btn btn-primary" %>
           </div>
         </div>
       <% end %>
@@ -71,3 +75,5 @@
 </div>
 
 <%= render 'shared/subscribe' %>
+
+<%= render 'shared/schema_org_jsons/ceramiques_index_json' %>

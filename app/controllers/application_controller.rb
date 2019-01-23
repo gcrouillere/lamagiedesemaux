@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   after_action :store_location
 
   def default_url_options
-  { host: ENV["HOST"] || "localhost:3000" }
+  { host: ENV["HOST"] || "localhost:3000"}
   end
 
   def retrieve_admin
@@ -80,6 +80,12 @@ class ApplicationController < ActionController::Base
       :city,
       :country,
       ])
+  end
+
+  private
+
+  def extract_locale_from_accept_language_header
+    request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first if request.env['HTTP_ACCEPT_LANGUAGE']
   end
 
   protected

@@ -1,0 +1,18 @@
+<% content_for(:after_js) do %>
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org/",
+    "@type": "ItemList",
+    "url": "<%=request.original_url%>",
+    "numberOfItems": "<%=@ceramiques.size%>",
+    "name": "<%=t(:les_produits_de_machin, product:"#{ENV['MODEL']}", name: "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}")%>",
+    "itemListElement": <%= raw @ceramiques.map {|ceramique| {
+      "@type": "ListItem",
+      "position": @ceramiques.index(ceramique) + 1,
+      "image": cl_image_path(ceramique.photos[0].path),
+      "name": ceramique.name,
+      "url": "https://#{ENV['APPNAME']}.herokuapp.com/#{ENV['MODEL']}/#{ceramique.to_param}",
+    }}.to_json %>
+  }
+  </script>
+<% end %>

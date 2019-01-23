@@ -43,6 +43,8 @@
   .left-block-temoignage {
     transform: skew(20deg);
     display: flex;
+    position: relative;
+    left: -20px;
     min-width: 40%;
     justify-content: center;
     align-items: center;

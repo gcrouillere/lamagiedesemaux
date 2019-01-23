@@ -1,8 +1,11 @@
+<% content_for(:noindex) do %>
+<meta name="robots" content="noindex">
+<% end %>
 <% content_for(:description) do %>
-Conditions générales de vente
+<%= t(:cgv)%>
 <% end %>
 <% content_for(:title_tag) do %>
-  Conditions générales de vente
+  <%= t(:cgv)%>
 <% end %>
 
  <div class="container">

@@ -9,8 +9,12 @@
     <%= cl_image_path @front_offer.ceramiques.first.photos[0].path %>
   <% end %>
   <% content_for(:description) do %>
-    <% @front_offer.discount > 0 ? discount = " - Réduction de #{(@front_offer.discount * 100).to_i} % " : discount = "" %>
-    <%= "#{@front_offer.title} #{discount} - #{@front_offer.description}".squish %>
+    <% @front_offer.discount > 0 ? discount = t(:discount_percentage, amount: "#{(@front_offer.discount * 100).to_i}") : discount = "" %>
+    <%= "#{@front_offer.title} - #{discount} - #{@front_offer.description}".squish %>
+  <% end %>
+<% else %>
+  <% content_for(:description) do %>
+    <%= t(:index_description)%>
   <% end %>
 <% end %>
 
@@ -29,7 +33,7 @@
     </div>
   <% elsif params[:offer].present? %>
     <div class="h1-index hidden-xs hidden-sm">
-      <h1> <%= @front_offer.title %> : les produits</h1>
+      <h1> <%= @front_offer.title %> <%=t(:offer_products)%></h1>
       <hr>
     </div>
   <% else %>
@@ -38,7 +42,7 @@
       <hr>
     </div>
     <div class="h1-index mobile hidden-md hidden-lg">
-      <h1>Les créations uniques</h1>
+      <h1> <%= t(:unique_creation)%></h1>
       <hr>
     </div>
   <% end %>
@@ -89,31 +93,31 @@
     </div>
 
     <div class="col-xs-12 col-lg-12 ceramique-list">
+
       <% @ceramiques[1..-1].each_with_index do |ceramique, index| %>
         <div class="col-xs-12 col-sm-4 card-padding">
           <%= link_to ceramique_path(ceramique), title: "#{ceramique.name}", class: "cardlink" do %>
             <% ceramique == @ceramiques.last ? additionnal_class = "last-ceramique" : additionnal_class = "" %>
             <div class="ceramiquecard-darktheme <%=additionnal_class%>">
               <div class="ceramiquecardimage ceramiquecardimage-<%=index%>">
-                  <style>
-                    .ceramiquecardimage-<%=index%> {
-                      background-image: url(<%= cl_image_path ceramique.photos[0].path, height: 800, crop: "scale" %>);
-                      background-size: cover;
-                      background-position-y: center;
-                      background-position-x: center;
-                    }
-                  </style>
-                <% if ceramique.offer%>
-                  <% if ceramique.offer.discount > 0 %>
-                    <p class="discount-offer">-<%= (ceramique.offer.discount * 100).to_i %>%</p>
-                    <div class="ribbon"></div>
-                  <% end %>
-                <% end %>
-                <% if  ceramique.stock == 0 %>
-                  <div class="ceramiques-card-circle soldout darktheme-circle"><p>Epuisé</p></div>
-                <% end %>
-              <!-- <div class="transparent-div"></div> -->
+                <style>
+                  .ceramiquecardimage-<%=index%> {
+                    background-image: url(<%= cl_image_path ceramique.photos[0].path, height: 800, crop: "scale" %>);
+                    background-size: cover;
+                    background-position-y: center;
+                    background-position-x: center;
+                  }
+                </style>
               </div>
+              <% if ceramique.offer%>
+                <% if ceramique.offer.discount > 0 %>
+                  <p class="discount-offer">-<%= (ceramique.offer.discount * 100).to_i %>%</p>
+                  <div class="ribbon"></div>
+                <% end %>
+              <% end %>
+              <% if  ceramique.stock == 0 %>
+                <div class="ceramiques-card-circle soldout darktheme-circle"><p>Epuisé</p></div>
+              <% end %>
               <div class="ceramique-card-text">
                 <h2 class="card-mobile-h2 hidden-md hidden-lg"> <%= ceramique.name.capitalize%> </h2>
                 <h2 class="hidden-xs hidden-sm"> <%= ceramique.name.capitalize%> </h2>
@@ -145,16 +149,19 @@
               </div>
             </div>
           <% end %>
-        </div>
-      <% end %>
-    </div>
+          </div>
+       <% end %>
+      </div>
+
   <% else %>
-    <div class="col-xs-12 no-ceramique-list">
+
+    <div class="col-xs-12 col-lg-9 no-ceramique-list">
       <div class="no-ceramique">
         <p>Nous sommes désolés, aucun produit ne correspond à cette recherche</p>
         <%= link_to "AFFICHER TOUS LES PRODUITS", ceramiques_path, class: "btn btn-primary" %>
       </div>
     </div>
+
   <% end %>
 
 <!-- MOBILE -->
@@ -180,15 +187,22 @@
               <% end %>
             <% end %>
           </ul>
-          <h3>Prix max €</h3>
-          <input type="number" name="prix_max" min="0" class="prix">
+          <h3>Prix €</h3>
+          <section class="range-slider">
+            <span class="rangeValues"></span>
+            <% max = (Ceramique.maximum(:price_cents) || 0)/ 100 %>
+            <% min = (Ceramique.minimum(:price_cents) || 0)/ 100 %>
+            <input name="prix_min" value="<%= min %>" min="<%= min %>" max="<%= max %>" step="1" type="range">
+            <input name="prix_max" value="<%= max %>" min="<%= min %>" max="<%= max %>" step="1" type="range">
+          </section>
         </div>
         <% if  params[:categories].present? || params[:prix_max].present? || params[:offer].present? || params[:search].present?%>
           <label class="label-search all"><input type="checkbox" name="all[]" value="all">Tout afficher</label>
         <% end %>
       </div>
       <div class="mobile-submit">
-        <input type="submit" id="recherche" class="btn btn-primary recherche" value="AFFICHER LES PRODUITS">
+        <input type="hidden" name="locale" value="<%= I18n.locale%>">
+        <input type="submit" id="recherche" class="btn btn-primary recherche" value="<%=t(:display_mobile)%>">
       </div>
     </form>
   </div>
@@ -201,25 +215,8 @@
   </div>
 </div>
 
+<%= render 'shared/schema_org_jsons/ceramiques_index_json' %>
 <% content_for(:after_js) do %>
-  <script type="application/ld+json">
-  {
-    "@context": "http://schema.org/",
-    "@type": "Product",
-    "name": "Les <%="#{ENV['MODEL']} de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>",
-    "image": <%= raw @ceramiques.map {|ceramique| cl_image_path ceramique.photos[0].path}.to_json %>,
-    "brand": {
-      "@type": "Thing",
-      "name": "<%="#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>"
-    },
-    "offers": {
-      "@type": "AggregateOffer",
-      "lowPrice": "<%= humanized_money((@ceramiques.map(&:price_cents).min || 0)/ 100) %>",
-      "highPrice": "<%= humanized_money((@ceramiques.map(&:price_cents).max || 0)/ 100) %>",
-      "priceCurrency": "EUR"
-    }
-  }
-  </script>
   <script
   type="text/javascript"
   async defer
@@ -228,31 +225,5 @@
   data-pin-tall="15px"
 ></script>
 <%= render 'shared/facebookshare' %>
-
-<!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
-<script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
-<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
-<!-- Initialize autocomplete menu -->
-<script>
-var algoliaAPPID = String('<%=ENV['ALGOLIAPPID']%>')
-var algoliasearchKey = String('<%=ENV['ALGOLISEARCHKEY']%>')
-var client = algoliasearch(algoliaAPPID, algoliasearchKey);
-var index = client.initIndex('Ceramique');
-//initialize autocomplete on search input (ID selector must match)
-autocomplete('#aa-search-input, #aa-search-input2',
-{ hint: false }, {
-    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
-    //value to be displayed in input control after user's suggestion selection
-    displayKey: 'name',
-    //hash of templates used when rendering dataset
-    templates: {
-        //'suggestion' templating function used to render a single suggestion
-        suggestion: function(suggestion) {
-          return '<span>' + suggestion._highlightResult.name.value + '</span>'
-          + '<span>' + suggestion._highlightResult.description.value + '</span>'
-          +'<span>' + suggestion._highlightResult.category.name.value + '</span>';
-        }
-    }
-});
-</script>
+<%= render 'shared/algolia_search' %>
 <% end %>
