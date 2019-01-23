@@ -20,7 +20,7 @@
           //'suggestion' templating function used to render a single suggestion
         suggestion: function(suggestion) {
           return '<span>' + suggestion._highlightResult.name.value + '</span>'
-          + '<span>' + suggestion._snippetResult.description.value + '</span>'
+          + '<span>' + suggestion._highlightResult.description.value + '</span>'
           +'<span>' + suggestion._highlightResult.category.name.value + '</span>';
         }
       }
