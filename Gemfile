@@ -48,7 +48,7 @@ gem 'elevatezoom-rails'
 gem 'letter_opener', group: :development
 
 # admin
-gem 'activeadmin', '~> 1.3'
+gem 'activeadmin', '~> 1.3.1'
 gem 'activeadmin-index_as_calendar', github: 'bys-control/activeadmin-index_as_calendar'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 

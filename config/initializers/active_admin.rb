@@ -203,9 +203,7 @@ ActiveAdmin.setup do |config|
   #   config.register_stylesheet 'my_print_stylesheet.css', media: :print
   #
   # To load a javascript file:
-    config.register_javascript 'activeadminecustomization.js'
-    config.register_javascript '/assets/cloudinary/jquery.cloudinary.self-8bbd0532abf9cf5b6a1fc7a1a213f6b5d2cf436e9a4f6d95578e1c2d5c1fe3b5.js'
-    config.register_javascript '/assets/attachinary.self-b16c37048ec9823f15ffca8f48f7c09ac5d1c33afdec60d9138e0e51e9f6f5ec.js'
+  config.register_javascript 'activeadminecustomization.js'
 
   # == CSV options
   #
