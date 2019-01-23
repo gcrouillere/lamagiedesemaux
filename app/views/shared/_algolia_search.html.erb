@@ -19,15 +19,9 @@
       templates: {
           //'suggestion' templating function used to render a single suggestion
         suggestion: function(suggestion) {
-          if ("<%= I18n.locale %>" == "fr") {
-            return '<span>' + suggestion._highlightResult.translated_name_fr.value + '</span>'
-            + '<span>' + suggestion._highlightResult.translated_description_fr.value + '</span>'
-            +'<span>' + suggestion._highlightResult.translated_category_fr.value + '</span>';
-          } else {
-            return '<span>' + suggestion._highlightResult.translated_name_en.value + '</span>'
-            + '<span>' + suggestion._highlightResult.translated_description_en.value + '</span>'
-            +'<span>' + suggestion._highlightResult.translated_category_en.value + '</span>';
-          }
+            return '<span>' + suggestion._highlightResult.name.value + '</span>'
+            + '<span>' + suggestion._highlightResult.description.value + '</span>'
+            +'<span>' + suggestion._highlightResult.category.value + '</span>';
         }
       }
   });
