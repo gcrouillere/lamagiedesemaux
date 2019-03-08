@@ -12,7 +12,7 @@
     </div>
     <div class="icone-bloc">
       <i class="fa fa-phone"></i>
-      <h6 class="info-text info-text-2"><%=ENV['TELEPHONE']%></h6>
+      <h6 class="info-text info-text-2"><%= link_to "#{ENV['TELEPHONE']}", "tel:#{ENV['TELEPHONE']}" %></h6>
     </div>
     <% if user_signed_in? %>
       <div class="icone-bloc">

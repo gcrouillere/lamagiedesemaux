@@ -2,7 +2,7 @@ ActiveAdmin.register Subcategory do
   permit_params :name, :category_id
   config.filters = false
   actions  :index, :new, :create, :destroy, :update, :edit
-  menu priority: 2
+  menu priority: 3
 
   index do
     column :name

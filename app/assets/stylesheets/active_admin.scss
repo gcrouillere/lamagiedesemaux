@@ -36,3 +36,34 @@ a.fc-day-grid-event {
     text-align: center;
   }
 }
+
+// DRAG END ANIMATION
+.drag-end-animation td {
+  animation: pop 2s;
+}
+
+.sucess-update {
+  animation: sucessupdate 3s;
+}
+
+.fail-update {
+  animation: failupdate 3s;
+}
+
+@keyframes pop {
+  from {
+    background: linear-gradient(180deg, #dce9dd, #ccdfcd);
+  }
+}
+
+@keyframes failupdate {
+  from {
+    background: linear-gradient(180deg, #e9dcdc, #dfcccc);
+  }
+}
+
+@keyframes sucessupdate {
+  from {
+    background: linear-gradient(180deg, #dce9dd, #ccdfcd);
+  }
+}
