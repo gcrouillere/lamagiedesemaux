@@ -90,3 +90,35 @@
 .input_with_thumbnail input {
   margin-right: 5px;
 }
+
+/*PRODUCT INDEX */
+.hidden-desc, .hidden-categories {
+  visibility: hidden;
+  position: absolute;
+}
+
+table#index_table_produits tr td {
+  vertical-align: middle;
+  height: 30px;
+}
+
+table#index_table_produits tr td textarea {
+  height: 100px;
+}
+
+table#index_table_produits tr td.col.col-actions a {
+  font-size: 10px;
+}
+
+table#index_table_produits tr td.col.col-name {
+  min-width: 150px;
+}
+
+table#index_table_produits tr td.col.col-stock,  table#index_table_produits tr td.col.col-weight,
+table#index_table_produits tr td.col.col-price_cents {
+  min-width: 93px;
+}
+
+table#index_table_produits tr td.col.col-description {
+  width: 400px;
+}

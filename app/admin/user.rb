@@ -1,7 +1,7 @@
 ActiveAdmin.register User, as: 'Clients' do
   actions  :index, :show, :update, :edit
   permit_params :tracking
-  menu priority: 7
+  menu priority: 6
   config.filters = false
 
   index do

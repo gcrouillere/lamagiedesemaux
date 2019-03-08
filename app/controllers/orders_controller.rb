@@ -5,8 +5,9 @@ class OrdersController < ApplicationController
   def create
     @ceramique = Ceramique.find(params[:ceramique].to_i)
     if session[:order].present?
-      if Order.find(session[:order].to_i).state != "lost"
+      if Order.find(session[:order].to_i).state != "lost" && Order.find(session[:order].to_i).state != "paid"
         @order = Order.find(session[:order])
+        @order.update(state: "pending")
       else
         @order = create_order
       end

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   mount Attachinary::Engine => "/attachinary"
 
   scope do
-    resources :ceramiques, path: ENV['MODEL'], only: [:create, :index, :destroy, :show]
+    resources :ceramiques, path: ENV['MODEL'], only: [:create, :index, :destroy, :show, :update]
   end
 
   resources :orders, only: [:show, :create, :destroy] do
@@ -53,5 +53,8 @@ Rails.application.routes.draw do
       resources :promos, only: [:show]
     end
   end
+
+  #Position management through JS
+  get '/ceramiques/update_positions_after_swap_in_admin', to: "ceramiques#update_positions_after_swap_in_admin"
 
 end
