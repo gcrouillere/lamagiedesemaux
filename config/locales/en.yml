@@ -134,6 +134,8 @@ en:
   first_last_name: "First name Last name"
   send_your_message: "Type your message here"
   send: "SEND"
+  pay_by_card: "Pay by card"
+  payment_failure: "Payment failure, your card was not charged. Please retry."
   activerecord:
     errors:
       messages:

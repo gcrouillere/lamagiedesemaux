@@ -129,7 +129,8 @@ fr:
   email_adress: "Adresse email"
   first_last_name: "Prénom Nom"
   send_your_message: "Entrez votre message"
-
+  pay_by_card: "Payer par carte"
+  payment_failure: "Erreur lors du paiement, votre carte n'a pas été débitée. Veuillez réessayer."
   send: "ENVOYER"
   day:
     one: "Jour"

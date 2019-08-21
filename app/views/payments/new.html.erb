@@ -53,15 +53,10 @@
           <div class="payment-methods">
             <%= form_tag order_payments_path(@order) do %>
               <%= hidden_field_tag "method", "stripe" %>
-              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                data-name="<%=ENV['MODEL'].capitalize%>"
-                data-email="<%= current_user.email %>"
-                data-description="<%=ENV['FIRSTNAME'].capitalize%> <%=ENV['LASTNAME'].capitalize%>"
-                data-amount="<%= @order.take_away ? @order.amount_cents : @order.amount_cents + @order.port_cents %>"
-                data-currency="<%= @order.amount.currency %>"
-                data-locale="auto">
-              </script>
+              <button type="submit" id="stripe-pay" class="pay-button">
+                <span><%=t(:pay_by_card)%></span>
+              </button>
+
               <div class="secure">
                 <% @payment_theme == "darktheme" ? logo = "stripe.svg" : logo = "stripe-black.svg" %>
                 <div class="stripe"><span><%=t(:secured_payment)%></span> <%= image_tag logo, class: "stripe-logo"%></div>
@@ -78,3 +73,32 @@
     </div>
   </div>
 </div>
+
+  <div id="stripe-errors" class="alert alert-dismissible alert-default" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  </div>
+
+<% content_for(:after_js) do %>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    var stripe = Stripe("<%= Rails.configuration.stripe[:publishable_key] %>");
+
+    document.getElementById("stripe-pay").addEventListener('click', payWithStripe, false);
+
+    function payWithStripe(event) {
+      event.preventDefault();
+      stripe.redirectToCheckout({
+        sessionId: "<%= @stripe_session %>"
+      }).then(function (result) {
+        if (result.error.message) {
+          var warningDiv = document.getElementById("stripe-errors");
+          warningDiv.innerHTML += result.error.message;
+          warningDiv.classList.add("active")
+        }
+        // If `redirectToCheckout` fails due to a browser or network
+        // error, display the localized error message to your customer
+        // using `result.error.message`.
+      });
+    }
+  </script>
+<% end %>

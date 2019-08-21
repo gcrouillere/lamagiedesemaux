@@ -1,16 +1,50 @@
 class PaymentsController < ApplicationController
-  before_action :set_order, only: [:create, :new]
+  before_action :set_order, only: [:create, :new, :create_stripe_payment]
   before_action :logistic_check, only: [:new]
 
   def new
-    @payment_theme = @active_theme.name
-    final_order_amount
     if @order.state == "lost"
       flash[:notice] = t(:expired_basket)
       redirect_to ceramiques_path and return
     end
+
+    @payment_theme = @active_theme.name
+    final_order_amount
+    @order.take_away ? @final_amount = @order.amount_cents : @final_amount = @order.amount_cents + @order.port_cents
+
+    session = Stripe::Checkout::Session.create(
+      customer_email: @order.user ? @order.user.email : "",
+      payment_method_types: ['card'],
+      line_items: [{
+        name: 'ECOMMERCE BASE',
+        description: "Paiement pour #{@order.ceramique || "lesson"}",
+        amount: @final_amount,
+        currency: 'eur',
+        quantity: 1,
+      }],
+      success_url: payments_create_stripe_payment_url(order_id: @order.id),
+      cancel_url: new_order_payment_url(@order),
+    )
+
+    @stripe_session = session["id"]
+    @order.update(stripe_session: session["id"])
     @order.take_away ? @order_in_js = @order.amount_cents : @order_in_js = @order.amount_cents + @order.port_cents
     gon.order_in_js = @order_in_js.to_f / 100
+  end
+
+  def create_stripe_payment
+    session = Stripe::Checkout::Session.retrieve(@order.stripe_session)
+    payment_intent = Stripe::PaymentIntent.retrieve(session["payment_intent"])
+    status = payment_intent["status"]
+
+    if status == "succeeded"
+      document_order_basketlines
+      @order.update(stripe_payment_intent: payment_intent, state: 'paid', method: 'stripe')
+      sends_mails_after_order
+    else
+      flash[:notice] = t(:payment_failure)
+      redirect_to new_order_payment_url(@order)
+    end
   end
 
   def create
@@ -20,28 +54,18 @@ class PaymentsController < ApplicationController
       redirect_to ceramiques_path and return
     end
 
-    @order.take_away ? @final_amount = @order.amount_cents : @final_amount = @order.amount_cents + @order.port_cents
-
-    if params[:method] == "stripe"
-      customer = Stripe::Customer.create(
-        source: params[:stripeToken],
-        email:  params[:stripeEmail]
-      )
-      charge = Stripe::Charge.create(
-        customer:     customer.id,   # You should store this customer id and re-use it.
-        amount:       @final_amount, # or amount_pennies
-        description:  "Payment for #{@order.ceramique || "lesson"}, for order #{@order.id}",
-        currency:     @order.amount.currency
-      )
-      @order.update(payment: charge.to_json, state: 'paid', method: "stripe")
-      document_order_basketlines
-    elsif params[:method] == "paypal"
+    if params[:method] == "paypal"
       if params[:status] == "success"
         @order.update(state: 'paid', method: "paypal")
         document_order_basketlines
+        sends_mails_after_order
       end
     end
+  end
 
+  private
+
+  def sends_mails_after_order
     @lesson =  @order.lesson
     unless @lesson.present?
       # SEND EMAILS
@@ -51,21 +75,14 @@ class PaymentsController < ApplicationController
       OrderMailer.mail_francoise_after_order(@user, @order).deliver_now
       # CLEAR SESSION AND REDIRECT TO CONFIRMATION
       session[:order] = nil
-      redirect_to confirmation_path
+      redirect_to confirmation_path and return
     else
       # SEND EMAILS
       LessonMailer.mail_user_after_lesson_payment(@lesson, @user).deliver_now
       LessonMailer.mail_francoise_after_lesson_payment(@lesson, @user).deliver_now
-      redirect_to stage_payment_confirmation_path
+      redirect_to stage_payment_confirmation_path and return
     end
-
-    # REDIRECT TO PAYMENT
-    rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to new_order_payment_path(@order)
   end
-
-  private
 
   def set_order
     @order = Order.find(params[:order_id])

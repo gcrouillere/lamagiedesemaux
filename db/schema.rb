@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_30_205624) do
+ActiveRecord::Schema.define(version: 2019_08_21_081308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -158,6 +158,8 @@ ActiveRecord::Schema.define(version: 2018_11_30_205624) do
     t.integer "weight"
     t.bigint "promo_id"
     t.string "method"
+    t.string "stripe_session"
+    t.string "stripe_payment_intent"
     t.index ["lesson_id"], name: "index_orders_on_lesson_id"
     t.index ["promo_id"], name: "index_orders_on_promo_id"
     t.index ["user_id"], name: "index_orders_on_user_id"

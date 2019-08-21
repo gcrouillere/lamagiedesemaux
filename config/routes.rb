@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {:registrations => "app_specific_registration/registrations", omniauth_callbacks: 'users/omniauth_callbacks'}
   mount Attachinary::Engine => "/attachinary"
 
+  get '/payments/create_stripe_payment', to: 'payments#create_stripe_payment'
+
   scope do
     resources :ceramiques, path: ENV['MODEL'], only: [:create, :index, :destroy, :show, :update]
   end
