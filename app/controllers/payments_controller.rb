@@ -16,7 +16,7 @@ class PaymentsController < ApplicationController
       customer_email: @order.user ? @order.user.email : "",
       payment_method_types: ['card'],
       line_items: [{
-        name: 'ECOMMERCE BASE',
+        name: 'Fabienne Jacob',
         description: "Paiement pour #{@order.ceramique || "lesson"}",
         amount: @final_amount,
         currency: 'eur',
