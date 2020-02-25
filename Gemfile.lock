@@ -1,15 +1,15 @@
 GIT
-  remote: git://github.com/activeadmin/inherited_resources.git
-  revision: 1597ddaae144f3030000a94bff47f74ae57f87da
+  remote: https://github.com/activeadmin/inherited_resources.git
+  revision: 819ce248611c8f85d346f5be211d25961b4a1a14
   specs:
-    inherited_resources (1.9.0)
-      actionpack (>= 5.0, < 6.0)
+    inherited_resources (1.11.0)
+      actionpack (>= 5.2, < 6.1)
       has_scope (~> 0.6)
-      railties (>= 5.0, < 6.0)
-      responders
+      railties (>= 5.2, < 6.1)
+      responders (>= 2, < 4)
 
 GIT
-  remote: git://github.com/bys-control/activeadmin-index_as_calendar.git
+  remote: https://github.com/bys-control/activeadmin-index_as_calendar.git
   revision: 1e07d605b536f4f9a89c054f34910728f46d3871
   specs:
     activeadmin-index_as_calendar (0.0.13)
@@ -253,7 +253,7 @@ GEM
       connection_pool (~> 2.2)
     netrc (0.11.0)
     nio4r (2.3.1)
-    nokogiri (1.10.1)
+    nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
     oauth2 (1.4.1)
       faraday (>= 0.8, < 0.16.0)
