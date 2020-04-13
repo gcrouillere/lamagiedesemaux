@@ -49,8 +49,8 @@ gem 'letter_opener', group: :development
 
 # admin
 gem 'activeadmin', '~> 1.3.1'
-gem 'activeadmin-index_as_calendar', github: 'bys-control/activeadmin-index_as_calendar'
-gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'activeadmin-index_as_calendar', git: 'https://github.com/bys-control/activeadmin-index_as_calendar.git'
+gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources.git'
 
 
 # keepawake on heroku

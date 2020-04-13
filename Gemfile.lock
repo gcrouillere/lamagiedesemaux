@@ -1,15 +1,15 @@
 GIT
-  remote: git://github.com/activeadmin/inherited_resources.git
-  revision: 1597ddaae144f3030000a94bff47f74ae57f87da
+  remote: https://github.com/activeadmin/inherited_resources.git
+  revision: 64a778dc401d5dd9f90584dd9dbd493351c7866c
   specs:
-    inherited_resources (1.9.0)
-      actionpack (>= 5.0, < 6.0)
+    inherited_resources (1.11.0)
+      actionpack (>= 5.2, < 6.1)
       has_scope (~> 0.6)
-      railties (>= 5.0, < 6.0)
-      responders
+      railties (>= 5.2, < 6.1)
+      responders (>= 2, < 4)
 
 GIT
-  remote: git://github.com/bys-control/activeadmin-index_as_calendar.git
+  remote: https://github.com/bys-control/activeadmin-index_as_calendar.git
   revision: 1e07d605b536f4f9a89c054f34910728f46d3871
   specs:
     activeadmin-index_as_calendar (0.0.13)
