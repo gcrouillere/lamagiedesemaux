@@ -2,7 +2,7 @@ class CeramiquesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @dev_redirection = "https://www.creermonecommerce.fr/product_claim_details"
+    @dev_redirection = "http://www.guillaumecrouillere.fr"
     Offer.where(showcased: true).first ? (Offer.where(showcased: true).first.ceramiques.present? ? @front_offer = Offer.all.where(showcased: true).first : nil) : nil
     @front_offer ? @ceramiques_to_display_in_offer = Ceramique.all.where(offer: @front_offer) : nil
     clean_orders
@@ -24,7 +24,7 @@ class CeramiquesController < ApplicationController
 
   def show
     session[:zoom_message] ? session[:zoom_message] += 1 : session[:zoom_message] = 0
-    @dev_redirection = "https://www.creermonecommerce.fr/produits"
+    @dev_redirection = "http://www.guillaumecrouillere.fr"
     clean_orders
     @ceramique = Ceramique.find(params[:id])
     @same_category_products = Ceramique.where(subcategory: @ceramique.subcategory) - [Ceramique.find(@ceramique.id)]
